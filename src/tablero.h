@@ -20,11 +20,11 @@ private:
 	size_t profundidad;
 
 public:
+	Tablero(size_t ancho, size_t alto, size_t profundo);
 	void setAnchura(size_t ancho);
 	void setAltura(size_t alto);
 	void setProfundidad(size_t profundo);
 	void setCantidadFichas(size_t n);
-	Tablero(size_t ancho, size_t alto, size_t profundo);
 	unsigned int getCantidadFichas();
 	size_t getAnchura();
 	size_t getAltura();
