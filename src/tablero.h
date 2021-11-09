@@ -29,8 +29,6 @@ public:
 	size_t getAnchura();
 	size_t getAltura();
 	size_t getProfundidad();
-
-
 };
 
 
