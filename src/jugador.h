@@ -9,12 +9,14 @@
 #define SRC_JUGADOR_H_
 
 #include <string>
+#include "cartas.h"
 
 class Jugador {
 private:
 	std::string nombre;
 	char ficha;
 	unsigned int idTurno;
+	Carta *cartas;
 
 private:
 	Jugador(char ficha, std::string nombre, unsigned int idTurno);
