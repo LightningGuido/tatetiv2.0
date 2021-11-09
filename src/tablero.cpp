@@ -22,9 +22,8 @@ void Tablero::setProfundidad(size_t profundo) {
 	this->profundidad = profundo;
 }
 
-void inicializarTablero(Tablero *tablero) {
-
-
+void Tablero::setCantidadFichas(size_t n) {
+	this->cantidadFichas = 0;
 }
 
 Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
@@ -36,24 +35,36 @@ Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
 	for(size_t i = 0; i < ancho; i++) {
 			this->casillero[i] = new Casillero*[alto];
 			for(size_t j = 0; j < alto; j++) {
-				this->casillero[i][j];
+				this->casillero[i][j] = new Casillero[profundo];
 			}
 	}
 
 	for(size_t i = 0; i < ancho; i++) {
 		for(size_t j = 0; j < alto; j++) {
 			for(size_t k = 0; k < profundo; k++) {
-				//ESTO HAY QUE CORREGIRLO, PERO AHORA ME DA PAJA PENSARLO
-				this->casillero[i][j][k].valor = VACIO;
+				this->casillero[i][j][k].setValor(VACIO);
 			}
 		}
 	}
 
-	this->cantidadFichas = 0;
-	setAnchura(ancho);
-	setAltura(alto);
-	setProfundidad(profundo);
-
+	this->setCantidadFichas(0);
+	this->setAnchura(ancho);
+	this->setAltura(alto);
+	this->setProfundidad(profundo);
 }
 
+unsigned int Tablero::getCantidadFichas() {
+	return this->cantidadFichas;
+}
 
+size_t Tablero::getAnchura() {
+	return this->anchura;
+}
+
+size_t Tablero::getAltura() {
+	return this->altura;
+}
+
+size_t Tablero::getProfundidad() {
+	return this->profundidad;
+}
