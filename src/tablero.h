@@ -20,8 +20,8 @@ private:
 	size_t profundidad;	//z
 
 public:
-	/* PRE: ---
-	 * POST: Inicializa el tablero
+	/* PRE:
+	 * POST:
 	 */
 	Tablero(size_t ancho, size_t alto, size_t profundo);
 	/* PRE:
@@ -29,61 +29,67 @@ public:
 	 */
 	void setAnchura(size_t ancho);
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	void setAltura(size_t alto);
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	void setProfundidad(size_t profundo);
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	void setCantidadFichas(size_t n);
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	unsigned int getCantidadFichas();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	size_t getAnchura();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	size_t getAltura();
+	/* PRE:
+	 * POST:
+	 */
 	size_t getProfundidad();
+	/* PRE:
+	 * POST:
+	 */
 	bool hayGanador();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoAncho();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoAnchoDiagonal1();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoAnchoDiagonal2();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoAlto();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoAltoDiagonal1();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoAltoDiagonal2();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoProf();
 	/* PRE:
-	 * POST
+	 * POST:
 	 */
 	bool ganadorPlanoProfDiagonal1();
 	/* PRE:
