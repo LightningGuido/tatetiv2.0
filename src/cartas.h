@@ -8,6 +8,9 @@
 #ifndef SRC_CARTAS_H_
 #define SRC_CARTAS_H_
 
+#include <iostream>
+#include <string>
+
 enum TipoCarta {
 	//Saltea a quien sigue
 	PerderTurno = 0,
@@ -23,12 +26,16 @@ enum TipoCarta {
 	TurnoDoble = 5
 };
 
+
 class Carta {
 private:
 	TipoCarta truco;
 
 public:
-
+	Carta();
+	// 6 funciones para las cartas
+	// llamada a las funciones
+	void mostrarCarta();
 };
 
 

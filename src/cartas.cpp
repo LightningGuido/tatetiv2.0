@@ -5,6 +5,32 @@
  *      Author: guido
  */
 
+#include "cartas.h"
 
 
+Carta::Carta() {
+	this->truco = TipoCarta(rand() % 6);
+}
 
+void Carta::mostrarCarta() {
+	switch(this->truco) {
+	case 0:
+		std::cout << "Perder turno" << std::endl;
+		break;
+	case 1:
+		std::cout << "Bloquear Ficha" << std::endl;
+		break;
+	case 2:
+		std::cout << "Bloquear Casillero" << std::endl;
+		break;
+	case 3:
+		std::cout << "Ir Atras" << std::endl;
+		break;
+	case 4:
+		std::cout << "Permutar Lugar" << std::endl;
+		break;
+	case 5:
+		std::cout << "Turno Doble" << std::endl;
+		break;
+	}
+}
