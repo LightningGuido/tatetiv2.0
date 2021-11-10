@@ -19,10 +19,23 @@ private:
 	Carta *cartas;
 
 private:
+	/* PRE:
+	 * POST
+	 */
 	Jugador(char ficha, std::string nombre, unsigned int idTurno);
+	/* PRE:
+	 * POST
+	 */
 	void setFicha(char ficha);
+	/* PRE:
+	 * POST
+	 */
 	char getFicha();
+	/* PRE:
+	 * POST
+	 */
 	std::string getNombre();
+	//Puntero
 };
 
 

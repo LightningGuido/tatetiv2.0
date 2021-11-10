@@ -32,9 +32,15 @@ private:
 	TipoCarta truco;
 
 public:
+	/* PRE:
+	 * POST
+	 */
 	Carta();
 	// 6 funciones para las cartas
 	// llamada a las funciones
+	/* PRE:
+	 * POST
+	 */
 	void mostrarCarta();
 };
 

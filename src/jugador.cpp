@@ -13,6 +13,7 @@ Jugador::Jugador(char ficha, std::string nombre, unsigned int idTurno) {
 	this->nombre = nombre;
 	this->ficha = ficha;
 	this->idTurno = idTurno;
+	this->cartas = new Carta[3];
 }
 
 void Jugador::setFicha(char ficha) {
