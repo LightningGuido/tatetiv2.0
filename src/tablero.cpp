@@ -28,6 +28,7 @@ void Tablero::setCantidadFichas(size_t n) {
 
 Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
 
+
 	this->casillero = new Casillero**[ancho];
 	if(this->casillero == NULL) {
 		//throw
@@ -42,7 +43,8 @@ Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
 	for(size_t i = 0; i < ancho; i++) {
 		for(size_t j = 0; j < alto; j++) {
 			for(size_t k = 0; k < profundo; k++) {
-				this->casillero[i][j][k].Casillero(VACIO);
+				this->casillero[i][j][k].setValor(VACIO);
+				this->casillero[i][j][k].setEstado(Libre);
 			}
 		}
 	}
@@ -330,7 +332,7 @@ bool Tablero::ganadorDiagonales3D() {
 			aux = false;
 			break;
 		}
-		if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y-1][z+1]) {
+		if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y-1][z+1].getValor()) {
 			aux = false;
 			break;
 		}
@@ -343,7 +345,7 @@ bool Tablero::ganadorDiagonales3D() {
 			aux = false;
 			break;
 		}
-		if(this->casillero[x][y][z].getValor() != this->casillero[x-1][y+1][z+1]) {
+		if(this->casillero[x][y][z].getValor() != this->casillero[x-1][y+1][z+1].getValor()) {
 			aux = false;
 			break;
 		}
@@ -355,7 +357,7 @@ bool Tablero::ganadorDiagonales3D() {
 			aux = false;
 			break;
 		}
-		if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y+1][z-1].getValor) {
+		if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y+1][z-1].getValor()) {
 			aux = false;
 			break;
 		}

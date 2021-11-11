@@ -9,11 +9,15 @@
 
 
 Carta::Carta() {
-	this->truco = TipoCarta(rand() % 6);
+	this->carta = TipoCarta(rand() % 6);
+}
+
+TipoCarta Carta::getCarta() {
+	return this->carta;
 }
 
 void Carta::mostrarCarta() {
-	switch(this->truco) {
+	switch(this->carta) {
 	case 0:
 		std::cout << "Perder turno" << std::endl;
 		break;

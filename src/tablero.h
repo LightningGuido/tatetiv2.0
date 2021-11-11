@@ -19,6 +19,46 @@ private:
 	size_t altura;		//y
 	size_t profundidad;	//z
 
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoAncho();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoAnchoDiagonal1();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoAnchoDiagonal2();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoAlto();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoAltoDiagonal1();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoAltoDiagonal2();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoProf();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorPlanoProfDiagonal1();
+	/* PRE:
+	 * POST
+	 */
+	bool ganadorPlanoProfDiagonal2();
+	/* PRE:
+	 * POST:
+	 */
+	bool ganadorDiagonales3D();
 public:
 	/* PRE:
 	 * POST:
@@ -60,46 +100,7 @@ public:
 	 * POST:
 	 */
 	bool hayGanador();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoAncho();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoAnchoDiagonal1();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoAnchoDiagonal2();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoAlto();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoAltoDiagonal1();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoAltoDiagonal2();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoProf();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorPlanoProfDiagonal1();
-	/* PRE:
-	 * POST
-	 */
-	bool ganadorPlanoProfDiagonal2();
-	/* PRE:
-	 * POST:
-	 */
-	bool ganadorDiagonales3D();
+
 };
 
 

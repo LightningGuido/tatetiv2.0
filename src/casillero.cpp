@@ -7,10 +7,10 @@
 
 #include "casillero.h"
 
-Casillero::Casillero(char valor) {
+/*Casillero::Casillero(char valor) {
 	this->valor = valor;
 	this->estado = Libre;
-}
+}*/
 
 void Casillero::setValor(char valor) {
 	this->valor = valor;

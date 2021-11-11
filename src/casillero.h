@@ -28,7 +28,7 @@ public:
 	/* PRE:
 	 * POST:
 	 */
-	Casillero(char valor);
+	//Casillero(char valor);
 	/* PRE:
 	 * POST
 	 */

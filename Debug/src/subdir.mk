@@ -6,22 +6,31 @@
 CPP_SRCS += \
 ../src/cartas.cpp \
 ../src/casillero.cpp \
+../src/cola.cpp \
+../src/juego.cpp \
 ../src/jugador.cpp \
 ../src/main.cpp \
+../src/pila.cpp \
 ../src/tablero.cpp 
 
 OBJS += \
 ./src/cartas.o \
 ./src/casillero.o \
+./src/cola.o \
+./src/juego.o \
 ./src/jugador.o \
 ./src/main.o \
+./src/pila.o \
 ./src/tablero.o 
 
 CPP_DEPS += \
 ./src/cartas.d \
 ./src/casillero.d \
+./src/cola.d \
+./src/juego.d \
 ./src/jugador.d \
 ./src/main.d \
+./src/pila.d \
 ./src/tablero.d 
 
 

@@ -29,7 +29,7 @@ enum TipoCarta {
 
 class Carta {
 private:
-	TipoCarta truco;
+	TipoCarta carta;
 
 public:
 	/* PRE:
@@ -41,6 +41,7 @@ public:
 	/* PRE:
 	 * POST
 	 */
+	TipoCarta getCarta();
 	void mostrarCarta();
 };
 
