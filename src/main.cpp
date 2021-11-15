@@ -32,6 +32,7 @@ int main() {
 	std::cin >> dim;
 	Tablero tablero = Tablero(dim, dim ,dim);
 	Tablero ultimo = Tablero(dim, dim, dim);
+	tablero.imprimirMapaCoordenado();
 
 	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
 	size_t jugadores;

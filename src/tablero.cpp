@@ -392,4 +392,77 @@ void Tablero::guardarEstado(Tablero* aux){
 
 }
 
+void Tablero::imprimirMapaCoordenado(){
+	/* como es un cubo tiene 6 caras: */
+
+		/*cara 1:
+			x varia
+			y varia
+			z fija = 0*/
+		std::cout << "CARA 1: "<< std::endl;
+		for(size_t i = 0; i < this->anchura; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "| " << (this->getCasillero(i, j, 0).getValor() << " |";
+			}
+			std::cout << std::endl;
+		}
+		/*cara 2:
+			x fijo = tablero->anchura
+			y varia
+			z varia*/
+		std::cout << "CARA 2: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "| " << (tablero->getCasillero(this->anchura, j, i).getValor() << " |";
+			}
+			std::cout << std::endl;
+		}
+		/*cara 3: 
+			x varia
+			y fijo = tablero->altura
+			z */
+		std::cout << "CARA 3: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->anchura; j++){
+				std::cout << "| " << (tablero->getCasillero(j, this->altura, i).getValor() << " |";
+			}
+			std::cout << std::endl;
+		}
+		/*cara 4:
+			x fijo = 0
+			y varia
+			z varia*/
+		std::cout << "CARA 4: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "| " << (tablero->getCasillero(0, j, i).getValor() << " |";
+			}
+			std::cout << std::endl;
+		}
+		/*cara 5:
+			x varia
+			y varia
+			z fijo = tablero->profundidad */
+		std::cout << "CARA 5: "<< std::endl;
+		for(size_t i = 0; i < this->anchura; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "| " << (tablero->getCasillero(i,j, this->profundidad).getValor() << " |";
+			}
+			std::cout << std::endl;
+		}
+		/*cara 6:
+			x varia
+			y fijo = 0
+			z varia	*/
+		std::cout << "CARA 6: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->anchura; j++){
+				std::cout << "| " << (tablero->getCasillero(j, 0, i).getValor() << " |";
+			}
+			std::cout << std::endl;
+		}
+		
+}
+void imprimirTablero();
+
 

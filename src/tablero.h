@@ -112,6 +112,8 @@ public:
 	bool hayGanador();
 
 	void guardarEstado(Tablero* aux);
+	void imprimirMapaCoordenado();
+	void imprimirTablero();
 
 };
 
