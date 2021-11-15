@@ -36,11 +36,11 @@ std::string Jugador::getNombre() {
 	return this->nombre;
 }
 
-Carta Jugador::getCarta(size_t pos){
+Carta Jugador::getCartas(size_t pos){
 	return this->cartas[pos];
 }
 
-Carta* Jugador::getCartas(){
+Carta* Jugador::getCartasPuntero(){
 	return this->cartas;
 }
 

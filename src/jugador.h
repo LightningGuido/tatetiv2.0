@@ -37,8 +37,8 @@ public:
 	 */
 	std::string getNombre();
 	//Puntero
-	Carta getCarta(size_t pos);
-	Carta* getCartas();
+	Carta getCartas(size_t pos);
+	Carta* getCartasPuntero();
 };
 
 
