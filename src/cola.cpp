@@ -30,22 +30,25 @@ void Cola::ColaDestruir(void destruirDato(void *)){
     delete this;
 }
 
-void* Cola::frente(){
-    return this->front;
+Jugador* Cola::frente(){
+    return this->front->getDato();
 }
 
-void Cola::acolar(void* elemento){
+void Cola::acolar(Jugador* elemento){
 
     Nodo* aux = new Nodo(elemento);
-
-    this->end->setSiguiente(aux);
+    if(this->tamanio == 0) {
+    	this->front = aux;
+    } else {
+    	this->end->setSiguiente(aux);
+    	this->end = aux;
+    }
     this->tamanio += 1;
-
 }
 
-void* Cola::desacolar(){
+Jugador* Cola::desacolar(){
     Nodo *aux = this->front; //aux = nodo1
-    void *dato = aux->getDato();
+    Jugador *dato = aux->getDato();
   
     this->front = aux->getSiguiente(); //front = nodo2 -> nodo2 = nodo1
     this->tamanio -= 1;

@@ -2,17 +2,16 @@
 #define SRC_NODO_H_
 
 #include <iostream>
-
+#include "jugador.h"
 class Nodo{
-    private: 
-        void* dato;
+private:
+        Jugador* dato;
         Nodo* siguiente;
 
-    public:
-
-    Nodo(void* dato);
+public:
+    Nodo(Jugador* dato);
     void nodoDestruir();
-    void* getDato();
+    Jugador* getDato();
     Nodo* getSiguiente();
     void setSiguiente(Nodo* nodo);
     

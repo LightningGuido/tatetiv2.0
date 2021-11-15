@@ -192,12 +192,12 @@ void turno(Tablero *tablero, Jugador *jugador) {
 
 		do {
 			cout << "Ingrese una altura:" << endl;
-			cin >> y;
+			cin >> y1;
 		} while(!alturaValida(y1, tablero));
 
 		do {
 			cout << "Ingrese una profundidad" << endl;
-			cin >> z;
+			cin >> z1;
 		} while(!alturaValida(z1, tablero));
 
 	} while(!hayFicha(tablero, jugador, x1, y1, z1));

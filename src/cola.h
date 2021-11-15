@@ -27,15 +27,15 @@ class Cola{
         /* Destruye la cola
         PRE: la cola debe haberi sido creada
         POST: no tiene*/
-        void* frente();
+        Jugador* frente();
         /*Retorna el primer elemento de la cola
         PRE: la cola, ya creada, no debe estar vacia
         POST: no tiene*/
-        void acolar(void* aux);
+        void acolar(Jugador* aux);
         /* Da de alta en la cola a un elemento pasado por argumento
         PRE: la cola debe haber sido creada
         POST: la cola modificada con la inserciòn del nuevo elemento al fondo*/
-        void* desacolar();
+        Jugador* desacolar();
         /*Elimina el elemento del frente de la cola
         PRE: la cola, ya creada, no debe estar vacia
         POST: cola modificada por la eliminacion del elemento del frente*/

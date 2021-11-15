@@ -11,6 +11,9 @@
 #include "cola.h"
 #include "juego.h"
 
+using namespace std;
+
+
 int main() {
 	/* PRIMERO: Se pregunta la cantidad de jugadores y dimension del tablero
 	 *
@@ -42,13 +45,22 @@ int main() {
 
 	//COLOCO FICHAS
 	while(tablero.getCantidadFichas() < dim * jugadores) {
-		//agrega ficha(tablero, jugadorlista)
+		fichasIniciales(turnos.frente(), &tablero);
 		//carta
 		//pasar turno
+		turnos.acolar(turnos.desacolar());
 		//verificasganador
+		if(tablero.hayGanador()) {
+			break;
+		}
 	}
 	while(1) {
-
+		turno(&tablero, turnos.frente());
+		//carta
+		turnos.acolar(turnos.desacolar());
+		if(tablero.hayGanador()) {
+			break;
+		}
 	}
 
 	return 0;

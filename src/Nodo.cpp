@@ -1,23 +1,23 @@
 #include "Nodo.h"
 
 
-    Nodo::Nodo(void* dato){
+Nodo::Nodo(Jugador* dato){
         this->dato = dato;
         this->siguiente = NULL;
-    }
-    void Nodo::nodoDestruir(){
+}
+void Nodo::nodoDestruir(){
         delete this->siguiente;
         delete this->dato;
-    }
-    void* Nodo::getDato(){
+}
+Jugador* Nodo::getDato(){
         return this->dato;
-    }
-    Nodo* Nodo::getSiguiente(){
+}
+Nodo* Nodo::getSiguiente(){
         return this->siguiente; 
-    }
+}
 
-    void Nodo::setSiguiente(Nodo* nodo){
+void Nodo::setSiguiente(Nodo* nodo){
         this->siguiente = nodo;
-    }
+}
 
     

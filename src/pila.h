@@ -25,7 +25,7 @@ class Pila{
         /*Destruye la pila
         PRE: la pila debe haber sido creada
         POST: no tiene */
-        void push(void* dato);
+        void push(Jugador* dato);
         /*Realiza el alta en la pila de un elemento pasado por argumento
         PRE: la pila debe haber sido creada
         POST: la pila modificada cpn la insercion del nuevo elemento en el tope */

@@ -43,3 +43,5 @@ Carta Jugador::getCarta(size_t pos){
 Carta* Jugador::getCartas(){
 	return this->cartas;
 }
+
+

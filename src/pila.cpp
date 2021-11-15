@@ -34,7 +34,7 @@ void Pila::setTope(Nodo* nodo){
     this->tope = nodo;
 }
         
-void Pila::push(void* dato){
+void Pila::push(Jugador* dato){
 
     Nodo* aux = new Nodo(dato);
 
