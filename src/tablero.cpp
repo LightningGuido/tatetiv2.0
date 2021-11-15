@@ -71,6 +71,14 @@ size_t Tablero::getProfundidad() {
 	return this->profundidad;
 }
 
+Casillero*** Tablero::getCasilleroPuntero() {
+	return this->casillero;
+}
+
+Casillero Tablero::getCasillero(size_t x, size_t y, size_t z) {
+	return this->casillero[x][y][z];
+}
+
 bool Tablero::hayGanador() {
 	if(this->ganadorPlanoAncho()) {
 		return true;

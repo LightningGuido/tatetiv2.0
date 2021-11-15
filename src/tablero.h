@@ -16,8 +16,8 @@ class Tablero {
 private:
 	Casillero ***casillero;
 	unsigned int cantidadFichas;
-	size_t anchura;		//x
 	size_t altura;		//y
+	size_t anchura;		//x
 	size_t profundidad;	//z
 
 	/* PRE:
@@ -97,6 +97,14 @@ public:
 	 * POST:
 	 */
 	size_t getProfundidad();
+	/* PRE:
+	 * POST:
+	 */
+	Casillero*** getCasilleroPuntero();
+	/* PRE:
+	 * POST:
+	 */
+	Casillero getCasillero(size_t x, size_t y, size_t z);
 	/* PRE:
 	 * POST:
 	 */

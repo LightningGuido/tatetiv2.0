@@ -10,21 +10,21 @@
 using namespace std;
 
 bool anchuraValida(size_t f, Tablero *tablero){
-	if(f > (-1) && f <= (tablero->getAnchura())){
+	if(f >= 0 && f <= (tablero->getAnchura())){
 		return true;
 	}
 	return false;
 }
 
 bool alturaValida(size_t c, Tablero *tablero){
-	if(c > (-1) && c < (tablero->getAltura())){
+	if(c >= 0 && c < (tablero->getAltura())){
 		return true;
 	}
 	return false;
 }
 
 bool profundidadValida(size_t c, Tablero *tablero){
-	if(c > (-1) && c < (tablero->getProfundidad())){
+	if(c >= 0 && c < size_t(tablero->getProfundidad())){
 		return true;
 	}
 	return false;
@@ -32,7 +32,7 @@ bool profundidadValida(size_t c, Tablero *tablero){
 
 bool posicionValida (Tablero *tablero, size_t ancho, size_t altura, size_t profundidad){
 
-	if(tablero->casillero[ancho][altura][profundidad]->getValor() == VACIO){
+	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO){
 			return true;
 		}
 
@@ -40,7 +40,7 @@ bool posicionValida (Tablero *tablero, size_t ancho, size_t altura, size_t profu
 }
 
 size_t obtenerAncho (Tablero *tablero){
-	size_t a;
+	int a;
 	cout << "Indique un valor de ancho: " << endl;
 		cin >> a;
 
@@ -54,7 +54,7 @@ size_t obtenerAncho (Tablero *tablero){
 }
 
 size_t obtenerAltura (Tablero *tablero){
-	size_t c;
+	int c;
 	cout << "Indique un valor de altura: " << endl;
 		cin >> c;
 
@@ -69,7 +69,7 @@ size_t obtenerAltura (Tablero *tablero){
 }
 
 size_t obtenerProfundidad (Tablero *tablero){
-	size_t c;
+	int c;
 	cout << "Indique un valor de profundidad: " << endl;
 		cin >> c;
 
@@ -90,7 +90,7 @@ void colocarFicha (Tablero *tablero, Jugador *jugador){
     size_t profundidad = obtenerProfundidad(tablero);
 
 	if(posicionValida(tablero, ancho, altura, profundidad)){
-		(tablero->casillero[ancho][altura][profundidad])->getValor() = (jugador->getFicha());
+		tablero->getCasillero(ancho,altura,profundidad).setValor(jugador->getFicha());
 	}
 	else{
 		cout << "Casilla no valida. Intente de nuevo." << endl;
@@ -99,7 +99,7 @@ void colocarFicha (Tablero *tablero, Jugador *jugador){
 }
 
 bool movimientoValido(Tablero *tablero, Jugador *jugador, size_t anchoUno, size_t alturaUno, size_t profundidadUno, size_t anchoDos, size_t alturaDos, size_t profundidadDos){
-	if((tablero->casillero[anchoUno][alturaUno][profundidadUno])->getValor() != jugador->getFicha() || !posicionValida(tablero, anchoDos, alturaDos, profundidadDos)){
+	if(tablero->getCasillero(anchoUno, alturaUno, profundidadUno).getValor() != jugador->getFicha() || !posicionValida(tablero, anchoDos, alturaDos, profundidadDos)){
 		return false;
 	}
 
@@ -130,8 +130,8 @@ bool moverFicha(Tablero *tablero, Jugador *jugador){
     profundidadDos = obtenerProfundidad(tablero);
 
 	if(movimientoValido(tablero, jugador, anchoUno, alturaUno, profundidadUno, anchoDos, alturaDos, profundidadDos)){
-		(tablero->casillero[anchoUno][alturaUno][profundidadUno])->setValor(VACIO);
-		(tablero->casillero[anchoDos][alturaDos][profundidadDos])->setValor(jugador->getFicha());
+		tablero->getCasillero(anchoUno, alturaUno, profundidadUno).setValor(VACIO);
+		tablero->getCasillero(anchoDos, alturaDos, profundidadDos).setValor(jugador->getFicha());
 		return true;
 	}
 

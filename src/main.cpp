@@ -36,7 +36,7 @@ int main() {
 
 	for(size_t i = 0; i < jugadores; i++) {
 		std::cout << "Jugador " << i + 1 << std::endl;
-		Jugador jugador = Jugador(i);
+		Jugador jugador = Jugador(i + 1);
 		turnos.acolar(&jugador);
 	}
 
