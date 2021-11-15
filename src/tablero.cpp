@@ -392,7 +392,7 @@ void Tablero::guardarEstado(Tablero* aux){
 
 }
 
-void Tablero::imprimirMapaCoordenado(){
+void Tablero::imprimirTablero(){
 	/* como es un cubo tiene 6 caras: */
 
 		/*cara 1:
@@ -402,7 +402,7 @@ void Tablero::imprimirMapaCoordenado(){
 		std::cout << "CARA 1: "<< std::endl;
 		for(size_t i = 0; i < this->anchura; i++){
 			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << (this->getCasillero(i, j, 0).getValor() << " |";
+				std::cout << "| " << this->casillero[i][j][0].getValor() << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -413,7 +413,7 @@ void Tablero::imprimirMapaCoordenado(){
 		std::cout << "CARA 2: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << (tablero->getCasillero(this->anchura, j, i).getValor() << " |";
+				std::cout << "| " << this->casillero[this->anchura][j][i].getValor() << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -424,7 +424,7 @@ void Tablero::imprimirMapaCoordenado(){
 		std::cout << "CARA 3: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "| " << (tablero->getCasillero(j, this->altura, i).getValor() << " |";
+				std::cout << "| " << this->casillero[j][this->altura][i].getValor() << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -435,7 +435,7 @@ void Tablero::imprimirMapaCoordenado(){
 		std::cout << "CARA 4: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << (tablero->getCasillero(0, j, i).getValor() << " |";
+				std::cout << "| " << this->casillero[0][j][i].getValor() << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -446,7 +446,7 @@ void Tablero::imprimirMapaCoordenado(){
 		std::cout << "CARA 5: "<< std::endl;
 		for(size_t i = 0; i < this->anchura; i++){
 			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << (tablero->getCasillero(i,j, this->profundidad).getValor() << " |";
+				std::cout << "| " << this->casillero[i][j][this->profundidad].getValor() << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -457,12 +457,80 @@ void Tablero::imprimirMapaCoordenado(){
 		std::cout << "CARA 6: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "| " << (tablero->getCasillero(j, 0, i).getValor() << " |";
+				std::cout << "| " << this->casillero[j][0][i].getValor() << " |";
 			}
 			std::cout << std::endl;
 		}
 		
 }
-void imprimirTablero();
+
+void Tablero::imprimirMapaCoordenado(){
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << "CARA 1: "<< std::endl;
+		for(size_t i = 0; i < this->anchura; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "|x = " << i << "; y = " << j << "; z = 0 |";
+			}
+			std::cout << std::endl;
+		}
+	
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "CARA 2: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "|x = " << this->anchura << "; y = " j << "; z = " i << " |";
+			}
+			std::cout << std::endl;
+		}
+	
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "CARA 3: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->anchura; j++){
+				std::cout << "|x = " << j << "; y = " << this->altura << "; z = " << i << " |";
+			}
+			std::cout << std::endl;
+		}
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "CARA 4: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "|x = 0; y = " << j << "; z = " << i << " |";
+			}
+			std::cout << std::endl;
+		}
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "CARA 5: "<< std::endl;
+		for(size_t i = 0; i < this->anchura; i++){
+			for(size_t j = 0; j < this->altura; j++){
+				std::cout << "|x = " << i << "; y = " << j << "; z = " << this->profundidad << " |";
+			}
+			std::cout << std::endl;
+		}
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "CARA 6: "<< std::endl;
+		for(size_t i = 0; i < this->profundidad; i++){
+			for(size_t j = 0; j < this->anchura; j++){
+				std::cout << "|x =  " << j << "; y = 0; z = " << i << " |";
+			}
+			std::cout << std::endl;
+		}
+
+
+}
 
 
