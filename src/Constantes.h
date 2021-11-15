@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-const size_t MAX_CARTAS = 5;
+const int MAX_CARTAS = 5;
 const char VACIO = ' ';
 
 #endif /* SRC_CONSTANTES_H_ */
