@@ -21,7 +21,7 @@ Jugador::Jugador(unsigned int idTurno) {
 	this->nombre = nombre;
 	this->ficha = ficha;
 	this->idTurno = idTurno;
-	this->cartas = new Carta[3];
+	this->cartas = new Carta[MAX_CARTAS];
 }
 
 void Jugador::setFicha(char ficha) {
@@ -34,4 +34,12 @@ char Jugador::getFicha() {
 
 std::string Jugador::getNombre() {
 	return this->nombre;
+}
+
+Carta Jugador::getCarta(size_t pos){
+	return this->cartas[pos];
+}
+
+Carta* Jugador::getCartas(){
+	return this->cartas;
 }

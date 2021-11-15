@@ -152,6 +152,13 @@ bool moverFicha(Tablero *tablero, Jugador *jugador){
 	return false;
 }
 
+void fichasIniciales(Jugador *jugador, Tablero *tablero){
+
+	colocarFicha(tablero, jugador);
+	//mostrarTablero(tablero);
+	
+}
+
 void turno(Tablero *tablero, Jugador *jugador) {
 
 	size_t x, y, z;
@@ -196,7 +203,7 @@ void turno(Tablero *tablero, Jugador *jugador) {
 	} while(!hayFicha(tablero, jugador, x1, y1, z1));
 
 	tablero->getCasillero(x, y, z).setValor(VACIO);
-	tablero->getCasillero(x1, y1, z1).setValor(jugador->ficha);
+	tablero->getCasillero(x1, y1, z1).setValor(jugador->getFicha());
 }
 
 

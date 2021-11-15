@@ -10,6 +10,7 @@
 
 #include <string>
 #include "cartas.h"
+#include "Constantes.h"
 
 class Jugador {
 private:
@@ -36,6 +37,8 @@ public:
 	 */
 	std::string getNombre();
 	//Puntero
+	Carta getCarta(size_t pos);
+	Carta* getCartas();
 };
 
 
