@@ -17,7 +17,7 @@ class Pila{
     
     public:
 
-        Pila::Pila();
+        Pila();
         /* Crea la pila
         PRE: no tiene
         POST: una pila vacia preparada para ser usada */

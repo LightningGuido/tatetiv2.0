@@ -9,7 +9,15 @@
 #include "jugador.h"
 
 
-Jugador::Jugador(char ficha, std::string nombre, unsigned int idTurno) {
+Jugador::Jugador(unsigned int idTurno) {
+	std::string nombre;
+	std::cout << "Ingrese su nombre" << std::endl;
+	std::cin >> nombre;
+
+	char ficha;
+	std::cout << "Ingrese su ficha" << std::endl;
+	std::cin >> ficha;
+
 	this->nombre = nombre;
 	this->ficha = ficha;
 	this->idTurno = idTurno;

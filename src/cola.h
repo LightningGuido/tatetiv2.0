@@ -8,7 +8,7 @@
 #ifndef SRC_COLA_H_
 #define SRC_COLA_H_
 #include <iostream>
-#include <Nodo.h>
+#include "Nodo.h"
 
 class Cola{
 
@@ -19,7 +19,7 @@ class Cola{
 
     public:
 
-        Cola::Cola();
+        Cola();
         /*Crea la cola
         PRE: no tiene
         POST: una cola vacia preparada para ser usada*/

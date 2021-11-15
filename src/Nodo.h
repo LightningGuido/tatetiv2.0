@@ -10,7 +10,7 @@ class Nodo{
 
     public:
 
-    Nodo::Nodo(void* dato);
+    Nodo(void* dato);
     void nodoDestruir();
     void* getDato();
     Nodo* getSiguiente();

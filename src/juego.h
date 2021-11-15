@@ -11,6 +11,10 @@
 
 #include "jugador.h"
 #include "tablero.h"
+#include "cola.h"
+#include "pila.h"
+
+
 
 
 #endif /* SRC_JUEGO_H_ */

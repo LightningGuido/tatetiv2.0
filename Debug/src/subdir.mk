@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/Nodo.cpp \
 ../src/cartas.cpp \
 ../src/casillero.cpp \
 ../src/cola.cpp \
@@ -14,6 +15,7 @@ CPP_SRCS += \
 ../src/tablero.cpp 
 
 OBJS += \
+./src/Nodo.o \
 ./src/cartas.o \
 ./src/casillero.o \
 ./src/cola.o \
@@ -24,6 +26,7 @@ OBJS += \
 ./src/tablero.o 
 
 CPP_DEPS += \
+./src/Nodo.d \
 ./src/cartas.d \
 ./src/casillero.d \
 ./src/cola.d \

@@ -18,11 +18,11 @@ private:
 	unsigned int idTurno;
 	Carta *cartas;
 
-private:
+public:
 	/* PRE:
 	 * POST
 	 */
-	Jugador(char ficha, std::string nombre, unsigned int idTurno);
+	Jugador(unsigned int idTurno);
 	/* PRE:
 	 * POST
 	 */

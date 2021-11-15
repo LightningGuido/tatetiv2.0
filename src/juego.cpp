@@ -6,5 +6,7 @@
  */
 
 
+#include "juego.h"
+
 
 
