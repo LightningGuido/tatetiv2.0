@@ -39,6 +39,15 @@ bool posicionValida (Tablero *tablero, size_t ancho, size_t altura, size_t profu
 	return false;
 }
 
+bool hayFicha (Tablero *tablero, Jugador* jugador, size_t ancho, size_t altura, size_t profundidad){
+
+	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == jugador->getFicha()){
+			return true;
+		}
+
+	return false;
+}
+
 size_t obtenerAncho (Tablero *tablero){
 	int a;
 	cout << "Indique un valor de ancho: " << endl;
@@ -142,4 +151,64 @@ bool moverFicha(Tablero *tablero, Jugador *jugador){
 
 	return false;
 }
+
+void turno(Tablero *tablero, Jugador *jugador) {
+
+	size_t x, y, z;
+	cout << "Elija que ficha quiere mover." << endl;
+
+	do {
+		do {
+			cout << "Ingrese una anchura:" << endl;
+			cin >> x;
+		} while(!anchuraValida(x, tablero));
+
+		do {
+			cout << "Ingrese una altura:" << endl;
+			cin >> y;
+		} while(!alturaValida(y, tablero));
+
+		do {
+			cout << "Ingrese una profundidad" << endl;
+			cin >> z;
+		} while(!alturaValida(z, tablero));
+
+	} while(!hayFicha(tablero, jugador, x, y, z));
+
+	size_t x1, y1, z1;
+	cout << "Elija la posicion donde mover." << endl;
+	do {
+		do {
+			cout << "Ingrese una anchura:" << endl;
+			cin >> x1;
+		} while(!anchuraValida(x1, tablero));
+
+		do {
+			cout << "Ingrese una altura:" << endl;
+			cin >> y;
+		} while(!alturaValida(y1, tablero));
+
+		do {
+			cout << "Ingrese una profundidad" << endl;
+			cin >> z;
+		} while(!alturaValida(z1, tablero));
+
+	} while(!hayFicha(tablero, jugador, x1, y1, z1));
+
+	tablero->getCasillero(x, y, z).setValor(VACIO);
+	tablero->getCasillero(x1, y1, z1).setValor(jugador->ficha);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

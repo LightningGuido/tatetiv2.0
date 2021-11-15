@@ -108,6 +108,7 @@ public:
 	/* PRE:
 	 * POST:
 	 */
+
 	bool hayGanador();
 
 };

@@ -42,7 +42,10 @@ int main() {
 
 	//COLOCO FICHAS
 	while(tablero.getCantidadFichas() < dim * jugadores) {
-
+		//agrega ficha(tablero, jugadorlista)
+		//carta
+		//pasar turno
+		//verificasganador
 	}
 	while(1) {
 
