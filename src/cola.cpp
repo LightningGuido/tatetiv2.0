@@ -20,7 +20,9 @@ void Cola::ColaDestruir(){
         while(this->front != NULL){
         
             this->front = this->front->getSiguiente();
+            delete aux->getDato();
             delete aux;
+
             aux = this->front;
         }
     }
