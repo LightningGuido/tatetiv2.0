@@ -98,7 +98,7 @@ int main() {
 
 	tablero->destruir();
 	ultimo->destruir();
-	//turnos->ColaDestruir(destruirDato());  ???
+	//turnos->ColaDestruir();  ???
 	return 0; 
 }
 

@@ -481,7 +481,7 @@ void Tablero::imprimirMapaCoordenado(){
 	std::cout << "CARA 2: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "|x = " << this->anchura << "; y = " << j << "; z = " << i << " |";
+				std::cout << "|x = " << (this->anchura) - 1 << "; y = " << j << "; z = " << i << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -492,7 +492,7 @@ void Tablero::imprimirMapaCoordenado(){
 	std::cout << "CARA 3: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "|x = " << j << "; y = " << this->altura << "; z = " << i << " |";
+				std::cout << "|x = " << j << "; y = " << (this->altura) - 1 << "; z = " << i << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -514,7 +514,7 @@ void Tablero::imprimirMapaCoordenado(){
 	std::cout << "CARA 5: "<< std::endl;
 		for(size_t i = 0; i < this->anchura; i++){
 			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "|x = " << i << "; y = " << j << "; z = " << this->profundidad << " |";
+				std::cout << "|x = " << i << "; y = " << j << "; z = " << (this->profundidad) - 1 << " |";
 			}
 			std::cout << std::endl;
 		}
