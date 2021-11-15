@@ -49,12 +49,13 @@ int main() {
 		//Colocan o mueven Fichas
 		if(tablero->getCantidadFichas() < dim * jugadores) {
 			fichasIniciales(turnos->frente(), tablero);
-			tablero->imprimirTablero();
+
 		} else {
 			turno(tablero, turnos->frente());
 		}
 
 		//Muestram y juegan cartas
+		tablero->imprimirTablero();
 		for(size_t i = 0; i < MAX_CARTAS; i++){
 			std::cout << i << ": ";
 			turnos->frente()->getCartas(i).mostrarCarta();
@@ -93,7 +94,7 @@ int main() {
 		} else {
 			std::cout <<"No juega ninguna carta" << std::endl;
 		}
-		tablero->imprimirTablero();
+		
 		tablero->guardarEstado(ultimo);
 		turnos->acolar(turnos->desacolar());
 	}
