@@ -375,6 +375,21 @@ bool Tablero::ganadorDiagonales3D() {
 	return false;
 }
 
+void Tablero::guardarEstado(Tablero* aux){
 
+	aux->altura = this->altura;
+	aux->anchura = this->anchura;
+	aux->profundidad = this->profundidad;
+	aux->cantidadFichas = this->cantidadFichas;
+
+	for(size_t i = 0; i < this->anchura; i++) {
+		for(size_t j = 0; j < this->altura; j++) {
+			for(size_t k = 0; k < this->profundidad; k++) {
+				aux->casillero[i][j][k].setValor(this->casillero[i][j][k].getValor());
+			}
+		}
+	}
+
+}
 
 

@@ -111,6 +111,8 @@ public:
 
 	bool hayGanador();
 
+	void guardarEstado(Tablero* aux);
+
 };
 
 

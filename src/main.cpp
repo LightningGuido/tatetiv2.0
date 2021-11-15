@@ -31,6 +31,7 @@ int main() {
 	size_t dim;
 	std::cin >> dim;
 	Tablero tablero = Tablero(dim, dim ,dim);
+	Tablero ultimo = Tablero(dim, dim, dim);
 
 	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
 	size_t jugadores;
@@ -47,6 +48,7 @@ int main() {
 	while(tablero.getCantidadFichas() < dim * jugadores) {
 		fichasIniciales(turnos.frente(), &tablero);
 		//carta
+		tablero.guardarEstado(&ultimo);
 		//pasar turno
 		turnos.acolar(turnos.desacolar());
 		//verificasganador
@@ -57,6 +59,7 @@ int main() {
 	while(1) {
 		turno(&tablero, turnos.frente());
 		//carta
+		tablero.guardarEstado(&ultimo);
 		turnos.acolar(turnos.desacolar());
 		if(tablero.hayGanador()) {
 			break;

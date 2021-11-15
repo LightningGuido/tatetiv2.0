@@ -67,3 +67,19 @@ bool Cola::vacia(){
     }
 }
 
+Jugador* Cola::siguiente(){
+    return this->front->getSiguiente()->getDato();
+}
+
+void Cola::acolarFrente(Jugador* nuevo){
+    Nodo *aux = new Nodo(nuevo);
+
+    if(this->tamanio == 0){
+        this->front = aux;
+    }
+    else{
+        aux->setSiguiente(this->front);
+        this->front = aux;
+    }
+    this->tamanio += 1;
+}

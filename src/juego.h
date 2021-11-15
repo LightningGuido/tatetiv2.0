@@ -14,6 +14,8 @@
 #include "cola.h"
 #include "pila.h"
 
+
+
 bool anchuraValida(size_t f, Tablero *tablero);
 bool alturaValida(size_t c, Tablero *tablero);
 bool profundidadValida(size_t c, Tablero *tablero);
@@ -27,5 +29,12 @@ bool movimientoValido(Tablero *tablero, Jugador *jugador, size_t anchoUno, size_
 void moverFicha(Tablero *tablero, Jugador *jugador);
 void fichasIniciales(Jugador *jugador, Tablero *tablero);
 void turno(Tablero *tablero, Jugador *jugador);
+void bloquearFicha(Tablero *tablero);
+void bloquearCasillero(Tablero *tablero);
+void perderTurno(Cola* jugadores);
+void irAtras(Tablero* tablero, Tablero* ultimo);
+bool permutarLugar(Tablero* tablero);
+void turnoDoble(Cola* jugadores);
+
 
 #endif /* SRC_JUEGO_H_ */

@@ -43,6 +43,8 @@ class Cola{
         /* Devuelve un valor logico indicando si la cola esta vacia
         PRE: la cola debe haber sido creada
         POST: no tiene */
+        Jugador* siguiente();
+        void acolarFrente(Jugador* nuevo);
 };
 
 #endif /*SRC_COLA_H_*/

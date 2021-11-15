@@ -32,7 +32,7 @@ bool profundidadValida(size_t c, Tablero *tablero){
 
 bool posicionValida (Tablero *tablero, size_t ancho, size_t altura, size_t profundidad){
 
-	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO && tablero->getCasillero(ancho, altura, profundidad) == Libre){
+	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO && tablero->getCasillero(ancho, altura, profundidad).getEstado() == Libre){
 			return true;
 		}
 
@@ -178,11 +178,11 @@ void bloquearFicha(Tablero *tablero) {
     altura = obtenerAltura(tablero);
     profundidad = obtenerProfundidad(tablero);
 
-    if(tablero->getCasillero(ancho, altura, profundidad).getValor == VACIO) {
+    if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO) {
     	cout << "No hay ficha en esa posicion" << endl;
     	bloquearFicha(tablero);
     }
-    if(tablero->getCasillero(ancho, altura, profundidad).getEstado == OcupadoBloqueado) {
+    if(tablero->getCasillero(ancho, altura, profundidad).getEstado() == OcupadoBloqueado) {
     	cout << "La ficha ya esta bloqueada" << endl;
     	bloquearFicha(tablero);
     }
@@ -207,6 +207,75 @@ void bloquearCasillero(Tablero *tablero) {
 
 }
 
+void perderTurno(Cola* jugadores){
+	
+	jugadores->acolar(jugadores->desacolar()); //desacolamos y acolamos al jugador siguiente
+
+}
+
+void irAtras(Tablero* tablero, Tablero* ultimo){
+
+	tablero->setAltura(ultimo->getAltura());
+	tablero->setAnchura(ultimo->getAltura());
+	tablero->setProfundidad(ultimo->getProfundidad());
+	tablero->setCantidadFichas(ultimo->getCantidadFichas());
+
+
+	for(size_t i = 0; i < tablero->getAnchura(); i++) {
+		for(size_t j = 0; j < tablero->getAltura(); j++) {
+			for(size_t k = 0; k < tablero->getProfundidad(); k++) {
+				tablero->getCasillero(i, j, k).setValor(ultimo->getCasillero(i, j, k).getValor());
+			}
+		}
+	}
+}
+
+bool permutarLugar(Tablero* tablero){
+
+	size_t anchoUno;
+	size_t alturaUno;
+    size_t profundidadUno;
+	size_t anchoDos;
+	size_t alturaDos;
+    size_t profundidadDos;
+	
+	cout << "Ingrese coordenadas de la primera ficha a permutar: " << endl;
+
+	anchoUno = obtenerAncho(tablero);
+	alturaUno = obtenerAltura(tablero);
+    profundidadUno = obtenerProfundidad(tablero);
+
+	if(tablero->getCasillero(anchoUno, alturaUno, profundidadUno).getValor() == VACIO){
+		cout << "Coordenada de primer ficha invalida. Debe ser una casilla ocupada" << endl;
+		return permutarLugar(tablero);
+	}
+
+	cout << "Ingrese coordenadas de la segunda ficha a permutar: " << endl;
+
+	anchoDos = obtenerAncho(tablero);
+	alturaDos = obtenerAltura(tablero);
+    profundidadDos = obtenerProfundidad(tablero);
+
+	if(tablero->getCasillero(anchoDos, alturaDos, profundidadDos).getValor() == VACIO){
+		cout << "Coordenada de primer ficha invalida. Debe ser una casilla ocupada" << endl;
+		return permutarLugar(tablero);
+	}
+
+	char fichaUno = tablero->getCasillero(anchoUno, alturaUno, profundidadUno).getValor();
+	char fichaDos = tablero->getCasillero(anchoDos, alturaDos, profundidadDos).getValor();
+	
+	
+	tablero->getCasillero(anchoUno, alturaUno, profundidadUno).setValor(fichaDos);
+	tablero->getCasillero(anchoDos, alturaDos, profundidadDos).setValor(fichaUno);
+	return true;
+	
+}
+
+void turnoDoble(Cola* jugadores){
+
+	jugadores->acolarFrente(jugadores->frente());
+
+}
 
 
 
