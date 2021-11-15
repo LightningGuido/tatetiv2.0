@@ -481,7 +481,7 @@ void Tablero::imprimirMapaCoordenado(){
 	std::cout << "CARA 2: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "|x = " << this->anchura << "; y = " j << "; z = " i << " |";
+				std::cout << "|x = " << this->anchura << "; y = " << j << "; z = " << i << " |";
 			}
 			std::cout << std::endl;
 		}
@@ -533,4 +533,15 @@ void Tablero::imprimirMapaCoordenado(){
 
 }
 
-
+void Tablero::destruir(){
+	for(size_t i = 0; i < this->anchura; i++) {
+		for(size_t j = 0; j < this->altura; j++) {
+			delete [] this->casillero[i][j];
+		}
+	}
+	for(size_t i = 0; i < this->anchura; i++) {
+		delete [] this->casillero[i];	
+	}
+	delete [] this->casillero;
+	delete this;
+}

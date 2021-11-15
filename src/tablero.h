@@ -114,6 +114,7 @@ public:
 	void guardarEstado(Tablero* aux);
 	void imprimirMapaCoordenado();
 	void imprimirTablero();
+	void destruir();
 
 };
 
