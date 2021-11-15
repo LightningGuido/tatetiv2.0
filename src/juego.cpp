@@ -32,7 +32,7 @@ bool profundidadValida(size_t c, Tablero *tablero){
 
 bool posicionValida (Tablero *tablero, size_t ancho, size_t altura, size_t profundidad){
 
-	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO){
+	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO && tablero->getCasillero(ancho, altura, profundidad) == Libre){
 			return true;
 		}
 
@@ -100,6 +100,7 @@ void colocarFicha (Tablero *tablero, Jugador *jugador){
 
 	if(posicionValida(tablero, ancho, altura, profundidad)){
 		tablero->getCasillero(ancho,altura,profundidad).setValor(jugador->getFicha());
+		tablero->getCasillero(ancho,altura,profundidad).setEstado(Ocupado);
 	}
 	else{
 		cout << "Casilla no valida. Intente de nuevo." << endl;
@@ -116,7 +117,7 @@ bool movimientoValido(Tablero *tablero, Jugador *jugador, size_t anchoUno, size_
 	return true;
 }
 
-bool moverFicha(Tablero *tablero, Jugador *jugador){
+void moverFicha(Tablero *tablero, Jugador *jugador){
 
 	size_t anchoUno;
 	size_t alturaUno;
@@ -140,16 +141,16 @@ bool moverFicha(Tablero *tablero, Jugador *jugador){
 
 	if(movimientoValido(tablero, jugador, anchoUno, alturaUno, profundidadUno, anchoDos, alturaDos, profundidadDos)){
 		tablero->getCasillero(anchoUno, alturaUno, profundidadUno).setValor(VACIO);
+		tablero->getCasillero(anchoUno, alturaUno, profundidadUno).setEstado(Libre);
 		tablero->getCasillero(anchoDos, alturaDos, profundidadDos).setValor(jugador->getFicha());
-		return true;
+		tablero->getCasillero(anchoDos, alturaDos, profundidadDos).setEstado(Ocupado);
+		return;
 	}
 
 	else{
 		cout << "El movimiento fallo. Intente de nuevo." << endl;
 		moverFicha(tablero, jugador);
 	}
-
-	return false;
 }
 
 void fichasIniciales(Jugador *jugador, Tablero *tablero){
@@ -161,53 +162,50 @@ void fichasIniciales(Jugador *jugador, Tablero *tablero){
 
 void turno(Tablero *tablero, Jugador *jugador) {
 
-	size_t x, y, z;
-	cout << "Elija que ficha quiere mover." << endl;
-
-	do {
-		do {
-			cout << "Ingrese una anchura:" << endl;
-			cin >> x;
-		} while(!anchuraValida(x, tablero));
-
-		do {
-			cout << "Ingrese una altura:" << endl;
-			cin >> y;
-		} while(!alturaValida(y, tablero));
-
-		do {
-			cout << "Ingrese una profundidad" << endl;
-			cin >> z;
-		} while(!alturaValida(z, tablero));
-
-	} while(!hayFicha(tablero, jugador, x, y, z));
-
-	size_t x1, y1, z1;
-	cout << "Elija la posicion donde mover." << endl;
-	do {
-		do {
-			cout << "Ingrese una anchura:" << endl;
-			cin >> x1;
-		} while(!anchuraValida(x1, tablero));
-
-		do {
-			cout << "Ingrese una altura:" << endl;
-			cin >> y1;
-		} while(!alturaValida(y1, tablero));
-
-		do {
-			cout << "Ingrese una profundidad" << endl;
-			cin >> z1;
-		} while(!alturaValida(z1, tablero));
-
-	} while(!hayFicha(tablero, jugador, x1, y1, z1));
-
-	tablero->getCasillero(x, y, z).setValor(VACIO);
-	tablero->getCasillero(x1, y1, z1).setValor(jugador->getFicha());
+	moverFicha(tablero, jugador);
+	//mostrarTablero(tablero);
 }
 
+void bloquearFicha(Tablero *tablero) {
 
+	size_t ancho;
+	size_t altura;
+    size_t profundidad;
 
+    cout << "Ingrese la ficha a bloquear" << endl;
+
+    ancho = obtenerAncho(tablero);
+    altura = obtenerAltura(tablero);
+    profundidad = obtenerProfundidad(tablero);
+
+    if(tablero->getCasillero(ancho, altura, profundidad).getValor == VACIO) {
+    	cout << "No hay ficha en esa posicion" << endl;
+    	bloquearFicha(tablero);
+    }
+    if(tablero->getCasillero(ancho, altura, profundidad).getEstado == OcupadoBloqueado) {
+    	cout << "La ficha ya esta bloqueada" << endl;
+    	bloquearFicha(tablero);
+    }
+    tablero->getCasillero(ancho, altura, profundidad).setEstado(OcupadoBloqueado);
+    return;
+}
+
+void bloquearCasillero(Tablero *tablero) {
+
+	size_t ancho;
+	size_t altura;
+    size_t profundidad;
+
+    cout << "Ingrese la ficha a bloquear" << endl;
+
+    ancho = obtenerAncho(tablero);
+    altura = obtenerAltura(tablero);
+    profundidad = obtenerProfundidad(tablero);
+
+    tablero->getCasillero(ancho, altura, profundidad).setValor(VACIO);
+    tablero->getCasillero(ancho, altura, profundidad).setEstado(Bloqueado);
+
+}
 
 
 

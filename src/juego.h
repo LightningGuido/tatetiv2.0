@@ -24,7 +24,7 @@ size_t obtenerAltura (Tablero *tablero);
 size_t obtenerProfundidad (Tablero *tablero);
 void colocarFicha (Tablero *tablero, Jugador *jugador);
 bool movimientoValido(Tablero *tablero, Jugador *jugador, size_t anchoUno, size_t alturaUno, size_t profundidadUno, size_t anchoDos, size_t alturaDos, size_t profundidadDos);
-bool moverFicha(Tablero *tablero, Jugador *jugador);
+void moverFicha(Tablero *tablero, Jugador *jugador);
 void fichasIniciales(Jugador *jugador, Tablero *tablero);
 void turno(Tablero *tablero, Jugador *jugador);
 
