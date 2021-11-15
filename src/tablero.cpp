@@ -8,7 +8,7 @@
 #include "tablero.h"
 
 using namespace std;
-const char VACIO = ' ';
+
 
 void Tablero::setAnchura(size_t ancho) {
 	this->anchura = ancho;

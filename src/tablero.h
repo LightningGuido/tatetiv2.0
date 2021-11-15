@@ -10,6 +10,7 @@
 
 
 #include "casillero.h"
+#include "Constantes.h"
 
 class Tablero {
 private:
