@@ -47,7 +47,43 @@ int main() {
 	//COLOCO FICHAS
 	while(tablero.getCantidadFichas() < dim * jugadores) {
 		fichasIniciales(turnos.frente(), &tablero);
-		//carta
+		//carta:
+		for(size_t i = 0; i < MAX_CARTAS; i++){
+			turnos.frente()->getCarta(i).mostrarCarta();
+		}
+		std::cout << "Ingrese el TipoCarta que desea jugar o (-1) si no desea jugar ninguna: " << std::endl;
+		int numero;
+		cin >> numero;
+		switch(numero){
+			case -1:
+				std::cout <<"No juega ninguna carta" << std::endl;
+				break;
+			case PerderTurno:
+				std::cout <<"Juega carta PerderTurno" << std::endl;
+				perderTurno(&turnos);
+				break;
+			case BloquearFicha:
+				std::cout <<"Juega carta BloquearFicha" << std::endl;
+				bloquearFicha(&tablero);
+				break;
+			case BloquearCasillero:
+				std::cout <<"Juega carta BloquearCasillero" << std::endl;
+				bloquearCasillero(&tablero);
+				break;
+			case IrAtras:
+				std::cout <<"Juega carta IrAtras" << std::endl;
+				irAtras(&tablero, &ultimo);
+				break;
+			case PermutarLugar:
+				std::cout <<"Juega carta PermutarLugar" << std::endl;
+				permutarLugar(&tablero);
+				break;
+			case TurnoDoble:
+				std::cout <<"Juega carta TurnoDoble" << std::endl;
+				turnoDoble(&turnos);
+				break;
+		}
+
 		tablero.guardarEstado(&ultimo);
 		//pasar turno
 		turnos.acolar(turnos.desacolar());
