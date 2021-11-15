@@ -23,7 +23,7 @@ class Cola{
         /*Crea la cola
         PRE: no tiene
         POST: una cola vacia preparada para ser usada*/
-        void ColaDestruir(void destruirDato(void *));
+        void ColaDestruir();
         /* Destruye la cola
         PRE: la cola debe haberi sido creada
         POST: no tiene*/

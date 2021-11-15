@@ -13,20 +13,19 @@ Cola::Cola(){
     this->end = NULL;
 }
 
-void Cola::ColaDestruir(void destruirDato(void *)){
-    while(this->front->getSiguiente() != NULL){
-        
-        Nodo* aux = this->front;
-
-        if(destruirDato){
-            destruirDato(aux->getDato());
-        }
-        
-        this->front = aux->getSiguiente();
+void Cola::ColaDestruir(){
     
-        delete aux;
+    Nodo* aux = this->front;
+    if(!vacia()){
+        while(this->front != NULL){
+        
+            this->front = this->front->getSiguiente();
+            delete aux;
+            aux = this->front;
+        }
     }
-
+    this->end = NULL;
+    this->tamanio = 0;
     delete this;
 }
 
