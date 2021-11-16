@@ -32,7 +32,7 @@ void turno(Tablero *tablero, Jugador *jugador);
 void bloquearFicha(Tablero *tablero);
 void bloquearCasillero(Tablero *tablero);
 void perderTurno(Cola* jugadores);
-void irAtras(Tablero* tablero, Tablero* ultimo);
+void irAtras(Tablero* tablero, Pila* tableros);
 bool permutarLugar(Tablero* tablero);
 void turnoDoble(Cola* jugadores);
 

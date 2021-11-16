@@ -31,8 +31,7 @@ int main() {
 	size_t dim;
 	std::cin >> dim;
 	Tablero *tablero = new Tablero(dim, dim ,dim);
-	Tablero *ultimo = new Tablero(dim, dim, dim);
-	//Pila* ultimosTableros = new Pila;
+	Pila* ultimosTableros = new Pila;
 	tablero->imprimirMapaCoordenado();
 
 	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
@@ -81,7 +80,7 @@ int main() {
 					break;
 				case IrAtras:
 					std::cout <<"Juega carta IrAtras" << std::endl;
-					irAtras(tablero, ultimo);
+					irAtras(tablero, ultimosTableros);
 					break;
 				case PermutarLugar:
 					std::cout <<"Juega carta PermutarLugar" << std::endl;
@@ -96,12 +95,12 @@ int main() {
 			std::cout <<"No juega ninguna carta" << std::endl;
 		}
 		
-		tablero->guardarEstado(ultimo);
+		ultimosTableros->push(tablero->guardarEstado()); //agrega a la pila el ultimo tablero guardado
 		turnos->acolar(turnos->desacolar());
 	}
 
 	tablero->destruir();
-	ultimo->destruir();
+	// ultimosTableros->pilaDestruir();funcion rara que destruye
 	turnos->ColaDestruir(); 
 	return 0; 
 }

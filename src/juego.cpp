@@ -213,18 +213,18 @@ void perderTurno(Cola* jugadores){
 
 }
 
-void irAtras(Tablero* tablero, Tablero* ultimo){
+void irAtras(Tablero* tablero, Pila* tableros){
 
-	tablero->setAltura(ultimo->getAltura());
-	tablero->setAnchura(ultimo->getAltura());
-	tablero->setProfundidad(ultimo->getProfundidad());
-	tablero->setCantidadFichas(ultimo->getCantidadFichas());
+	tablero->setAltura(tableros->top()->getAltura());
+	tablero->setAnchura(tableros->top()->getAnchura());
+	tablero->setProfundidad(tableros->top()->getProfundidad());
+	tablero->setCantidadFichas(tableros->top()->getCantidadFichas());
 
 
 	for(size_t i = 0; i < tablero->getAnchura(); i++) {
 		for(size_t j = 0; j < tablero->getAltura(); j++) {
 			for(size_t k = 0; k < tablero->getProfundidad(); k++) {
-				tablero->getCasillero(i, j, k).setValor(ultimo->getCasillero(i, j, k).getValor());
+				tablero->getCasillero(i, j, k).setValor(tableros->top()->getCasillero(i, j, k).getValor());
 			}
 		}
 	}

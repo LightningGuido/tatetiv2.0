@@ -16,10 +16,10 @@ void Pila::pilaDestruir(void destruirDato(void *)){
     
     while(this->tope->getSiguiente() != NULL){
         
-        Nodo* aux = this->tope;
+        NodoPila* aux = this->tope;
 
         if(destruirDato){
-            destruirDato(aux->getDato());
+            destruirDato(aux->getUltimo());
         }
         
         this->tope = aux->getSiguiente();
@@ -30,13 +30,13 @@ void Pila::pilaDestruir(void destruirDato(void *)){
     delete this;
 }
 
-void Pila::setTope(Nodo* nodo){
+void Pila::setTope(NodoPila* nodo){
     this->tope = nodo;
 }
         
-void Pila::push(Jugador* dato){
+void Pila::push(Tablero* dato){
 
-    Nodo* aux = new Nodo(dato);
+    NodoPila* aux = new NodoPila(dato);
 
     aux->setSiguiente(this->tope);
 
@@ -44,10 +44,10 @@ void Pila::push(Jugador* dato){
     this->tamanio += 1;
 }
        
-void* Pila::pop(){
+Tablero* Pila::pop(){
 
-    Nodo *aux = this->tope; 
-    void *dato = aux->getDato();
+    NodoPila *aux = this->tope; 
+    Tablero* dato = aux->getUltimo();
   
     this->setTope(aux->getSiguiente()); 
     this->tamanio -= 1;
@@ -56,8 +56,9 @@ void* Pila::pop(){
     return dato; 
 }
         
-void* Pila::top(){
-    return this->tope->getDato();
+Tablero* Pila::top(){
+    NodoPila* aux = this->tope->getSiguiente();
+    return aux->getUltimo();
 }
        
 bool Pila::vacia(){

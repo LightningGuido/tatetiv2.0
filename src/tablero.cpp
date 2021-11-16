@@ -375,11 +375,11 @@ bool Tablero::ganadorDiagonales3D() {
 	return false;
 }
 
-void Tablero::guardarEstado(Tablero* aux){
+Tablero* Tablero::guardarEstado(){
 
-	aux->altura = this->altura;
-	aux->anchura = this->anchura;
-	aux->profundidad = this->profundidad;
+	Tablero* aux = new Tablero(this->anchura, this->altura, this->profundidad);
+
+	
 	aux->cantidadFichas = this->cantidadFichas;
 
 	for(size_t i = 0; i < this->anchura; i++) {
@@ -389,7 +389,7 @@ void Tablero::guardarEstado(Tablero* aux){
 			}
 		}
 	}
-	//return aux;
+	return aux;
 
 }
 
