@@ -8,7 +8,7 @@
 #ifndef SRC_COLA_H_
 #define SRC_COLA_H_
 #include <iostream>
-#include "Nodo.h"
+#include "jugador.h"
 
 class Cola{
 

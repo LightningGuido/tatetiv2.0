@@ -1,4 +1,4 @@
-#include "Nodo.h"
+/*#include "Nodo.h"
 
 
 Nodo::Nodo(Jugador* dato){
@@ -20,4 +20,4 @@ void Nodo::setSiguiente(Nodo* nodo){
         this->siguiente = nodo;
 }
 
-    
+    */
