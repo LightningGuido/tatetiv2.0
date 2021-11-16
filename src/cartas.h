@@ -41,7 +41,7 @@ public:
 	/* PRE:
 	 * POST
 	 */
-	TipoCarta getCarta();
+	TipoCarta getTipoCarta();
 	void mostrarCarta();
 };
 

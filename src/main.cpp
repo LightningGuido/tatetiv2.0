@@ -65,7 +65,7 @@ int main() {
 		cin >> numero;
 
 		if(numero >= 0 && numero < MAX_CARTAS) {
-			switch(turnos->frente()->getCartas(numero).getCarta()){
+			switch(turnos->frente()->getCartas(numero).getTipoCarta()){
 				case PerderTurno:
 					std::cout <<"Juega carta PerderTurno" << std::endl;
 					perderTurno(turnos);
