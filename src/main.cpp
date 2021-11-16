@@ -44,7 +44,7 @@ int main() {
 		jugadores[i] = new Jugador();
 	}
 	for(size_t i = 0; i < cantJugadores - 1; i++) {
-		jugadores[i]->setSiguiente(jugadores[i + 1]);	
+		jugadores[i]->setJugadorSiguiente(jugadores[i + 1]);	
 		turnos->acolar(jugadores[i]);
 	}
 
