@@ -39,8 +39,8 @@ public:
 	//Puntero
 	Carta getCartas(size_t pos);
 	Carta* getCartasPuntero();
-	void setSiguiente(Jugador* siguiente);
-	Jugador* getSiguiente();
+	void setJugadorSiguiente(Jugador* siguiente);
+	Jugador* getJugadorSiguiente();
 };
 
 

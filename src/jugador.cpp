@@ -44,10 +44,10 @@ Carta* Jugador::getCartasPuntero(){
 	return this->cartas;
 }
 
-void Jugador::setSiguiente(Jugador* siguiente){
+void Jugador::setJugadorSiguiente(Jugador* siguiente){
 	this->siguiente = siguiente;
 }
 
-Jugador* Jugador::getSiguiente(){
+Jugador* Jugador::getJugadorSiguiente(){
 	return this->siguiente;
 }
