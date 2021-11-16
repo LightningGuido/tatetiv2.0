@@ -9,7 +9,7 @@
 #include "jugador.h"
 
 
-Jugador::Jugador(unsigned int idTurno) {
+Jugador::Jugador() {
 	std::string nombre;
 	std::cout << "Ingrese su nombre" << std::endl;
 	std::cin >> nombre;
@@ -20,7 +20,6 @@ Jugador::Jugador(unsigned int idTurno) {
 
 	this->nombre = nombre;
 	this->ficha = ficha;
-	this->idTurno = idTurno;
 	this->cartas = new Carta[MAX_CARTAS];
 }
 

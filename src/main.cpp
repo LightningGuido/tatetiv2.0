@@ -35,19 +35,17 @@ int main() {
 	tablero->imprimirMapaCoordenado();
 
 	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
-	size_t jugadores;
-	std::cin >> jugadores;
+	size_t cantJugadores;
+	std::cin >> cantJugadores;
 	Cola *turnos = new Cola();
-
-	for(size_t i = 0; i < jugadores; i++) {
-		std::cout << "Jugador " << i + 1 << std::endl;
-		Jugador *jugador = new Jugador(i + 1);
-		turnos->acolar(jugador);
+	Jugador *jugador = new Jugador[cantJugadores];
+	for(size_t i = 0; i < cantJugadores; i++) {
+		turnos->acolar(jugador + i);
 	}
 		  //Verifica ganador
 	while(tablero->hayGanador()) {
 		//Colocan o mueven Fichas
-		if(tablero->getCantidadFichas() < dim * jugadores) {
+		if(tablero->getCantidadFichas() < dim * cantJugadores) {
 			fichasIniciales(turnos->frente(), tablero);
 
 		} else {

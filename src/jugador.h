@@ -16,14 +16,13 @@ class Jugador {
 private:
 	std::string nombre;
 	char ficha;
-	unsigned int idTurno;
 	Carta *cartas;
 
 public:
 	/* PRE:
 	 * POST
 	 */
-	Jugador(unsigned int idTurno);
+	Jugador();
 	/* PRE:
 	 * POST
 	 */
