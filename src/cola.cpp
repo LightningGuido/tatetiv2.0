@@ -37,7 +37,7 @@ Jugador* Cola::frente(){
 
 void Cola::acolar(Nodo* elemento){
 
-    
+
     if(this->tamanio == 0) {
     	this->front = elemento;
         this->end = elemento; //si hay un solo elemento: ese elemento es front y end

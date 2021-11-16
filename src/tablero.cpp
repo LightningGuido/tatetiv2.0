@@ -389,6 +389,7 @@ void Tablero::guardarEstado(Tablero* aux){
 			}
 		}
 	}
+	//return aux;
 
 }
 
