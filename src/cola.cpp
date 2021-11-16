@@ -8,48 +8,47 @@
 #include "cola.h"
 
 Cola::Cola(){
-    this->tamanio = 0;
+    this->tamanio = 1;
     this->front = NULL;
     this->end = NULL;
 }
 
 void Cola::ColaDestruir(){
     
-    Nodo* aux = this->front;
+    Jugador* aux = this->front;
     if(!vacia()){
         while(this->front != NULL){
         
-            this->front = this->front->getSiguiente();
-            delete aux->getDato();
-            delete aux;
+            this->front = aux->getSiguiente();
+            delete(aux);
 
             aux = this->front;
         }
     }
     this->end = NULL;
-    this->tamanio = 0;
+    this->tamanio = 1;
     delete this;
 }
 
 Jugador* Cola::frente(){
-    return this->front->getDato();
+    return this->front;
 }
 
-void Cola::acolar(Nodo* elemento){
+void Cola::acolar(Jugador* elemento){
 
 
-    if(this->tamanio == 0) {
+    if(this->tamanio == 1 && this->front == NULL && this->end == NULL) {
     	this->front = elemento;
         this->end = elemento; //si hay un solo elemento: ese elemento es front y end
     } else {
     	this->end->setSiguiente(elemento);
-    	this->end = elemento;
+    	this->end = this->end->getSiguiente();
     }
     this->tamanio += 1;
 }
 
-Nodo* Cola::desacolar(){
-    Nodo *aux = this->front; //aux = nodo1
+Jugador* Cola::desacolar(){
+    Jugador *aux = this->front; //aux = nodo1
     
     this->front = aux->getSiguiente(); //front = nodo2 -> nodo2 = nodo1
     this->tamanio -= 1;
@@ -58,7 +57,7 @@ Nodo* Cola::desacolar(){
 }
 
 bool Cola::vacia(){
-    if (this->tamanio == 0){
+    if (this->tamanio == 1 && this->front == NULL && this->end == NULL){
         return true;
     }
 
@@ -68,18 +67,19 @@ bool Cola::vacia(){
 }
 
 Jugador* Cola::siguiente(){
-    return this->front->getSiguiente()->getDato();
+    return this->front->getSiguiente();
 }
 
 void Cola::acolarFrente(Jugador* nuevo){
-    Nodo *aux = new Nodo(nuevo);
+    
+    //Jugador *aux = desacolar();
 
-    if(this->tamanio == 0){
-        this->front = aux;
+    if(this->tamanio == 1){
+        this->front = nuevo;
     }
     else{
-        aux->setSiguiente(this->front);
-        this->front = aux;
+        nuevo->setSiguiente(this->front);
+        this->front = nuevo;
     }
     this->tamanio += 1;
 }

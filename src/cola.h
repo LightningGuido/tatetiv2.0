@@ -14,8 +14,8 @@ class Cola{
 
     private:
         size_t tamanio;
-        Nodo* front;
-        Nodo* end;
+        Jugador* front;
+        Jugador* end;
 
     public:
 
@@ -31,11 +31,11 @@ class Cola{
         /*Retorna el primer elemento de la cola
         PRE: la cola, ya creada, no debe estar vacia
         POST: no tiene*/
-        void acolar(Nodo* elemento);
+        void acolar(Jugador* elemento);
         /* Da de alta en la cola a un elemento pasado por argumento
         PRE: la cola debe haber sido creada
         POST: la cola modificada con la inserciòn del nuevo elemento al fondo*/
-        Nodo* desacolar();
+        Jugador* desacolar();
         /*Elimina el elemento del frente de la cola
         PRE: la cola, ya creada, no debe estar vacia
         POST: cola modificada por la eliminacion del elemento del frente*/

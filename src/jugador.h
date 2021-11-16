@@ -17,6 +17,7 @@ private:
 	std::string nombre;
 	char ficha;
 	Carta *cartas;
+	Jugador* siguiente;
 
 public:
 	/* PRE:
@@ -38,6 +39,8 @@ public:
 	//Puntero
 	Carta getCartas(size_t pos);
 	Carta* getCartasPuntero();
+	void setSiguiente(Jugador* siguiente);
+	Jugador* getSiguiente();
 };
 
 

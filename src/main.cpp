@@ -38,12 +38,16 @@ int main() {
 	size_t cantJugadores;
 	std::cin >> cantJugadores;
 	Cola *turnos = new Cola();
-	Jugador *jugador = new Jugador[cantJugadores];
+	Jugador **jugadores = new Jugador*[cantJugadores];
 
 	for(size_t i = 0; i < cantJugadores; i++) {
-		Nodo* actual = new Nodo(jugador + i);
-		turnos->acolar(actual);
+		jugadores[i] = new Jugador();
 	}
+	for(size_t i = 0; i < cantJugadores - 1; i++) {
+		jugadores[i]->setSiguiente(jugadores[i + 1]);	
+		turnos->acolar(jugadores[i]);
+	}
+
 		  //Verifica ganador
 	while(tablero->hayGanador()) {
 		//Colocan o mueven Fichas
