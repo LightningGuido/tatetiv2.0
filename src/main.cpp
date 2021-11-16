@@ -39,8 +39,10 @@ int main() {
 	std::cin >> cantJugadores;
 	Cola *turnos = new Cola();
 	Jugador *jugador = new Jugador[cantJugadores];
+
 	for(size_t i = 0; i < cantJugadores; i++) {
-		turnos->acolar(jugador + i);
+		Nodo* actual = new Nodo(jugador + i);
+		turnos->acolar(actual);
 	}
 		  //Verifica ganador
 	while(tablero->hayGanador()) {

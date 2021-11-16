@@ -35,27 +35,25 @@ Jugador* Cola::frente(){
     return this->front->getDato();
 }
 
-void Cola::acolar(Jugador* elemento){
+void Cola::acolar(Nodo* elemento){
 
-    Nodo* aux = new Nodo(elemento);
+    
     if(this->tamanio == 0) {
-    	this->front = aux;
+    	this->front = elemento;
     } else {
-    	this->end->setSiguiente(aux);
-    	this->end = aux;
+    	this->end->setSiguiente(elemento);
+    	this->end = elemento;
     }
     this->tamanio += 1;
 }
 
-Jugador* Cola::desacolar(){
+Nodo* Cola::desacolar(){
     Nodo *aux = this->front; //aux = nodo1
-    Jugador *dato = aux->getDato();
-  
+    
     this->front = aux->getSiguiente(); //front = nodo2 -> nodo2 = nodo1
     this->tamanio -= 1;
     
-    delete aux; //elimino el front original
-    return dato; //devuelvo el dato que tenia nodo1
+    return aux; //devuelvo el dato que tenia nodo1
 }
 
 bool Cola::vacia(){
