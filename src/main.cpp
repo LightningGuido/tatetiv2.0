@@ -102,7 +102,7 @@ int main() {
 	}
 
 	tablero->destruir();
-	ultimosTableros->pilaDestruir();
+	//ultimosTableros->pilaDestruir();
 	turnos->ColaDestruir(); 
 	return 0; 
 }

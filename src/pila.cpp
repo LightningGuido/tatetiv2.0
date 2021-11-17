@@ -12,7 +12,7 @@ Pila::Pila(){
     this->tope = NULL;
     
 }
-    
+    /*hola*/
 void Pila::pilaDestruir(){
 
     if(!this->vacia()){
