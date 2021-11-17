@@ -29,7 +29,7 @@ int main() {
 	size_t cantJugadores;
 	std::cin >> cantJugadores;
 	Cola *turnos = new Cola();
-	Nodo *nodo = new Nodo();
+	Nodo *nodo = new Nodo[cantJugadores]();
 	Jugador **jugadores = new Jugador*[cantJugadores];
 
 	for(size_t i = 0; i < cantJugadores; i++) {
