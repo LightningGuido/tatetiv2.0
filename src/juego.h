@@ -34,7 +34,7 @@ void bloquearCasillero(Tablero *tablero);
 void perderTurno(Cola* jugadores);
 void irAtras(Tablero* tablero, Pila* tableros);
 bool permutarLugar(Tablero* tablero);
-void turnoDoble(Cola* jugadores);
+void turnoDoble(Tablero* tablero, Cola* jugadores);
 
 
 #endif /* SRC_JUEGO_H_ */

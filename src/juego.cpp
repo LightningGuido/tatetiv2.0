@@ -99,8 +99,8 @@ void colocarFicha (Tablero *tablero, Jugador *jugador){
     size_t profundidad = obtenerProfundidad(tablero);
 
 	if(posicionValida(tablero, ancho, altura, profundidad)){
-		tablero->getCasillero(ancho,altura,profundidad).setValor(jugador->getFicha());
-		tablero->getCasillero(ancho,altura,profundidad).setEstado(Ocupado);
+		tablero->getCasilleroPuntero(ancho,altura,profundidad)->setValor(jugador->getFicha());
+		tablero->getCasilleroPuntero(ancho,altura,profundidad)->setEstado(Ocupado);
 	}
 	else{
 		cout << "Casilla no valida. Intente de nuevo." << endl;
@@ -271,9 +271,9 @@ bool permutarLugar(Tablero* tablero){
 	
 }
 
-void turnoDoble(Cola* jugadores){
-
-	jugadores->acolarFrente(jugadores->frente());
+void turnoDoble(Tablero *tablero, Cola* jugadores){
+	turno(tablero, jugadores->frente());
+	//jugadores->acolarFrente(jugadores->frente());
 
 }
 

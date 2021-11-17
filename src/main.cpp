@@ -39,15 +39,15 @@ int main() {
 	size_t cantJugadores;
 	std::cin >> cantJugadores;
 	Cola *turnos = new Cola();
+	Nodo *nodo = new Nodo();
 	Jugador **jugadores = new Jugador*[cantJugadores];
 
 	for(size_t i = 0; i < cantJugadores; i++) {
 		jugadores[i] = new Jugador();
+		nodo[i].setDato(jugadores[i]);
+		turnos->acolar(&nodo[i]);
 	}
-	for(size_t i = 0; i < cantJugadores; i++) {
-		jugadores[i]->setJugadorSiguiente(jugadores[i + 1]);	
-		turnos->acolar(jugadores[i]);
-	}
+
 	for(size_t i = 0; i < cantJugadores; i++) {
 		cout << turnos->frente()->getNombre() <<endl;
 		turnos->acolar(turnos->desacolar());
@@ -68,6 +68,7 @@ int main() {
 		for(size_t i = 0; i < MAX_CARTAS; i++){
 			std::cout << i << ": ";
 			turnos->frente()->getCartas(i).mostrarCarta();
+			std::cout << std::endl;
 		}
 		std::cout << "Ingrese el TipoCarta que desea jugar o (-1) si no desea jugar ninguna: " << std::endl;
 		int numero;
@@ -97,7 +98,7 @@ int main() {
 					break;
 				case TurnoDoble:
 					std::cout <<"Juega carta TurnoDoble" << std::endl;
-					turnoDoble(turnos);
+					turnoDoble(tablero, turnos);
 					break;
 			}
 		} else {

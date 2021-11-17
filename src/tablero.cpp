@@ -78,8 +78,13 @@ size_t Tablero::getProfundidad() {
 	return this->profundidad;
 }
 
+<<<<<<< Updated upstream
 Casillero**** Tablero::getCasilleroPuntero() {
 	return this->casillero;
+=======
+Casillero* Tablero::getCasilleroPuntero(size_t x, size_t y, size_t z) {
+	return &this->casillero[x][y][z];
+>>>>>>> Stashed changes
 }
 
 Casillero* Tablero::getCasillero(size_t x, size_t y, size_t z) {
@@ -400,6 +405,105 @@ Tablero* Tablero::guardarEstado(){
 
 }
 
+void Tablero::imprimirAncho() {
+
+	for(size_t x = 0; x < this->anchura; x++) {
+		std::cout << "CARA (ANCHO): " << x + 1 << std::endl;
+		for(size_t y = 0; y < this->altura; y++) {
+			for(size_t z = 0; z < this->profundidad; z++) {
+				std::cout << this->getCasillero(x, y, z).getValor();
+				if(z != this->profundidad -1) std::cout << '|';
+			}
+			std::cout << endl;
+			if(y != this->altura - 1) {
+				for(size_t i = 0; i < (2 * this->profundidad - 1); i++) {
+					std::cout << '-';
+				}
+			}
+			std::cout << endl;
+		}
+	}
+}
+
+void Tablero::imprimirAnchoCoordenado() {
+
+	for(size_t x = 0; x < this->anchura; x++) {
+		std::cout << "CARA (ANCHO): " << x + 1 << std::endl;
+		for(size_t y = 0; y < this->altura; y++) {
+			for(size_t z = 0; z < this->profundidad; z++) {
+				std::cout << "[x = " << x << "][y = " << y << "][z = " << z << "] ";
+			}
+			std::cout << endl;
+		}
+	}
+}
+
+void Tablero::imprimirAlto() {
+
+	for(size_t y = 0; y < this->altura; y++) {
+		std::cout << "CARA (ALTO): " << y + this->anchura + 1 << std::endl;
+		for(size_t x = 0; x < this->anchura; x++) {
+			for(size_t z = 0; z < this->profundidad; z++) {
+				std::cout << this->getCasillero(x, y, z).getValor();
+				if(z != this->profundidad -1) std::cout << '|';
+			}
+			std::cout << endl;
+			if(x != this->anchura - 1) {
+				for(size_t i = 0; i < (2 * this->profundidad - 1); i++) {
+					std::cout << '-';
+				}
+			}
+			std::cout << endl;
+		}
+	}
+}
+
+void Tablero::imprimirAltoCoordenado() {
+
+	for(size_t y = 0; y < this->altura; y++) {
+		std::cout << "CARA (ALTO): " << y + this->anchura + 1 << std::endl;
+		for(size_t x = 0; x < this->anchura; x++) {
+			for(size_t z = 0; z < this->profundidad; z++) {
+				std::cout << "[x = " << x << "][y = " << y << "][z = " << z << "] ";
+			}
+			std::cout << endl;
+		}
+	}
+}
+
+void Tablero::imprimirProf() {
+
+	for(size_t z = 0; z < this->profundidad; z++) {
+		std::cout << "CARA (PROF): " << z + this->altura + this->anchura + 1 << std::endl;
+		for(size_t y = 0; y < this->altura; y++) {
+			for(size_t x = 0; x < this->anchura; x++) {
+				std::cout << this->getCasillero(x, y, z).getValor();
+				if(x != this->anchura -1) std::cout << '|';
+			}
+			std::cout << endl;
+			if(y != this->altura - 1) {
+				for(size_t i = 0; i < (2 * this->anchura - 1); i++) {
+					std::cout << '-';
+				}
+			}
+			std::cout << endl;
+		}
+	}
+}
+
+void Tablero::imprimirProfCoordenado() {
+
+	for(size_t z = 0; z < this->profundidad; z++) {
+		std::cout << "CARA (PROF): " << z + this->altura + this->anchura + 1 << std::endl;
+		for(size_t y = 0; y < this->altura; y++) {
+			for(size_t x = 0; x < this->anchura; x++) {
+				std::cout << "[x = " << x << "][y = " << y << "][z = " << z << "] ";
+			}
+			std::cout << endl;
+		}
+	}
+}
+
 void Tablero::imprimirTablero(){
 	/* como es un cubo tiene 6 caras: */
 
@@ -407,6 +511,7 @@ void Tablero::imprimirTablero(){
 			x varia
 			y varia
 			z fija = 0*/
+<<<<<<< Updated upstream
 		std::cout << "CARA 1: "<< std::endl;
 		for(size_t i = 0; i < this->anchura; i++){
 			for(size_t j = 0; j < this->altura; j++){
@@ -414,10 +519,20 @@ void Tablero::imprimirTablero(){
 			}
 			std::cout << std::endl;
 		}
+=======
+//		std::cout << "CARA 1: "<< std::endl;
+//		for(size_t i = 0; i < this->anchura; i++){
+//			for(size_t j = 0; j < this->altura; j++){
+//				std::cout << "| " << this->casillero[i][j][0].getValor() << " |";
+//			}
+///			std::cout << std::endl;
+//		}
+>>>>>>> Stashed changes
 		/*cara 2:
 			x fijo = tablero->anchura
 			y varia
 			z varia*/
+<<<<<<< Updated upstream
 		std::cout << "CARA 2: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->altura; j++){
@@ -425,10 +540,20 @@ void Tablero::imprimirTablero(){
 			}
 			std::cout << std::endl;
 		}
+=======
+//		std::cout << "CARA 2: "<< std::endl;
+//		for(size_t i = 0; i < this->profundidad; i++){
+//			for(size_t j = 0; j < this->altura; j++){
+//				std::cout << "| " << this->casillero[this->anchura][j][i].getValor() << " |";
+//			}
+	//		std::cout << std::endl;
+//		}
+>>>>>>> Stashed changes
 		/*cara 3: 
 			x varia
 			y fijo = tablero->altura
 			z */
+<<<<<<< Updated upstream
 		std::cout << "CARA 3: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->anchura; j++){
@@ -436,10 +561,20 @@ void Tablero::imprimirTablero(){
 			}
 			std::cout << std::endl;
 		}
+=======
+//		std::cout << "CARA 3: "<< std::endl;
+//		for(size_t i = 0; i < this->profundidad; i++){
+//			for(size_t j = 0; j < this->anchura; j++){
+//				std::cout << "| " << this->casillero[j][this->altura][i].getValor() << " |";
+//			}
+//			std::cout << std::endl;
+//		}
+>>>>>>> Stashed changes
 		/*cara 4:
 			x fijo = 0
 			y varia
 			z varia*/
+<<<<<<< Updated upstream
 		std::cout << "CARA 4: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->altura; j++){
@@ -447,10 +582,20 @@ void Tablero::imprimirTablero(){
 			}
 			std::cout << std::endl;
 		}
+=======
+//		std::cout << "CARA 4: "<< std::endl;
+//		for(size_t i = 0; i < this->profundidad; i++){
+//			for(size_t j = 0; j < this->altura; j++){
+//				std::cout << "| " << this->casillero[0][j][i].getValor() << " |";
+//			}
+//			std::cout << std::endl;
+//		}
+>>>>>>> Stashed changes
 		/*cara 5:
 			x varia
 			y varia
 			z fijo = tablero->profundidad */
+<<<<<<< Updated upstream
 		std::cout << "CARA 5: "<< std::endl;
 		for(size_t i = 0; i < this->anchura; i++){
 			for(size_t j = 0; j < this->altura; j++){
@@ -458,10 +603,20 @@ void Tablero::imprimirTablero(){
 			}
 			std::cout << std::endl;
 		}
+=======
+//		std::cout << "CARA 5: "<< std::endl;
+//		for(size_t i = 0; i < this->anchura; i++){
+//			for(size_t j = 0; j < this->altura; j++){
+//				std::cout << "| " << this->casillero[i][j][this->profundidad].getValor() << " |";
+//			}
+//			std::cout << std::endl;
+//		}
+>>>>>>> Stashed changes
 		/*cara 6:
 			x varia
 			y fijo = 0
 			z varia	*/
+<<<<<<< Updated upstream
 		std::cout << "CARA 6: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->anchura; j++){
@@ -469,10 +624,25 @@ void Tablero::imprimirTablero(){
 			}
 			std::cout << std::endl;
 		}
+=======
+//		std::cout << "CARA 6: "<< std::endl;
+//		for(size_t i = 0; i < this->profundidad; i++){
+//			for(size_t j = 0; j < this->anchura; j++){
+//				std::cout << "| " << this->casillero[j][0][i].getValor() << " |";
+//			}
+//			std::cout << std::endl;
+//		}
+>>>>>>> Stashed changes
 		
+	this->imprimirAncho();
+	this->imprimirAlto();
+	this->imprimirProf();
+
+
 }
 
 void Tablero::imprimirMapaCoordenado(){
+	/*
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << "CARA 1: "<< std::endl;
@@ -537,7 +707,10 @@ void Tablero::imprimirMapaCoordenado(){
 			}
 			std::cout << std::endl;
 		}
-
+*/
+	this->imprimirAnchoCoordenado();
+	this->imprimirAltoCoordenado();
+	this->imprimirProfCoordenado();
 
 }
 
