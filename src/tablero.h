@@ -16,8 +16,8 @@ class Tablero {
 private:
 	Casillero ***casillero;
 	unsigned int cantidadFichas;
-	size_t anchura;		//x
 	size_t altura;		//y
+	size_t anchura;		//x
 	size_t profundidad;	//z
 
 	/* PRE:
@@ -60,14 +60,6 @@ private:
 	 * POST:
 	 */
 	bool ganadorDiagonales3D();
-
-	void imprimirAncho();
-	void imprimirAnchoCoordenado();
-	void imprimirAlto();
-	void imprimirAltoCoordenado();
-	void imprimirProf();
-	void imprimirProfCoordenado();
-
 public:
 	/* PRE:
 	 * POST:
@@ -108,7 +100,7 @@ public:
 	/* PRE:
 	 * POST:
 	 */
-	Casillero* getCasilleroPuntero(size_t x, size_t y, size_t z);
+	Casillero*** getCasilleroPuntero();
 	/* PRE:
 	 * POST:
 	 */
