@@ -28,38 +28,31 @@ void Tablero::setCantidadFichas(size_t n) {
 
 Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
 
-
-	this->casillero = new Casillero***[ancho];
+	this->casillero = new Casillero**[ancho];
 	if(this->casillero == NULL) {
 		//throw
 	}
 	for(size_t i = 0; i < ancho; i++) {
-			this->casillero[i] = new Casillero**[alto];
+			this->casillero[i] = new Casillero*[alto];
 			for(size_t j = 0; j < alto; j++) {
-				this->casillero[i][j] = new Casillero*[profundo];
+				this->casillero[i][j] = new Casillero[profundo];
 			}
-	}
-	for(size_t i = 0; i < ancho; i++) {
-		for(size_t j = 0; j < alto; j++) {
-			for(size_t k = 0; k < profundo; k++) {
-				this->casillero[i][j][k] = new Casillero;
-			}
-		}
 	}
 
 	for(size_t i = 0; i < ancho; i++) {
 		for(size_t j = 0; j < alto; j++) {
 			for(size_t k = 0; k < profundo; k++) {
-				this->casillero[i][j][k]->setValor(VACIO);
-				this->casillero[i][j][k]->setEstado(Libre);
+				//ESTO HAY QUE CORREGIRLO, PERO AHORA ME DA PAJA PENSARLO
+				this->getCasilleroPuntero(i, j, k)->setValor(VACIO);
 			}
 		}
 	}
 
-	this->setCantidadFichas(0);
-	this->setAnchura(ancho);
-	this->setAltura(alto);
-	this->setProfundidad(profundo);
+	this->cantidadFichas = 0;
+	setAnchura(ancho);
+	setAltura(alto);
+	setProfundidad(profundo);
+
 }
 
 unsigned int Tablero::getCantidadFichas() {
@@ -78,16 +71,12 @@ size_t Tablero::getProfundidad() {
 	return this->profundidad;
 }
 
-<<<<<<< Updated upstream
-Casillero**** Tablero::getCasilleroPuntero() {
-	return this->casillero;
-=======
+
 Casillero* Tablero::getCasilleroPuntero(size_t x, size_t y, size_t z) {
 	return &this->casillero[x][y][z];
->>>>>>> Stashed changes
 }
 
-Casillero* Tablero::getCasillero(size_t x, size_t y, size_t z) {
+Casillero Tablero::getCasillero(size_t x, size_t y, size_t z) {
 	return this->casillero[x][y][z];
 }
 
@@ -133,8 +122,8 @@ bool Tablero::ganadorPlanoAncho() {
 		//BUSCO GANADOR POR LA HORIZONTAL
 		for(size_t y = 0; y < this->altura; y++) {
 			for(size_t z = 0; z < this->profundidad - 1; z++) {
-				if(this->casillero[x][y][z]->getValor() == VACIO) break;
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y][z+1]->getValor())
+				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == this->casillero[x][y][z+1].getValor())
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->anchura - 1) return true;
@@ -143,8 +132,8 @@ bool Tablero::ganadorPlanoAncho() {
 		//BUSCO GANADOR POR LA VERTICAL
 		for(size_t z = 0; z < this->profundidad; z++) {
 			for(size_t y = 0; y < this->altura - 1; y++) {
-				if(this->casillero[x][y][z]->getValor() == VACIO) break;
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y+1][z]->getValor())
+				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == this->casillero[x][y+1][z].getValor())
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->altura - 1) return true;
@@ -160,11 +149,11 @@ bool Tablero::ganadorPlanoAnchoDiagonal1() {
 	for(size_t x = 0; x < this->anchura; x++) {
 		aux = true;
 		for(size_t y = 0, z = 0; y < this->altura - 1 && z < this->profundidad - 1; y++, z++) {
-			if(this->casillero[x][y][z]->getValor() == VACIO) {
+			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
 			}
-			if(this->casillero[x][y][z]->getValor() != this->casillero[x][y+1][z+1]->getValor()) {
+			if(this->casillero[x][y][z].getValor() != this->casillero[x][y+1][z+1].getValor()) {
 				aux = false;
 				break;
 			}
@@ -180,10 +169,10 @@ bool Tablero::ganadorPlanoAnchoDiagonal2() {
 	for(size_t x = 0; x < this->anchura; x++) {
 		aux = true;
 		for(size_t y = 0, z = this->profundidad - 1; y < this->altura - 1 && z > 0; y++, z--) {
-			if(this->casillero[x][y][z]->getValor() == VACIO) {
+			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 			}
-			if(this->casillero[x][y][z]->getValor() != this->casillero[x][y+1][z-1]->getValor()) {
+			if(this->casillero[x][y][z].getValor() != this->casillero[x][y+1][z-1].getValor()) {
 				aux = false;
 			}
 		}
@@ -200,8 +189,8 @@ bool Tablero::ganadorPlanoAlto() {
 		//BUSCO GANADOR POR LA HORIZONTAL
 		for(size_t x = 0; x < this->anchura; x++) {
 			for(size_t z = 0; z < this->profundidad - 1; z++) {
-				if(this->casillero[x][y][z]->getValor() == VACIO) break;
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y][z+1]->getValor())
+				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == this->casillero[x][y][z+1].getValor())
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->altura - 1) return true;
@@ -210,8 +199,8 @@ bool Tablero::ganadorPlanoAlto() {
 		//BUSCO GANADOR POR LA VERTICAL
 		for(size_t z = 0; z < this->profundidad; z++) {
 			for(size_t x = 0; x < this->anchura - 1; x++) {
-				if(this->casillero[x][y][z]->getValor() == VACIO) break;
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y+1][z]->getValor())
+				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == this->casillero[x][y+1][z].getValor())
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->altura - 1) return true;
@@ -227,11 +216,11 @@ bool Tablero::ganadorPlanoAltoDiagonal1() {
 	for(size_t y = 0; y < this->altura; y++) {
 		aux = true;
 		for(size_t x = 0, z = 0; y < this->anchura - 1 && z < this->profundidad - 1; x++, z++) {
-			if(this->casillero[x][y][z]->getValor() == VACIO) {
+			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
 			}
-			if(this->casillero[x][y][z]->getValor() != this->casillero[x+1][y][z+1]->getValor()) {
+			if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y][z+1].getValor()) {
 				aux = false;
 				break;
 			}
@@ -247,11 +236,11 @@ bool Tablero::ganadorPlanoAltoDiagonal2() {
 	for(size_t y = 0; y < this->altura; y++) {
 		aux = true;
 		for(size_t x = 0, z = this->profundidad - 1; x < this->anchura - 1 && z > 0; x++, z--) {
-			if(this->casillero[x][y][z]->getValor() == VACIO) {
+			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
 			}
-			if(this->casillero[x][y][z]->getValor() != this->casillero[x+1][y][z-1]->getValor()) {
+			if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y][z-1].getValor()) {
 				aux = false;
 				break;
 			}
@@ -269,8 +258,8 @@ bool Tablero::ganadorPlanoProf() {
 		//BUSCO GANADOR POR LA HORIZONTAL
 		for(size_t y = 0; y < this->altura; y++) {
 			for(size_t x = 0; z < this->anchura - 1; x++) {
-				if(this->casillero[x][y][z]->getValor() == VACIO) break;
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y][z+1]->getValor())
+				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == this->casillero[x][y][z+1].getValor())
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->profundidad - 1) return true;
@@ -279,8 +268,8 @@ bool Tablero::ganadorPlanoProf() {
 		//BUSCO GANADOR POR LA VERTICAL
 		for(size_t x = 0; z < this->anchura; x++) {
 			for(size_t y = 0; y < this->altura - 1; y++) {
-				if(this->casillero[x][y][z]->getValor() == VACIO) break;
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y+1][z]->getValor())
+				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == this->casillero[x][y+1][z].getValor())
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->profundidad - 1) return true;
@@ -296,11 +285,11 @@ bool Tablero::ganadorPlanoProfDiagonal1() {
 	for(size_t z = 0; z < this->profundidad; z++) {
 		aux = true;
 		for(size_t y = 0, x = 0; y < this->altura - 1 && x < this->anchura - 1; y++, x++) {
-			if(this->casillero[x][y][z]->getValor() == VACIO) {
+			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
 			}
-			if(this->casillero[x][y][z]->getValor() != this->casillero[x+1][y+1][z]->getValor()) {
+			if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y+1][z].getValor()) {
 				aux = false;
 				break;
 			}
@@ -316,11 +305,11 @@ bool Tablero::ganadorPlanoProfDiagonal2() {
 	for(size_t z = 0; z < this->profundidad; z++) {
 		aux = true;
 		for(size_t y = 0, x = this->anchura - 1; y < this->altura - 1 && z > 0; y++, x--) {
-			if(this->casillero[x][y][z]->getValor() == VACIO) {
+			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
 			}
-			if(this->casillero[x][y][z]->getValor() != this->casillero[x-1][y+1][z]->getValor()) {
+			if(this->casillero[x][y][z].getValor() != this->casillero[x-1][y+1][z].getValor()) {
 				aux = false;
 				break;
 			}
@@ -335,11 +324,11 @@ bool Tablero::ganadorDiagonales3D() {
 	bool aux;
 	aux = true;
 	for(size_t x = 0, y = 0, z = 0; x < this->anchura - 1 && y < this->altura - 1 && z < this->profundidad - 1; x++, y++, z++) {
-		if(this->casillero[x][y][z]->getValor() == VACIO) {
+		if(this->casillero[x][y][z].getValor() == VACIO) {
 			aux = false;
 			break;
 		}
-		if(this->casillero[x][y][z]->getValor() != this->casillero[x+1][y+1][z+1]->getValor()) {
+		if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y+1][z+1].getValor()) {
 			aux = false;
 			break;
 		}
@@ -348,11 +337,11 @@ bool Tablero::ganadorDiagonales3D() {
 
 	aux = true;
 	for(size_t x = 0, y = this->altura - 1, z = 0; x < this->anchura - 1 && y > 0 && z < this->profundidad; x++, y--, z++) {
-		if(this->casillero[x][y][z]->getValor() == VACIO) {
+		if(this->casillero[x][y][z].getValor() == VACIO) {
 			aux = false;
 			break;
 		}
-		if(this->casillero[x][y][z]->getValor() != this->casillero[x+1][y-1][z+1]->getValor()) {
+		if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y-1][z+1].getValor()) {
 			aux = false;
 			break;
 		}
@@ -361,11 +350,11 @@ bool Tablero::ganadorDiagonales3D() {
 
 	aux = true;
 	for(size_t x = this->anchura - 1, y = 0, z = 0; x > 0 && y < this->altura - 1 && z < this->profundidad - 1; x--, y++, z++) {
-		if(this->casillero[x][y][z]->getValor() == VACIO) {
+		if(this->casillero[x][y][z].getValor() == VACIO) {
 			aux = false;
 			break;
 		}
-		if(this->casillero[x][y][z]->getValor() != this->casillero[x-1][y+1][z+1]->getValor()) {
+		if(this->casillero[x][y][z].getValor() != this->casillero[x-1][y+1][z+1].getValor()) {
 			aux = false;
 			break;
 		}
@@ -373,11 +362,11 @@ bool Tablero::ganadorDiagonales3D() {
 	if(aux) return true;
 
 	for(size_t x = 0, y = 0, z = this->profundidad - 1; x < this->anchura && y < this->altura && z > 0; x++, y++, z--) {
-		if(this->casillero[x][y][z]->getValor() == VACIO) {
+		if(this->casillero[x][y][z].getValor() == VACIO) {
 			aux = false;
 			break;
 		}
-		if(this->casillero[x][y][z]->getValor() != this->casillero[x+1][y+1][z-1]->getValor()) {
+		if(this->casillero[x][y][z].getValor() != this->casillero[x+1][y+1][z-1].getValor()) {
 			aux = false;
 			break;
 		}
@@ -397,7 +386,7 @@ Tablero* Tablero::guardarEstado(){
 	for(size_t i = 0; i < this->anchura; i++) {
 		for(size_t j = 0; j < this->altura; j++) {
 			for(size_t k = 0; k < this->profundidad; k++) {
-				aux->casillero[i][j][k]->setValor(this->casillero[i][j][k]->getValor());
+				aux->getCasilleroPuntero(i,j,k)->setValor(this->casillero[i][j][k].getValor());
 			}
 		}
 	}
@@ -505,135 +494,7 @@ void Tablero::imprimirProfCoordenado() {
 }
 
 void Tablero::imprimirTablero(){
-	/* como es un cubo tiene 6 caras: */
 
-		/*cara 1:
-			x varia
-			y varia
-			z fija = 0*/
-<<<<<<< Updated upstream
-		std::cout << "CARA 1: "<< std::endl;
-		for(size_t i = 0; i < this->anchura; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << this->casillero[i][j][0]->getValor() << " |";
-			}
-			std::cout << std::endl;
-		}
-=======
-//		std::cout << "CARA 1: "<< std::endl;
-//		for(size_t i = 0; i < this->anchura; i++){
-//			for(size_t j = 0; j < this->altura; j++){
-//				std::cout << "| " << this->casillero[i][j][0].getValor() << " |";
-//			}
-///			std::cout << std::endl;
-//		}
->>>>>>> Stashed changes
-		/*cara 2:
-			x fijo = tablero->anchura
-			y varia
-			z varia*/
-<<<<<<< Updated upstream
-		std::cout << "CARA 2: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << this->casillero[this->anchura][j][i]->getValor() << " |";
-			}
-			std::cout << std::endl;
-		}
-=======
-//		std::cout << "CARA 2: "<< std::endl;
-//		for(size_t i = 0; i < this->profundidad; i++){
-//			for(size_t j = 0; j < this->altura; j++){
-//				std::cout << "| " << this->casillero[this->anchura][j][i].getValor() << " |";
-//			}
-	//		std::cout << std::endl;
-//		}
->>>>>>> Stashed changes
-		/*cara 3: 
-			x varia
-			y fijo = tablero->altura
-			z */
-<<<<<<< Updated upstream
-		std::cout << "CARA 3: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "| " << this->casillero[j][this->altura][i]->getValor() << " |";
-			}
-			std::cout << std::endl;
-		}
-=======
-//		std::cout << "CARA 3: "<< std::endl;
-//		for(size_t i = 0; i < this->profundidad; i++){
-//			for(size_t j = 0; j < this->anchura; j++){
-//				std::cout << "| " << this->casillero[j][this->altura][i].getValor() << " |";
-//			}
-//			std::cout << std::endl;
-//		}
->>>>>>> Stashed changes
-		/*cara 4:
-			x fijo = 0
-			y varia
-			z varia*/
-<<<<<<< Updated upstream
-		std::cout << "CARA 4: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << this->casillero[0][j][i]->getValor() << " |";
-			}
-			std::cout << std::endl;
-		}
-=======
-//		std::cout << "CARA 4: "<< std::endl;
-//		for(size_t i = 0; i < this->profundidad; i++){
-//			for(size_t j = 0; j < this->altura; j++){
-//				std::cout << "| " << this->casillero[0][j][i].getValor() << " |";
-//			}
-//			std::cout << std::endl;
-//		}
->>>>>>> Stashed changes
-		/*cara 5:
-			x varia
-			y varia
-			z fijo = tablero->profundidad */
-<<<<<<< Updated upstream
-		std::cout << "CARA 5: "<< std::endl;
-		for(size_t i = 0; i < this->anchura; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "| " << this->casillero[i][j][this->profundidad]->getValor() << " |";
-			}
-			std::cout << std::endl;
-		}
-=======
-//		std::cout << "CARA 5: "<< std::endl;
-//		for(size_t i = 0; i < this->anchura; i++){
-//			for(size_t j = 0; j < this->altura; j++){
-//				std::cout << "| " << this->casillero[i][j][this->profundidad].getValor() << " |";
-//			}
-//			std::cout << std::endl;
-//		}
->>>>>>> Stashed changes
-		/*cara 6:
-			x varia
-			y fijo = 0
-			z varia	*/
-<<<<<<< Updated upstream
-		std::cout << "CARA 6: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "| " << this->casillero[j][0][i]->getValor() << " |";
-			}
-			std::cout << std::endl;
-		}
-=======
-//		std::cout << "CARA 6: "<< std::endl;
-//		for(size_t i = 0; i < this->profundidad; i++){
-//			for(size_t j = 0; j < this->anchura; j++){
-//				std::cout << "| " << this->casillero[j][0][i].getValor() << " |";
-//			}
-//			std::cout << std::endl;
-//		}
->>>>>>> Stashed changes
-		
 	this->imprimirAncho();
 	this->imprimirAlto();
 	this->imprimirProf();
@@ -642,72 +503,7 @@ void Tablero::imprimirTablero(){
 }
 
 void Tablero::imprimirMapaCoordenado(){
-	/*
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << "CARA 1: "<< std::endl;
-		for(size_t i = 0; i < this->anchura; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "|x = " << i << "; y = " << j << "; z = 0 |";
-			}
-			std::cout << std::endl;
-		}
-	
-	std::cout << std::endl;
-	std::cout << std::endl;
 
-	std::cout << "CARA 2: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "|x = " << (this->anchura) - 1 << "; y = " << j << "; z = " << i << " |";
-			}
-			std::cout << std::endl;
-		}
-	
-	std::cout << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "CARA 3: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "|x = " << j << "; y = " << (this->altura) - 1 << "; z = " << i << " |";
-			}
-			std::cout << std::endl;
-		}
-
-	std::cout << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "CARA 4: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "|x = 0; y = " << j << "; z = " << i << " |";
-			}
-			std::cout << std::endl;
-		}
-
-	std::cout << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "CARA 5: "<< std::endl;
-		for(size_t i = 0; i < this->anchura; i++){
-			for(size_t j = 0; j < this->altura; j++){
-				std::cout << "|x = " << i << "; y = " << j << "; z = " << (this->profundidad) - 1 << " |";
-			}
-			std::cout << std::endl;
-		}
-
-	std::cout << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "CARA 6: "<< std::endl;
-		for(size_t i = 0; i < this->profundidad; i++){
-			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "|x = " << j << "; y = 0; z = " << i << " |";
-			}
-			std::cout << std::endl;
-		}
-*/
 	this->imprimirAnchoCoordenado();
 	this->imprimirAltoCoordenado();
 	this->imprimirProfCoordenado();

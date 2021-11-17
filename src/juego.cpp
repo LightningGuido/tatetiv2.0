@@ -271,10 +271,13 @@ bool permutarLugar(Tablero* tablero){
 	
 }
 
-void turnoDoble(Tablero *tablero, Cola* jugadores){
-	turno(tablero, jugadores->frente());
-	//jugadores->acolarFrente(jugadores->frente());
+void turnoDoble(Tablero *tablero, Cola* jugadores, size_t dim, size_t cantJugadores){
 
+	if(tablero->getCantidadFichas() < dim * cantJugadores) {
+		fichasIniciales(jugadores->frente(), tablero);
+	} else {
+		turno(tablero, jugadores->frente());
+	}
 }
 
 
