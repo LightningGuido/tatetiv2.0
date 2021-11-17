@@ -226,6 +226,7 @@ void irAtras(Tablero* tablero, Pila* tableros){
 		for(size_t j = 0; j < tablero->getAltura(); j++) {
 			for(size_t k = 0; k < tablero->getProfundidad(); k++) {
 				tablero->getCasillero(i, j, k)->setValor(tableros->top()->getCasillero(i, j, k)->getValor());
+				tablero->getCasillero(i, j, k)->setEstado(tableros->top()->getCasillero(i, j ,k)->getEstado());
 			}
 		}
 	}
