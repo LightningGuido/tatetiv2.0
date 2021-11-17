@@ -9,7 +9,7 @@
 #define SRC_PILA_H_
 #include <iostream>
 #include "NodoPila.h"
-
+#include "jugador.h"
 class Pila{
     private:
         NodoPila* tope;
