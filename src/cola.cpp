@@ -16,7 +16,7 @@ Cola::Cola(){
 void Cola::ColaDestruir(){
     
     Nodo* aux = this->front;
-    if(!vacia()){
+    if(!this->vacia()){
         while(this->front != NULL){
         
             this->front = aux->getSiguiente();

@@ -14,48 +14,63 @@ Pila::Pila(){
 }
     
 void Pila::pilaDestruir(){
-    
-    while(this->anterior != NULL){
-        
-        Tablero* aux = this->tope;
 
-        this->tope = this->anterior;
-        delete (aux);
+    
+    while(this->tope->getSiguiente() != NULL){
+    
+        NodoPila* aux = this->tope;
         
+        if(!this->vacia()){
+            while(this->tope->getUltimo() != NULL){
+
+                this->anterior = this->tope->getUltimo();
+                delete (this->anterior);
+
+            }
+            delete(aux);
+        }
+
+        this->tope = NULL;
+        this->tamanio = 0;    
+        delete this;
     }
+
     this->anterior = NULL;
     this->tamanio = 0;
     delete this;
 }
 
-void Pila::setTope(Tablero* ultimo){
+void Pila::setTope(NodoPila* ultimo){
+    this->anterior = this->tope->getUltimo();
     this->tope = ultimo;
 }
-        
 void Pila::push(Tablero* dato){
 
-    delete(this->anterior); //solo se guardan dos tableros
+    NodoPila* aux = new NodoPila(dato);
+    
 
-    this->anterior = this->tope;
-    this->tope = dato;
+    aux->setSiguiente(this->tope);
+   
 
-    //this->tamanio += 1;
+    this->setTope(aux); 
+    this->tamanio += 1;
 }
        
 Tablero* Pila::pop(){
 
+    NodoPila *aux = this->tope; 
+    Tablero* dato = aux->getUltimo();
+
+    this->setTope(aux->getSiguiente()); 
     
-    Tablero* dato = this->tope;
-  
-    this->setTope(this->anterior); 
     this->tamanio -= 1;
-    
+    delete aux; 
     return dato; 
 }
         
 Tablero* Pila::top(){
-    
-    return this->tope;
+    NodoPila* aux = this->tope->getSiguiente();
+    return aux->getUltimo();
 }
        
 bool Pila::vacia(){
