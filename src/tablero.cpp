@@ -551,5 +551,6 @@ void Tablero::destruir(){
 		delete [] this->casillero[i];	
 	}
 	delete [] this->casillero;
+	delete this->casillero;
 	delete this;
 }
