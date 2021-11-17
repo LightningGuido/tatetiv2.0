@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "tablero.h"
+
 class Pila{
     private:
         Tablero* tope;

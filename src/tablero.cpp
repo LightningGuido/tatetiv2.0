@@ -81,6 +81,7 @@ Casillero Tablero::getCasillero(size_t x, size_t y, size_t z) {
 }
 
 bool Tablero::hayGanador() {
+
 	if(this->ganadorPlanoAncho()) {
 		return true;
 	}
@@ -111,6 +112,7 @@ bool Tablero::hayGanador() {
 	if(this->ganadorDiagonales3D()) {
 		return true;
 	}
+
 	return false;
 }
 
@@ -126,17 +128,23 @@ bool Tablero::ganadorPlanoAncho() {
 				if(this->casillero[x][y][z].getValor() == this->casillero[x][y][z+1].getValor())
 					condicionVictoria++;
 			}
-			if(condicionVictoria == this->anchura - 1) return true;
+			if(condicionVictoria == this->anchura - 1) {
+				return true;
+			}
 			condicionVictoria = 0;
 		}
 		//BUSCO GANADOR POR LA VERTICAL
 		for(size_t z = 0; z < this->profundidad; z++) {
 			for(size_t y = 0; y < this->altura - 1; y++) {
-				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == VACIO) {
+					break;
+				}
 				if(this->casillero[x][y][z].getValor() == this->casillero[x][y+1][z].getValor())
 					condicionVictoria++;
 			}
-			if(condicionVictoria == this->altura - 1) return true;
+			if(condicionVictoria == this->altura - 1) {
+				return true;
+			}
 			condicionVictoria = 0;
 		}
 	}
@@ -148,7 +156,7 @@ bool Tablero::ganadorPlanoAnchoDiagonal1() {
 	bool aux;
 	for(size_t x = 0; x < this->anchura; x++) {
 		aux = true;
-		for(size_t y = 0, z = 0; y < this->altura - 1 && z < this->profundidad - 1; y++, z++) {
+		for(size_t y = 0, z = 0; (y < this->altura - 1) && (z < this->profundidad - 1); y++, z++) {
 			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
@@ -158,7 +166,9 @@ bool Tablero::ganadorPlanoAnchoDiagonal1() {
 				break;
 			}
 		}
-		if(aux) return true;
+		if(aux) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -176,7 +186,9 @@ bool Tablero::ganadorPlanoAnchoDiagonal2() {
 				aux = false;
 			}
 		}
-		if(aux) return true;
+		if(aux) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -193,7 +205,9 @@ bool Tablero::ganadorPlanoAlto() {
 				if(this->casillero[x][y][z].getValor() == this->casillero[x][y][z+1].getValor())
 					condicionVictoria++;
 			}
-			if(condicionVictoria == this->altura - 1) return true;
+			if(condicionVictoria == this->altura - 1) {
+				return true;
+			}
 			condicionVictoria = 0;
 		}
 		//BUSCO GANADOR POR LA VERTICAL
@@ -203,7 +217,9 @@ bool Tablero::ganadorPlanoAlto() {
 				if(this->casillero[x][y][z].getValor() == this->casillero[x][y+1][z].getValor())
 					condicionVictoria++;
 			}
-			if(condicionVictoria == this->altura - 1) return true;
+			if(condicionVictoria == this->altura - 1) {
+				return true;
+			}
 			condicionVictoria = 0;
 		}
 	}
@@ -215,7 +231,7 @@ bool Tablero::ganadorPlanoAltoDiagonal1() {
 	bool aux;
 	for(size_t y = 0; y < this->altura; y++) {
 		aux = true;
-		for(size_t x = 0, z = 0; y < this->anchura - 1 && z < this->profundidad - 1; x++, z++) {
+		for(size_t x = 0, z = 0; (x < this->anchura - 1) && (z < this->profundidad - 1); x++, z++) {
 			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
@@ -245,7 +261,9 @@ bool Tablero::ganadorPlanoAltoDiagonal2() {
 				break;
 			}
 		}
-		if(aux) return true;
+		if(aux) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -257,22 +275,30 @@ bool Tablero::ganadorPlanoProf() {
 		condicionVictoria = 0;
 		//BUSCO GANADOR POR LA HORIZONTAL
 		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t x = 0; z < this->anchura - 1; x++) {
-				if(this->casillero[x][y][z].getValor() == VACIO) break;
+			for(size_t x = 0; x < this->anchura - 1; x++) {
+				if(this->casillero[x][y][z].getValor() == VACIO) {
+					break;
+				}
 				if(this->casillero[x][y][z].getValor() == this->casillero[x][y][z+1].getValor())
 					condicionVictoria++;
 			}
-			if(condicionVictoria == this->profundidad - 1) return true;
+			if(condicionVictoria == this->profundidad - 1) {
+				return true;
+			}
 			condicionVictoria = 0;
 		}
 		//BUSCO GANADOR POR LA VERTICAL
-		for(size_t x = 0; z < this->anchura; x++) {
+		for(size_t x = 0; x < this->anchura; x++) {
 			for(size_t y = 0; y < this->altura - 1; y++) {
-				if(this->casillero[x][y][z].getValor() == VACIO) break;
+				if(this->casillero[x][y][z].getValor() == VACIO) {
+					break;
+				}
 				if(this->casillero[x][y][z].getValor() == this->casillero[x][y+1][z].getValor())
 					condicionVictoria++;
 			}
-			if(condicionVictoria == this->profundidad - 1) return true;
+			if(condicionVictoria == this->profundidad - 1) {
+				return true;
+			}
 			condicionVictoria = 0;
 		}
 	}
@@ -294,7 +320,9 @@ bool Tablero::ganadorPlanoProfDiagonal1() {
 				break;
 			}
 		}
-		if(aux) return true;
+		if(aux) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -304,7 +332,7 @@ bool Tablero::ganadorPlanoProfDiagonal2() {
 	bool aux;
 	for(size_t z = 0; z < this->profundidad; z++) {
 		aux = true;
-		for(size_t y = 0, x = this->anchura - 1; y < this->altura - 1 && z > 0; y++, x--) {
+		for(size_t y = 0, x = this->anchura - 1; y < this->altura - 1 && x > 0; y++, x--) {
 			if(this->casillero[x][y][z].getValor() == VACIO) {
 				aux = false;
 				break;
@@ -314,7 +342,9 @@ bool Tablero::ganadorPlanoProfDiagonal2() {
 				break;
 			}
 		}
-		if(aux) return true;
+		if(aux) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -346,7 +376,9 @@ bool Tablero::ganadorDiagonales3D() {
 			break;
 		}
 	}
-	if(aux) return true;
+	if(aux) {
+		return true;
+	}
 
 	aux = true;
 	for(size_t x = this->anchura - 1, y = 0, z = 0; x > 0 && y < this->altura - 1 && z < this->profundidad - 1; x--, y++, z++) {
@@ -359,7 +391,9 @@ bool Tablero::ganadorDiagonales3D() {
 			break;
 		}
 	}
-	if(aux) return true;
+	if(aux) {
+		return true;
+	}
 
 	for(size_t x = 0, y = 0, z = this->profundidad - 1; x < this->anchura && y < this->altura && z > 0; x++, y++, z--) {
 		if(this->casillero[x][y][z].getValor() == VACIO) {
@@ -371,7 +405,9 @@ bool Tablero::ganadorDiagonales3D() {
 			break;
 		}
 	}
-	if(aux) return true;
+	if(aux) {
+		return true;
+	}
 
 	return false;
 }

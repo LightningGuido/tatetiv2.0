@@ -28,6 +28,8 @@ int main() {
 	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
 	size_t cantJugadores;
 	std::cin >> cantJugadores;
+
+
 	Cola *turnos = new Cola();
 	Nodo *nodo = new Nodo[cantJugadores]();
 	Jugador **jugadores = new Jugador*[cantJugadores];
@@ -44,7 +46,7 @@ int main() {
 	}
 
 		  //Verifica ganador
-	while(tablero->hayGanador()) {
+	while(!tablero->hayGanador()) {
 		//Colocan o mueven Fichas
 		if(tablero->getCantidadFichas() < dim * cantJugadores) {
 			fichasIniciales(turnos->frente(), tablero);
