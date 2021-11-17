@@ -10,7 +10,7 @@
 using namespace std;
 
 bool anchuraValida(size_t f, Tablero *tablero){
-	if(f >= 0 && f <= (tablero->getAnchura())){
+	if(f >= 0 && f < (tablero->getAnchura())){
 		return true;
 	}
 	return false;
