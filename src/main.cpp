@@ -22,8 +22,8 @@ int main() {
 	std::cin >> dim;
 	Tablero *tablero = new Tablero(dim, dim ,dim);
 	Pila* ultimosTableros = new Pila;
+	ultimosTableros->push(tablero->guardarEstado()); //guardo el tablero en blanco por si se juega IrAtras en el primer turno
 	tablero->imprimirMapaCoordenado();
-	tablero->imprimirTablero();
 
 	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
 	size_t cantJugadores;
@@ -56,7 +56,8 @@ int main() {
 		}
 
 		//Muestram y juegan cartas
-		tablero->imprimirTablero(); //aca xplota
+		tablero->imprimirTablero();
+		ultimosTableros->push(tablero->guardarEstado());
 		for(size_t i = 0; i < MAX_CARTAS; i++){
 			std::cout << i << ": ";
 			turnos->frente()->getCartas(i).mostrarCarta();
@@ -97,7 +98,8 @@ int main() {
 			std::cout <<"No juega ninguna carta" << std::endl;
 		}
 		
-		ultimosTableros->push(tablero->guardarEstado()); //agrega a la pila el ultimo tablero guardado
+		tablero->imprimirTablero();
+		//ultimosTableros->push(tablero->guardarEstado());
 		turnos->acolar(turnos->desacolar());
 	}
 

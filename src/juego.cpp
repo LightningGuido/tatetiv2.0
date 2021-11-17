@@ -32,7 +32,7 @@ bool profundidadValida(size_t c, Tablero *tablero){
 
 bool posicionValida (Tablero *tablero, size_t ancho, size_t altura, size_t profundidad){
 
-	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO && tablero->getCasillero(ancho, altura, profundidad).getEstado() == Libre){
+	if(tablero->getCasillero(ancho, altura, profundidad)->getValor() == VACIO && tablero->getCasillero(ancho, altura, profundidad)->getEstado() == Libre){
 			return true;
 		}
 
@@ -41,7 +41,7 @@ bool posicionValida (Tablero *tablero, size_t ancho, size_t altura, size_t profu
 
 bool hayFicha (Tablero *tablero, Jugador* jugador, size_t ancho, size_t altura, size_t profundidad){
 
-	if(tablero->getCasillero(ancho, altura, profundidad).getValor() == jugador->getFicha()){
+	if(tablero->getCasillero(ancho, altura, profundidad)->getValor() == jugador->getFicha()){
 			return true;
 		}
 
@@ -109,7 +109,7 @@ void colocarFicha (Tablero *tablero, Jugador *jugador){
 }
 
 bool movimientoValido(Tablero *tablero, Jugador *jugador, size_t anchoUno, size_t alturaUno, size_t profundidadUno, size_t anchoDos, size_t alturaDos, size_t profundidadDos){
-	if(tablero->getCasillero(anchoUno, alturaUno, profundidadUno).getValor() != jugador->getFicha() || !posicionValida(tablero, anchoDos, alturaDos, profundidadDos)){
+	if(tablero->getCasillero(anchoUno, alturaUno, profundidadUno)->getValor() != jugador->getFicha() || !posicionValida(tablero, anchoDos, alturaDos, profundidadDos)){
 		return false;
 	}
 
@@ -140,10 +140,10 @@ void moverFicha(Tablero *tablero, Jugador *jugador){
     profundidadDos = obtenerProfundidad(tablero);
 
 	if(movimientoValido(tablero, jugador, anchoUno, alturaUno, profundidadUno, anchoDos, alturaDos, profundidadDos)){
-		tablero->getCasillero(anchoUno, alturaUno, profundidadUno).setValor(VACIO);
-		tablero->getCasillero(anchoUno, alturaUno, profundidadUno).setEstado(Libre);
-		tablero->getCasillero(anchoDos, alturaDos, profundidadDos).setValor(jugador->getFicha());
-		tablero->getCasillero(anchoDos, alturaDos, profundidadDos).setEstado(Ocupado);
+		tablero->getCasillero(anchoUno, alturaUno, profundidadUno)->setValor(VACIO);
+		tablero->getCasillero(anchoUno, alturaUno, profundidadUno)->setEstado(Libre);
+		tablero->getCasillero(anchoDos, alturaDos, profundidadDos)->setValor(jugador->getFicha());
+		tablero->getCasillero(anchoDos, alturaDos, profundidadDos)->setEstado(Ocupado);
 		return;
 	}
 
@@ -178,15 +178,15 @@ void bloquearFicha(Tablero *tablero) {
     altura = obtenerAltura(tablero);
     profundidad = obtenerProfundidad(tablero);
 
-    if(tablero->getCasillero(ancho, altura, profundidad).getValor() == VACIO) {
+    if(tablero->getCasillero(ancho, altura, profundidad)->getValor() == VACIO) {
     	cout << "No hay ficha en esa posicion" << endl;
     	bloquearFicha(tablero);
     }
-    if(tablero->getCasillero(ancho, altura, profundidad).getEstado() == OcupadoBloqueado) {
+    if(tablero->getCasillero(ancho, altura, profundidad)->getEstado() == OcupadoBloqueado) {
     	cout << "La ficha ya esta bloqueada" << endl;
     	bloquearFicha(tablero);
     }
-    tablero->getCasillero(ancho, altura, profundidad).setEstado(OcupadoBloqueado);
+    tablero->getCasillero(ancho, altura, profundidad)->setEstado(OcupadoBloqueado);
     return;
 }
 
@@ -202,8 +202,8 @@ void bloquearCasillero(Tablero *tablero) {
     altura = obtenerAltura(tablero);
     profundidad = obtenerProfundidad(tablero);
 
-    tablero->getCasillero(ancho, altura, profundidad).setValor(VACIO);
-    tablero->getCasillero(ancho, altura, profundidad).setEstado(Bloqueado);
+    tablero->getCasillero(ancho, altura, profundidad)->setValor(VACIO);
+    tablero->getCasillero(ancho, altura, profundidad)->setEstado(Bloqueado);
 
 }
 
@@ -214,6 +214,7 @@ void perderTurno(Cola* jugadores){
 }
 
 void irAtras(Tablero* tablero, Pila* tableros){
+	//tiene problemas porque no setea como VACIO los casilleros que antes estaban ocupados
 
 	tablero->setAltura(tableros->top()->getAltura());
 	tablero->setAnchura(tableros->top()->getAnchura());
@@ -224,7 +225,7 @@ void irAtras(Tablero* tablero, Pila* tableros){
 	for(size_t i = 0; i < tablero->getAnchura(); i++) {
 		for(size_t j = 0; j < tablero->getAltura(); j++) {
 			for(size_t k = 0; k < tablero->getProfundidad(); k++) {
-				tablero->getCasillero(i, j, k).setValor(tableros->top()->getCasillero(i, j, k).getValor());
+				tablero->getCasillero(i, j, k)->setValor(tableros->top()->getCasillero(i, j, k)->getValor());
 			}
 		}
 	}
@@ -245,7 +246,7 @@ bool permutarLugar(Tablero* tablero){
 	alturaUno = obtenerAltura(tablero);
     profundidadUno = obtenerProfundidad(tablero);
 
-	if(tablero->getCasillero(anchoUno, alturaUno, profundidadUno).getValor() == VACIO){
+	if(tablero->getCasillero(anchoUno, alturaUno, profundidadUno)->getValor() == VACIO){
 		cout << "Coordenada de primer ficha invalida. Debe ser una casilla ocupada" << endl;
 		return permutarLugar(tablero);
 	}
@@ -256,17 +257,17 @@ bool permutarLugar(Tablero* tablero){
 	alturaDos = obtenerAltura(tablero);
     profundidadDos = obtenerProfundidad(tablero);
 
-	if(tablero->getCasillero(anchoDos, alturaDos, profundidadDos).getValor() == VACIO){
+	if(tablero->getCasillero(anchoDos, alturaDos, profundidadDos)->getValor() == VACIO){
 		cout << "Coordenada de primer ficha invalida. Debe ser una casilla ocupada" << endl;
 		return permutarLugar(tablero);
 	}
 
-	char fichaUno = tablero->getCasillero(anchoUno, alturaUno, profundidadUno).getValor();
-	char fichaDos = tablero->getCasillero(anchoDos, alturaDos, profundidadDos).getValor();
+	char fichaUno = tablero->getCasillero(anchoUno, alturaUno, profundidadUno)->getValor();
+	char fichaDos = tablero->getCasillero(anchoDos, alturaDos, profundidadDos)->getValor();
 	
 	
-	tablero->getCasillero(anchoUno, alturaUno, profundidadUno).setValor(fichaDos);
-	tablero->getCasillero(anchoDos, alturaDos, profundidadDos).setValor(fichaUno);
+	tablero->getCasillero(anchoUno, alturaUno, profundidadUno)->setValor(fichaDos);
+	tablero->getCasillero(anchoDos, alturaDos, profundidadDos)->setValor(fichaUno);
 	return true;
 	
 }

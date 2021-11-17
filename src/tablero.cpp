@@ -35,7 +35,7 @@ Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
 	for(size_t i = 0; i < ancho; i++) {
 			this->casillero[i] = new Casillero**[alto];
 			for(size_t j = 0; j < alto; j++) {
-				this->casillero[i][j] = new Casillero*[profundo];
+				this->casillero[i][j] = new Casillero*[profundo]; //aca valgrind tira error
 			}
 	}
 
@@ -279,7 +279,7 @@ bool Tablero::ganadorPlanoProf() {
 				if(this->casillero[x][y][z]->getValor() == VACIO) {
 					break;
 				}
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y][z+1]->getValor())
+				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y][z+1]->getValor()) //aca valgrind tira error
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->profundidad - 1) {
@@ -422,7 +422,8 @@ Tablero* Tablero::guardarEstado(){
 	for(size_t i = 0; i < this->anchura; i++) {
 		for(size_t j = 0; j < this->altura; j++) {
 			for(size_t k = 0; k < this->profundidad; k++) {
-				aux->getCasilleroPuntero(i,j,k)->setValor(this->casillero[i][j][k]->getValor());
+				aux->getCasillero(i,j,k)->setValor(this->casillero[i][j][k]->getValor());
+				aux->getCasillero(i,j,k)->setEstado(this->casillero[i][j][k]->getEstado());
 			}
 		}
 	}
@@ -555,7 +556,6 @@ void Tablero::destruir(){
 	for(size_t i = 0; i < this->anchura; i++) {
 		delete [] this->casillero[i];	
 	}
-	delete [] this->casillero;
-	delete this->casillero;
+	//delete this->casillero;
 	delete this;
 }

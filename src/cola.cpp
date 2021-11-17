@@ -15,14 +15,13 @@ Cola::Cola(){
 
 void Cola::ColaDestruir(){
     
-    Nodo* aux = this->front;
+    Nodo* aux = this->front->getSiguiente();
     if(!this->vacia()){
         while(this->front != NULL){
         
             this->front = aux->getSiguiente();
             delete(aux);
 
-            aux = this->front;
         }
     }
     this->end = NULL;

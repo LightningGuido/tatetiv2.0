@@ -9,8 +9,10 @@ void Nodo::setDato(Jugador* dato){
         this->dato = dato;
 }
 void Nodo::nodoDestruir(){
-        delete this->siguiente;
-        delete this->dato;
+    	delete this->siguiente;
+		delete this->dato;
+        delete this;
+
 }
 Jugador* Nodo::getDato(){
         return this->dato;
