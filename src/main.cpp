@@ -15,7 +15,7 @@ using namespace std;
 
 
 int main() {
-
+/*holu*/
 	std::cout << "Bienvenido al TaTeTi v2.0" << std::endl;
 	std::cout << "Ingrese la dimension 3D de su cubo" << std::endl;
 	size_t dim;
