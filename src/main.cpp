@@ -15,17 +15,7 @@ using namespace std;
 
 
 int main() {
-	/* PRIMERO: Se pregunta la cantidad de jugadores y dimension del tablero
-	 *
-	 * SEGUNDO: Se crea el tablero y jugadores
-	 *
-	 * TERCERO: Se inicia el juego
-	 * 			Los jugadores se acomodan en una cola, que seria el orden
-	 * 			de los turnos
-	 *
-	 */
 
-	//INICIALIZO EL JUEGO
 	std::cout << "Bienvenido al TaTeTi v2.0" << std::endl;
 	std::cout << "Ingrese la dimension 3D de su cubo" << std::endl;
 	size_t dim;
@@ -33,23 +23,30 @@ int main() {
 	Tablero *tablero = new Tablero(dim, dim ,dim);
 	//Pila* ultimosTableros = new Pila;
 	tablero->imprimirMapaCoordenado();
+	tablero->imprimirTablero();
 
 	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
 	size_t cantJugadores;
 	std::cin >> cantJugadores;
+
+
 	Cola *turnos = new Cola();
+	Nodo *nodo = new Nodo[cantJugadores]();
 	Jugador **jugadores = new Jugador*[cantJugadores];
 
 	for(size_t i = 0; i < cantJugadores; i++) {
 		jugadores[i] = new Jugador();
+		nodo[i].setDato(jugadores[i]);
+		turnos->acolar(&nodo[i]);
 	}
-	for(size_t i = 0; i < cantJugadores - 1; i++) {
-		jugadores[i]->setJugadorSiguiente(jugadores[i + 1]);	
-		turnos->acolar(jugadores[i]);
+
+	for(size_t i = 0; i < cantJugadores; i++) {
+		cout << turnos->frente()->getNombre() <<endl;
+		turnos->acolar(turnos->desacolar());
 	}
 
 		  //Verifica ganador
-	while(tablero->hayGanador()) {
+	while(!tablero->hayGanador()) {
 		//Colocan o mueven Fichas
 		if(tablero->getCantidadFichas() < dim * cantJugadores) {
 			fichasIniciales(turnos->frente(), tablero);
@@ -59,10 +56,11 @@ int main() {
 		}
 
 		//Muestram y juegan cartas
-		tablero->imprimirTablero();
+		tablero->imprimirTablero(); //aca xplota
 		for(size_t i = 0; i < MAX_CARTAS; i++){
 			std::cout << i << ": ";
 			turnos->frente()->getCartas(i).mostrarCarta();
+			std::cout << std::endl;
 		}
 		std::cout << "Ingrese el TipoCarta que desea jugar o (-1) si no desea jugar ninguna: " << std::endl;
 		int numero;
@@ -92,7 +90,7 @@ int main() {
 					break;
 				case TurnoDoble:
 					std::cout <<"Juega carta TurnoDoble" << std::endl;
-					turnoDoble(turnos);
+					turnoDoble(tablero, turnos, dim, cantJugadores);
 					break;
 			}
 		} else {
@@ -104,7 +102,7 @@ int main() {
 	}
 
 	tablero->destruir();
-	// ultimosTableros->pilaDestruir();funcion rara que destruye
+	ultimosTableros->pilaDestruir();
 	turnos->ColaDestruir(); 
 	return 0; 
 }

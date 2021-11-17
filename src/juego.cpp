@@ -10,7 +10,7 @@
 using namespace std;
 
 bool anchuraValida(size_t f, Tablero *tablero){
-	if(f >= 0 && f <= (tablero->getAnchura())){
+	if(f >= 0 && f < (tablero->getAnchura())){
 		return true;
 	}
 	return false;
@@ -87,7 +87,7 @@ size_t obtenerProfundidad (Tablero *tablero){
 	}
 
 	else{
-		cout << "Valor de altura invalido. Intente de nuevo." << endl;
+		cout << "Valor de profundidad invalido. Intente de nuevo." << endl;
 		return obtenerProfundidad(tablero);
 	}
 }
@@ -99,8 +99,8 @@ void colocarFicha (Tablero *tablero, Jugador *jugador){
     size_t profundidad = obtenerProfundidad(tablero);
 
 	if(posicionValida(tablero, ancho, altura, profundidad)){
-		tablero->getCasillero(ancho,altura,profundidad).setValor(jugador->getFicha());
-		tablero->getCasillero(ancho,altura,profundidad).setEstado(Ocupado);
+		tablero->getCasilleroPuntero(ancho,altura,profundidad)->setValor(jugador->getFicha());
+		tablero->getCasilleroPuntero(ancho,altura,profundidad)->setEstado(Ocupado);
 	}
 	else{
 		cout << "Casilla no valida. Intente de nuevo." << endl;
@@ -271,10 +271,13 @@ bool permutarLugar(Tablero* tablero){
 	
 }
 
-void turnoDoble(Cola* jugadores){
+void turnoDoble(Tablero *tablero, Cola* jugadores, size_t dim, size_t cantJugadores){
 
-	jugadores->acolarFrente(jugadores->frente());
-
+	if(tablero->getCantidadFichas() < dim * cantJugadores) {
+		fichasIniciales(jugadores->frente(), tablero);
+	} else {
+		turno(tablero, jugadores->frente());
+	}
 }
 
 

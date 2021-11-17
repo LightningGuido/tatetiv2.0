@@ -15,11 +15,11 @@ Cola::Cola(){
 
 void Cola::ColaDestruir(){
     
-    Jugador* aux = this->front;
-    if(!vacia()){
+    Nodo* aux = this->front;
+    if(!this->vacia()){
         while(this->front != NULL){
         
-            this->front = aux->getJugadorSiguiente();
+            this->front = aux->getSiguiente();
             delete(aux);
 
             aux = this->front;
@@ -31,26 +31,28 @@ void Cola::ColaDestruir(){
 }
 
 Jugador* Cola::frente(){
-    return this->front;
+    return this->front->getDato();
 }
 
-void Cola::acolar(Jugador* elemento){
+void Cola::acolar(Nodo* elemento){
 
 
     if(this->tamanio == 1 && this->front == NULL && this->end == NULL) {
     	this->front = elemento;
         this->end = elemento; //si hay un solo elemento: ese elemento es front y end
     } else {
-    	this->end->setJugadorSiguiente(elemento);
-    	this->end = this->end->getJugadorSiguiente();
+    	this->end->setSiguiente(elemento);
+    	this->end = this->end->getSiguiente();
     }
     this->tamanio += 1;
+    //std::cout << "el primero es: " << this->front->getNombre() << std::endl;
+    //std::cout << "el ultimo  es: " << this->end->getNombre() << std::endl;
 }
 
-Jugador* Cola::desacolar(){
-    Jugador *aux = this->front; //aux = nodo1
+Nodo* Cola::desacolar(){
+    Nodo* aux = this->front; //aux = nodo1
     
-    this->front = aux->getJugadorSiguiente(); //front = nodo2 -> nodo2 = nodo1
+    this->front = this->front->getSiguiente(); //front = nodo2 -> nodo2 = nodo1
     this->tamanio -= 1;
     
     return aux; //devuelvo el dato que tenia nodo1
@@ -67,10 +69,10 @@ bool Cola::vacia(){
 }
 
 Jugador* Cola::siguiente(){
-    return this->front->getJugadorSiguiente();
+    return this->front->getSiguiente()->getDato();
 }
 
-void Cola::acolarFrente(Jugador* nuevo){
+/*void Cola::acolarFrente(Jugador* nuevo){
     
     //Jugador *aux = desacolar();
 
@@ -82,4 +84,4 @@ void Cola::acolarFrente(Jugador* nuevo){
         this->front = nuevo;
     }
     this->tamanio += 1;
-}
+}*/
