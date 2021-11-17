@@ -15,13 +15,13 @@ using namespace std;
 
 
 int main() {
-/*holu*/
+
 	std::cout << "Bienvenido al TaTeTi v2.0" << std::endl;
 	std::cout << "Ingrese la dimension 3D de su cubo" << std::endl;
 	size_t dim;
 	std::cin >> dim;
 	Tablero *tablero = new Tablero(dim, dim ,dim);
-	//Pila* ultimosTableros = new Pila;
+	Pila* ultimosTableros = new Pila;
 	tablero->imprimirMapaCoordenado();
 	tablero->imprimirTablero();
 
@@ -82,7 +82,7 @@ int main() {
 					break;
 				case IrAtras:
 					std::cout <<"Juega carta IrAtras" << std::endl;
-					//irAtras(tablero, ultimosTableros);
+					irAtras(tablero, ultimosTableros);
 					break;
 				case PermutarLugar:
 					std::cout <<"Juega carta PermutarLugar" << std::endl;
@@ -97,12 +97,12 @@ int main() {
 			std::cout <<"No juega ninguna carta" << std::endl;
 		}
 		
-		//ultimosTableros->push(tablero->guardarEstado()); //agrega a la pila el ultimo tablero guardado
+		ultimosTableros->push(tablero->guardarEstado()); //agrega a la pila el ultimo tablero guardado
 		turnos->acolar(turnos->desacolar());
 	}
 
 	tablero->destruir();
-	//ultimosTableros->pilaDestruir();
+	ultimosTableros->pilaDestruir();
 	turnos->ColaDestruir(); 
 	return 0; 
 }
