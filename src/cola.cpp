@@ -45,6 +45,8 @@ void Cola::acolar(Jugador* elemento){
     	this->end = this->end->getJugadorSiguiente();
     }
     this->tamanio += 1;
+    //std::cout << "el primero es: " << this->front->getNombre() << std::endl;
+    //std::cout << "el ultimo  es: " << this->end->getNombre() << std::endl;
 }
 
 Jugador* Cola::desacolar(){

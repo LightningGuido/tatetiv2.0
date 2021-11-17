@@ -1,4 +1,4 @@
-/*#ifndef SRC_NODO_H_
+#ifndef SRC_NODO_H_
 #define SRC_NODO_H_
 
 #include <iostream>
@@ -18,4 +18,4 @@ public:
 };
 
 #endif 
-*/
+

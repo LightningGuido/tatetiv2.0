@@ -43,9 +43,13 @@ int main() {
 	for(size_t i = 0; i < cantJugadores; i++) {
 		jugadores[i] = new Jugador();
 	}
-	for(size_t i = 0; i < cantJugadores - 1; i++) {
+	for(size_t i = 0; i < cantJugadores; i++) {
 		jugadores[i]->setJugadorSiguiente(jugadores[i + 1]);	
 		turnos->acolar(jugadores[i]);
+	}
+	for(size_t i = 0; i < cantJugadores; i++) {
+		cout << turnos->frente()->getNombre() <<endl;
+		turnos->acolar(turnos->desacolar());
 	}
 
 		  //Verifica ganador
