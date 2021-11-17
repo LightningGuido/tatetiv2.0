@@ -87,7 +87,7 @@ size_t obtenerProfundidad (Tablero *tablero){
 	}
 
 	else{
-		cout << "Valor de altura invalido. Intente de nuevo." << endl;
+		cout << "Valor de profundidad invalido. Intente de nuevo." << endl;
 		return obtenerProfundidad(tablero);
 	}
 }

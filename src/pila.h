@@ -8,11 +8,12 @@
 #ifndef SRC_PILA_H_
 #define SRC_PILA_H_
 #include <iostream>
-#include "NodoPila.h"
-#include "jugador.h"
+
+#include "tablero.h"
 class Pila{
     private:
-        NodoPila* tope;
+        Tablero* tope;
+        Tablero* anterior;
         size_t tamanio;
     
     public:
@@ -21,7 +22,7 @@ class Pila{
         /* Crea la pila
         PRE: no tiene
         POST: una pila vacia preparada para ser usada */
-        void pilaDestruir(void destruirDato(void *));
+        void pilaDestruir();
         /*Destruye la pila
         PRE: la pila debe haber sido creada
         POST: no tiene */
@@ -41,7 +42,7 @@ class Pila{
         /* Devuelve un valor logico indicando si a pila esta vacia
         PRE: la pila debe haber sido creada
         POST: no tiene*/
-        void setTope(NodoPila* nodo);
+        void setTope(Tablero* ultimo);
         /*Setea como tope de la Pila a nodo que se pasa como parametro
         PRE: la pila debe haber sido creada
         POST: la pila modificada con un nuevo tope, y el tope anterior como siguiente del tope seteado */

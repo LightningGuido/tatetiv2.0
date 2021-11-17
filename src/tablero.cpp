@@ -526,7 +526,7 @@ void Tablero::imprimirMapaCoordenado(){
 	std::cout << "CARA 6: "<< std::endl;
 		for(size_t i = 0; i < this->profundidad; i++){
 			for(size_t j = 0; j < this->anchura; j++){
-				std::cout << "|x =  " << j << "; y = 0; z = " << i << " |";
+				std::cout << "|x = " << j << "; y = 0; z = " << i << " |";
 			}
 			std::cout << std::endl;
 		}
