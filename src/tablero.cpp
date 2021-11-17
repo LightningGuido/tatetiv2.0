@@ -271,11 +271,11 @@ bool Tablero::ganadorPlanoAltoDiagonal2() {
 bool Tablero::ganadorPlanoProf() {
 
 	unsigned int condicionVictoria;
-	for(size_t z = 0; z < this->profundidad; z++) {
+	for(size_t z = 0; z < this->profundidad - 1; z++) {
 		condicionVictoria = 0;
 		//BUSCO GANADOR POR LA HORIZONTAL
 		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t x = 0; x < this->anchura - 1; x++) {
+			for(size_t x = 0; x < this->anchura; x++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) {
 					break;
 				}
