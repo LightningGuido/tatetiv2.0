@@ -10,47 +10,39 @@
 Pila::Pila(){
     this->tamanio = 0;
     this->tope = NULL;
-    this->anterior = NULL;
+    
 }
     
 void Pila::pilaDestruir(){
 
+    if(!this->vacia()){
+        while(this->tope->getSiguiente() != NULL){
     
-    while(this->tope->getSiguiente() != NULL){
+        NodoPila* aux = this->tope->getSiguiente();
+        this->tope->setSiguiente(aux->getSiguiente());
     
-        NodoPila* aux = this->tope;
-        
-        if(!this->vacia()){
-            while(this->tope->getUltimo() != NULL){
-
-                this->anterior = this->tope->getUltimo();
-                delete (this->anterior);
-
-            }
-            delete(aux);
+        delete(aux->getUltimo());
+        delete(aux);
+         
         }
-
-        this->tope = NULL;
-        this->tamanio = 0;    
-        delete this;
+        delete(this->tope); 
     }
 
-    this->anterior = NULL;
-    this->tamanio = 0;
+    this->tamanio = 0;    
     delete this;
+
 }
 
-void Pila::setTope(NodoPila* ultimo){
-    this->anterior = this->tope->getUltimo();
+void Pila::setTope(NodoPila* ultimo){ //no entiendo la diferencia entre setTope y push
+    ultimo->setSiguiente(this->tope);
     this->tope = ultimo;
 }
+
 void Pila::push(Tablero* dato){
 
     NodoPila* aux = new NodoPila(dato);
-    
 
     aux->setSiguiente(this->tope);
-   
 
     this->setTope(aux); 
     this->tamanio += 1;

@@ -15,7 +15,6 @@
 class Pila{
     private:
         NodoPila* tope;
-        Tablero* anterior;
         size_t tamanio;
     
     public:
