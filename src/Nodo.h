@@ -1,4 +1,4 @@
-/*#ifndef SRC_NODO_H_
+#ifndef SRC_NODO_H_
 #define SRC_NODO_H_
 
 #include <iostream>
@@ -9,13 +9,14 @@ private:
         Nodo* siguiente;
 
 public:
-    Nodo(Jugador* dato);
-    void nodoDestruir();
-    Jugador* getDato();
-    Nodo* getSiguiente();
-    void setSiguiente(Nodo* nodo);
+        Nodo();
+        void setDato(Jugador* dato);
+        void nodoDestruir();
+        Jugador* getDato();
+        Nodo* getSiguiente();
+        void setSiguiente(Nodo* nodo);
     
 };
 
 #endif 
-*/
+

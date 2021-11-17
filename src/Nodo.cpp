@@ -1,9 +1,12 @@
-/*#include "Nodo.h"
+#include "Nodo.h"
 
+Nodo::Nodo() {
+	this->dato = NULL;
+	this->siguiente = NULL;
+}
 
-Nodo::Nodo(Jugador* dato){
+void Nodo::setDato(Jugador* dato){
         this->dato = dato;
-        this->siguiente = NULL;
 }
 void Nodo::nodoDestruir(){
         delete this->siguiente;
@@ -20,4 +23,3 @@ void Nodo::setSiguiente(Nodo* nodo){
         this->siguiente = nodo;
 }
 
-    */

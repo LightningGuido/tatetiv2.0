@@ -20,7 +20,6 @@ Jugador::Jugador() {
 
 	this->nombre = nombre;
 	this->ficha = ficha;
-	this->siguiente = NULL;
 	this->cartas = new Carta[MAX_CARTAS];
 }
 
@@ -44,10 +43,3 @@ Carta* Jugador::getCartasPuntero(){
 	return this->cartas;
 }
 
-void Jugador::setJugadorSiguiente(Jugador* siguiente){
-	this->siguiente = siguiente;
-}
-
-Jugador* Jugador::getJugadorSiguiente(){
-	return this->siguiente;
-}
