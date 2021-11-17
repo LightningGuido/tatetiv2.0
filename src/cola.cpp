@@ -15,7 +15,7 @@ Cola::Cola(){
 
 void Cola::ColaDestruir(){
     
-    Nodo* aux = this->front->getSiguiente();
+    /*Nodo* aux = this->front->getSiguiente();
     if(!this->vacia()){
         while(this->front != NULL){
         
@@ -23,8 +23,9 @@ void Cola::ColaDestruir(){
             delete(aux);
 
         }
-    }
-    this->end = NULL;
+    }*/
+	delete (this->front);
+	//delete (this->end);
     this->tamanio = 1;
     delete this;
 }
