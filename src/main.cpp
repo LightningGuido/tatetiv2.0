@@ -31,13 +31,17 @@ int main() {
 
 
 	Cola *turnos = new Cola();
-	Nodo *nodo = new Nodo[cantJugadores]();
+	Nodo **nodos = new Nodo*[cantJugadores]();
+	for (size_t i= 0; i< cantJugadores ;i++){
+		nodos[i] = new Nodo;
+	}
+
 	Jugador **jugadores = new Jugador*[cantJugadores];
 
 	for(size_t i = 0; i < cantJugadores; i++) {
 		jugadores[i] = new Jugador();
-		nodo[i].setDato(jugadores[i]);
-		turnos->acolar(&nodo[i]);
+		nodos[i]->setDato(jugadores[i]);
+		turnos->acolar(nodos[i]);
 	}
 
 	for(size_t i = 0; i < cantJugadores; i++) {
@@ -55,12 +59,12 @@ int main() {
 			turno(tablero, turnos->frente());
 		}
 
-		//Muestram y juegan cartas
+		//Muestran y juegan cartas
 		tablero->imprimirTablero();
 		ultimosTableros->push(tablero->guardarEstado());
 		for(size_t i = 0; i < MAX_CARTAS; i++){
 			std::cout << i << ": ";
-			turnos->frente()->getCartas(i).mostrarCarta();
+			turnos->frente()->getCartas(i)->mostrarCarta();
 			std::cout << std::endl;
 		}
 		std::cout << "Ingrese el TipoCarta que desea jugar o (-1) si no desea jugar ninguna: " << std::endl;
@@ -68,7 +72,7 @@ int main() {
 		cin >> numero;
 
 		if(numero >= 0 && numero < MAX_CARTAS) {
-			switch(turnos->frente()->getCartas(numero).getTipoCarta()){
+			switch(turnos->frente()->getCartas(numero)->getTipoCarta()){
 				case PerderTurno:
 					std::cout <<"Juega carta PerderTurno" << std::endl;
 					perderTurno(turnos);

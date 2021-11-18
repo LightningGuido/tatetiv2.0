@@ -24,7 +24,8 @@ void Cola::ColaDestruir(){
 
         }
     }*/
-	delete (this->front);
+
+	this->front->nodoDestruir();
 	//delete (this->end);
     this->tamanio = 1;
     delete this;
@@ -40,7 +41,11 @@ void Cola::acolar(Nodo* elemento){
     if(this->tamanio == 1 && this->front == NULL && this->end == NULL) {
     	this->front = elemento;
         this->end = elemento; //si hay un solo elemento: ese elemento es front y end
-    } else {
+    } else if (this->tamanio == 2){
+    	this->front->setSiguiente(elemento);
+    	this->end = this->front->getSiguiente();
+    }
+    else {
     	this->end->setSiguiente(elemento);
     	this->end = this->end->getSiguiente();
     }

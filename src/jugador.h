@@ -16,7 +16,7 @@ class Jugador {
 private:
 	std::string nombre;
 	char ficha;
-	Carta *cartas;
+	Carta **cartas;
 	//Jugador* siguiente;
 
 public:
@@ -27,6 +27,7 @@ public:
 	/* PRE:
 	 * POST
 	 */
+	void destruirJugador();
 	void setFicha(char ficha);
 	/* PRE:
 	 * POST
@@ -37,8 +38,9 @@ public:
 	 */
 	std::string getNombre();
 	//Puntero
-	Carta getCartas(size_t pos);
-	Carta* getCartasPuntero();
+	Carta* getCartas(size_t pos);
+	//Carta* getCartasPuntero();
+
 };
 
 

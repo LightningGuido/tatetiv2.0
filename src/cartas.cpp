@@ -12,6 +12,7 @@ Carta::Carta() {
 	this->carta = TipoCarta(rand() % 6);
 }
 
+
 TipoCarta Carta::getTipoCarta() {
 	return this->carta;
 }

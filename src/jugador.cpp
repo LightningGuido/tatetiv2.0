@@ -20,7 +20,18 @@ Jugador::Jugador() {
 
 	this->nombre = nombre;
 	this->ficha = ficha;
-	this->cartas = new Carta[MAX_CARTAS];
+	this->cartas = new Carta*[MAX_CARTAS];
+	for (int i = 0; i< MAX_CARTAS; i++){
+		this->cartas[i] = new Carta();
+	}
+}
+
+void Jugador::destruirJugador(){
+	for (int i = 0; i< MAX_CARTAS; i++){
+		delete this->cartas[i];
+	}
+	delete []this->cartas;
+	delete this;
 }
 
 void Jugador::setFicha(char ficha) {
@@ -35,11 +46,11 @@ std::string Jugador::getNombre() {
 	return this->nombre;
 }
 
-Carta Jugador::getCartas(size_t pos){
+Carta* Jugador::getCartas(size_t pos){
 	return this->cartas[pos];
 }
 
-Carta* Jugador::getCartasPuntero(){
+/*Carta* Jugador::getCartasPuntero(){
 	return this->cartas;
-}
+}*/
 
