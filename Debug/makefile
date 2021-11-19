@@ -67,6 +67,6 @@ clean:
 	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) tatetiv2.0
 	-@echo ' '
 
-.PHONY: all clean dependents
+.PHONY: all clean dependents main-build
 
 -include ../makefile.targets

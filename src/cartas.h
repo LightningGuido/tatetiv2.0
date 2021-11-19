@@ -26,10 +26,16 @@ enum TipoCarta {
 	TurnoDoble = 5
 };
 
+enum EstadoCarta{
+	Jugada = 0,
+	Disponible = 1
+};
+
 
 class Carta {
 private:
 	TipoCarta carta;
+	EstadoCarta estado;
 
 public:
 	/* PRE:
@@ -42,6 +48,8 @@ public:
 	 * POST
 	 */
 	TipoCarta getTipoCarta();
+	void setEstado(EstadoCarta estado);
+	EstadoCarta getEstado();
 	void mostrarCarta();
 	virtual ~Carta();
 };

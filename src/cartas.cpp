@@ -10,6 +10,7 @@
 
 Carta::Carta() {
 	this->carta = TipoCarta(rand() % 6);
+	this->estado = Disponible;
 }
 Carta::~Carta(){
 	//autogeneratd we
@@ -22,22 +23,42 @@ TipoCarta Carta::getTipoCarta() {
 void Carta::mostrarCarta() {
 	switch(this->carta) {
 	case 0:
-		std::cout << "Perder turno" << std::endl;
+		if(this->estado == Disponible){
+			std::cout << "Perder turno" << std::endl;
+		}
 		break;
 	case 1:
-		std::cout << "Bloquear Ficha" << std::endl;
+		if(this->estado == Disponible){
+			std::cout << "Bloquear Ficha" << std::endl;
+		}
 		break;
 	case 2:
-		std::cout << "Bloquear Casillero" << std::endl;
+		if(this->estado == Disponible){
+			std::cout << "Bloquear Casillero" << std::endl;
+		}
 		break;
 	case 3:
-		std::cout << "Ir Atras" << std::endl;
+		if(this->estado == Disponible){
+			std::cout << "Ir Atras" << std::endl;
+		}
 		break;
 	case 4:
-		std::cout << "Permutar Lugar" << std::endl;
+		if(this->estado == Disponible){
+			std::cout << "Permutar Lugar" << std::endl;
+		}
 		break;
 	case 5:
-		std::cout << "Turno Doble" << std::endl;
+		if(this->estado == Disponible){
+			std::cout << "Turno Doble" << std::endl;
+		}
 		break;
 	}
+}
+
+void Carta::setEstado(EstadoCarta estado){
+	this->estado = estado;
+}
+
+EstadoCarta Carta::getEstado(){
+	return this->estado;
 }

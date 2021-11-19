@@ -215,7 +215,7 @@ bool Tablero::ganadorPlanoAlto() {
 		for(size_t z = 0; z < this->profundidad; z++) {
 			for(size_t x = 0; x < this->anchura - 1; x++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) break;
-				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y+1][z]->getValor())
+				if(this->casillero[x][y][z]->getValor() == this->casillero[x + 1][y][z]->getValor())
 					condicionVictoria++;
 			}
 			if(condicionVictoria == this->altura - 1) {
@@ -367,7 +367,7 @@ bool Tablero::ganadorDiagonales3D() {
 	if(aux) return true;
 
 	aux = true;
-	for(size_t x = 0, y = this->altura - 1, z = 0; x < this->anchura - 1 && y > 0 && z < this->profundidad; x++, y--, z++) {
+	for(size_t x = 0, y = this->altura - 1, z = 0; x < this->anchura - 1 && y > 0 && z < this->profundidad - 1; x++, y--, z++) {
 		if(this->casillero[x][y][z]->getValor() == VACIO) {
 			aux = false;
 			break;
@@ -396,7 +396,7 @@ bool Tablero::ganadorDiagonales3D() {
 		return true;
 	}
 
-	for(size_t x = 0, y = 0, z = this->profundidad - 1; x < this->anchura && y < this->altura && z > 0; x++, y++, z--) {
+	for(size_t x = 0, y = 0, z = this->profundidad - 1; x < this->anchura - 1 && y < this->altura - 1 && z > 0; x++, y++, z--) {
 		if(this->casillero[x][y][z]->getValor() == VACIO) {
 			aux = false;
 			break;

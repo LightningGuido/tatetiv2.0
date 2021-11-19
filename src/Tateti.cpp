@@ -28,16 +28,19 @@ void Tateti::inicializarTateti() {
 	ultimosTableros->push(tablero->guardarEstado()); //guardo el tablero en blanco por si se juega IrAtras en el primer turno
 	tablero->imprimirMapaCoordenado();
 
-		std::cout << "Ingrese la cantidad de jugadores" << std::endl;
-		size_t cantJugadores;
-		std::cin >> cantJugadores;
+	std::string cantidad;
 
+	do{ std::cout << "Ingrese la cantidad de jugadores" << std::endl;
+		std::cin >> cantidad;
+	} while (!esNumero(cantidad));
+
+		int cantJugadores = stoi(cantidad);
 
 		Cola *turnos = new Cola();
 
 		Jugador **jugadores = new Jugador*[cantJugadores];
 
-		for(size_t i = 0; i < cantJugadores; i++) {
+		for(int i = 0; i < cantJugadores; i++) {
 			jugadores[i] = new Jugador();
 			turnos->acolar(jugadores[i]);
 		}
@@ -398,28 +401,46 @@ void Tateti::ejecutar(){
 		if(numero >= 0 && numero < MAX_CARTAS) {
 			switch(this->turnos->frente()->getCartas(numero)->getTipoCarta()){
 				case PerderTurno:
-					std::cout <<"Juega carta PerderTurno" << std::endl;
-					this->perderTurno();
+					if(this->turnos->frente()->getCartas(numero)->getEstado() == Disponible){
+						std::cout <<"Juega carta PerderTurno" << std::endl;
+						this->turnos->frente()->getCartas(numero)->setEstado(Jugada);
+						this->perderTurno();
+					}
 					break;
 				case BloquearFicha:
-					std::cout <<"Juega carta BloquearFicha" << std::endl;
-					this->bloquearFicha();
+					if(this->turnos->frente()->getCartas(numero)->getEstado() == Disponible){
+						std::cout <<"Juega carta BloquearFicha" << std::endl;
+						this->turnos->frente()->getCartas(numero)->setEstado(Jugada);
+						this->bloquearFicha();
+					}
 					break;
 				case BloquearCasillero:
-					std::cout <<"Juega carta BloquearCasillero" << std::endl;
-					this->bloquearCasillero();
+					if(this->turnos->frente()->getCartas(numero)->getEstado() == Disponible){
+						std::cout <<"Juega carta BloquearCasillero" << std::endl;
+						this->turnos->frente()->getCartas(numero)->setEstado(Jugada);
+						this->bloquearCasillero();
+					}
 					break;
 				case IrAtras:
-					std::cout <<"Juega carta IrAtras" << std::endl;
-					this->irAtras();
+					if(this->turnos->frente()->getCartas(numero)->getEstado() == Disponible){
+						std::cout <<"Juega carta IrAtras" << std::endl;
+						this->irAtras();
+						this->turnos->frente()->getCartas(numero)->setEstado(Jugada);
+					}
 					break;
 				case PermutarLugar:
-					std::cout <<"Juega carta PermutarLugar" << std::endl;
-					this->permutarLugar();
+					if(this->turnos->frente()->getCartas(numero)->getEstado() == Disponible){
+						std::cout <<"Juega carta PermutarLugar" << std::endl;
+						this->turnos->frente()->getCartas(numero)->setEstado(Jugada);
+						this->permutarLugar();
+					}
 					break;
 				case TurnoDoble:
-					std::cout <<"Juega carta TurnoDoble" << std::endl;
-					this->turnoDoble();
+					if(this->turnos->frente()->getCartas(numero)->getEstado() == Disponible){
+						std::cout <<"Juega carta TurnoDoble" << std::endl;
+						this->turnos->frente()->getCartas(numero)->setEstado(Jugada);
+						this->turnoDoble();
+					}
 					break;
 			}
 			} else {
