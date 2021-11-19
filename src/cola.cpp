@@ -13,27 +13,25 @@ Cola::Cola(){
     this->end = NULL;
 }
 
-void Cola::ColaDestruir(){
+Cola::~Cola(){
     
-    /*Nodo* aux = NULL;
-
+    Nodo* aux = NULL;
         while(this->front != NULL){
         	aux = this->front;
             this->front = aux->getSiguiente();
             delete(aux);
 
         }
-    */
-
 }
 
 Jugador* Cola::frente(){
     return this->front->getDato();
 }
 
-void Cola::acolar(Nodo* elemento){ //pedir la memoria para el nodo, pasando dato como parametro
+void Cola::acolar(Jugador* dato){ //pedir la memoria para el nodo, pasando dato como parametro
 
-
+	Nodo *elemento = new Nodo();
+	elemento->setDato(dato);
     if(this->tamanio == 0 && this->front == NULL && this->end == NULL) {
     	this->front = elemento;
         this->end = elemento; //si hay un solo elemento: ese elemento es front y end
@@ -50,13 +48,16 @@ void Cola::acolar(Nodo* elemento){ //pedir la memoria para el nodo, pasando dato
     //std::cout << "el ultimo  es: " << this->end->getNombre() << std::endl;
 }
 
-Nodo* Cola::desacolar(){
+Jugador* Cola::desacolar(){
     Nodo* aux = this->front; //aux = nodo1
+    Jugador* jugador = aux->getDato();
     
     this->front = this->front->getSiguiente(); //front = nodo2 -> nodo2 = nodo1
     this->tamanio -= 1;
     
-    return aux; //devuelvo el dato que tenia nodo1
+    delete aux;
+    return jugador;
+
 }
 
 bool Cola::vacia(){

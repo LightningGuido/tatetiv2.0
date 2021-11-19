@@ -122,7 +122,7 @@ public:
 	Tablero* guardarEstado();
 	void imprimirMapaCoordenado();
 	void imprimirTablero();
-	void destruir();
+	virtual ~Tablero();
 
 };
 

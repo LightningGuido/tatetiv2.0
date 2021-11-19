@@ -23,7 +23,7 @@ class Pila{
         /* Crea la pila
         PRE: no tiene
         POST: una pila vacia preparada para ser usada */
-        void pilaDestruir();
+        virtual ~Pila();
         /*Destruye la pila
         PRE: la pila debe haber sido creada
         POST: no tiene */

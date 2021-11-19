@@ -14,24 +14,25 @@ Jugador::Jugador() {
 	std::cout << "Ingrese su nombre" << std::endl;
 	std::cin >> nombre;
 
-	char ficha;
+	std::string ficha;
 	std::cout << "Ingrese su ficha" << std::endl;
 	std::cin >> ficha;
 
+
 	this->nombre = nombre;
-	this->ficha = ficha;
+	this->ficha = ficha[0];
 	this->cartas = new Carta*[MAX_CARTAS];
 	for (int i = 0; i< MAX_CARTAS; i++){
 		this->cartas[i] = new Carta();
 	}
 }
 
-void Jugador::destruirJugador(){
+Jugador::~Jugador(){
 	for (int i = 0; i< MAX_CARTAS; i++){
 		delete this->cartas[i];
 	}
-	delete []this->cartas;
-	delete this;
+	delete[] this->cartas;
+
 }
 
 void Jugador::setFicha(char ficha) {

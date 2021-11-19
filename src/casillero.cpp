@@ -9,6 +9,11 @@
 
 //constructor de casillero
 
+/*Casillero::Casillero(){
+	this->valor = VACIO;
+	this->estado = Libre;
+}
+*/
 void Casillero::setValor(char valor) {
 	this->valor = valor;
 }

@@ -27,14 +27,14 @@ public:
 	/* PRE:
 	 * POST
 	 */
-	void destruirJugador();
+	virtual ~Jugador();
 	void setFicha(char ficha);
 	/* PRE:
 	 * POST
 	 */
 	char getFicha();
 	/* PRE:
-	 * POST
+	 * POST	delete this;
 	 */
 	std::string getNombre();
 	//Puntero

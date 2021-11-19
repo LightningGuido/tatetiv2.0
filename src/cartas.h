@@ -43,6 +43,7 @@ public:
 	 */
 	TipoCarta getTipoCarta();
 	void mostrarCarta();
+	virtual ~Carta();
 };
 
 

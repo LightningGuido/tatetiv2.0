@@ -11,7 +11,7 @@ private:
 public:
         Nodo();
         void setDato(Jugador* dato);
-        void nodoDestruir();
+        virtual ~Nodo();
         Jugador* getDato();
         Nodo* getSiguiente();
         void setSiguiente(Nodo* nodo);

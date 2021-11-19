@@ -12,24 +12,19 @@ Pila::Pila(){
     this->tope = NULL;
     
 }
-    /*hola*/
-void Pila::pilaDestruir(){
 
-    if(!this->vacia()){
-        while(this->tope->getSiguiente() != NULL){
+Pila::~Pila(){
+
+	NodoPila* aux = NULL;
+
+     while(this->tope != NULL){
+
+        aux = this->tope;
+        this->tope = aux->getSiguiente();
     
-        NodoPila* aux = this->tope->getSiguiente();
-        this->tope->setSiguiente(aux->getSiguiente());
-    
-        delete(aux->getUltimo());
         delete(aux);
          
-        }
-        delete(this->tope); 
-    }
-
-    this->tamanio = 0;    
-    delete this;
+      }
 
 }
 

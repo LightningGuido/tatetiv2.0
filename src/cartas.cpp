@@ -11,7 +11,9 @@
 Carta::Carta() {
 	this->carta = TipoCarta(rand() % 6);
 }
-
+Carta::~Carta(){
+	//autogeneratd we
+}
 
 TipoCarta Carta::getTipoCarta() {
 	return this->carta;

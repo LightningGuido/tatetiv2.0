@@ -29,7 +29,7 @@ public:
 	/* PRE:
 	 * POST:
 	 */
-	//Casillero(char valor);
+	//Casillero();
 	/* PRE:
 	 * POST
 	 */

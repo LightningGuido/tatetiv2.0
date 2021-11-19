@@ -12,29 +12,34 @@
 #include "tablero.h"
 #include "cola.h"
 #include "pila.h"
+#include <string>
+#include <fstream>
+
 
 class Tateti {
 private:
 	Tablero* tablero;
-	Cola* turnos;
+	Cola* turnos; //orden de jugadores
 	Pila* historialTableros;
 	//Jugador* jugadorActual;
-	Jugador* jugadorGanador;
+	Jugador* jugadorGanador; //se inicializa como NULL
+	Jugador** jugadores;
 public:
 	Tateti();
+	void inicializarTateti();
 	virtual ~Tateti();
 	bool anchuraValida(size_t f);
 	bool alturaValida(size_t c);
 	bool profundidadValida(size_t c);
 	bool sonValoresIguales(Casillero* casillaUno, Casillero* casillaDos);
 	bool sonFichasIguales(char fichaUno, char fichaDos);
-	bool posicionValida (size_t ancho, size_t altura, size_t profundidad);
+	bool posicionValida (int ancho, int altura, int profundidad);
 	//bool hayFicha (size_t ancho, size_t altura, size_t profundidad);
-	size_t obtenerAncho ();
-	size_t obtenerAltura ();
-	size_t obtenerProfundidad ();
+	int obtenerAncho ();
+	int obtenerAltura ();
+	int obtenerProfundidad ();
 	void colocarFicha (Jugador* actual);
-	bool movimientoValido(size_t x1, size_t y1, size_t z1, size_t x2, size_t y2, size_t z2);
+	bool movimientoValido(int x1, int y1, int z1, int x2, int y2, int z2);
 	void moverFicha(Jugador* actual);
 	void fichasIniciales(Jugador* actual);
 	void turno(Jugador* actual);
@@ -45,6 +50,7 @@ public:
 	void irAtras();
 	bool permutarLugar();
 	void turnoDoble();
+	bool esNumero(std::string a);
 
 };
 

@@ -18,7 +18,7 @@ using namespace std;
 int main() {
 
 	Tateti* miTateti = new Tateti;
-	//falta una funcion que inicialice
+	miTateti->inicializarTateti(); //inicializa el tateti
 	miTateti->ejecutar();
 	delete miTateti;
 	return 0;

@@ -7,7 +7,15 @@
 
 #include "Tateti.h"
 
-Tateti::Tateti() {
+Tateti::Tateti(){
+	this->tablero = NULL;
+	this->historialTableros = NULL;
+	this->turnos = NULL;
+	this->jugadorGanador = NULL;
+	this->jugadores = NULL;
+}
+
+void Tateti::inicializarTateti() {
 
 	std::cout << "Bienvenido al TaTeTi v2.0" << std::endl;
 	std::cout << "Ingrese la dimension 3D de su cubo" << std::endl;
@@ -26,25 +34,30 @@ Tateti::Tateti() {
 
 
 		Cola *turnos = new Cola();
-		Nodo **nodos = new Nodo*[cantJugadores]();
-		for (size_t i= 0; i< cantJugadores ;i++){
-			nodos[i] = new Nodo;
-		}
 
 		Jugador **jugadores = new Jugador*[cantJugadores];
 
 		for(size_t i = 0; i < cantJugadores; i++) {
 			jugadores[i] = new Jugador();
-			nodos[i]->setDato(jugadores[i]);
-			turnos->acolar(nodos[i]);
+			turnos->acolar(jugadores[i]);
 		}
 		this->turnos = turnos;
+		this->jugadores = jugadores;
 		this->jugadorGanador = NULL;
 
 }
 
 Tateti::~Tateti() {
-	// TODO Auto-generated destructor stub
+
+	for(size_t i = 0; i < this->turnos->getTamanio(); i++) {
+		delete this->jugadores[i];
+	}
+	delete[] this->jugadores;
+	delete this->tablero;
+	delete this->turnos;
+	delete this->historialTableros;
+	delete this->jugadorGanador;
+
 }
 
 bool Tateti::anchuraValida(size_t f){
@@ -86,7 +99,7 @@ bool sonFichasIguales(char fichaUno, char fichaDos){
 	}
 }
 
-bool Tateti::posicionValida (size_t ancho, size_t altura, size_t profundidad){
+bool Tateti::posicionValida (int ancho, int altura, int profundidad){
 
 	if(this->tablero->getCasillero(ancho, altura, profundidad)->estaVacio() && this->tablero->getCasillero(ancho, altura, profundidad)->estaLibre()){
 			return true;
@@ -95,55 +108,66 @@ bool Tateti::posicionValida (size_t ancho, size_t altura, size_t profundidad){
 	return false;
 }
 
-size_t Tateti::obtenerAncho (){
-	int a;
+int Tateti::obtenerAncho (){
+	std::string a;
 	std::cout << "Indique un valor de ancho: " << std::endl;
 		std::cin >> a;
+	if(!esNumero(a)){
+		std::cout << "Debe ingresar un numero. Intente de nuevo." << std::endl;
+		return this->obtenerAncho();
+	}
 
-	if(anchuraValida(a)){
-		return a;
-	}
-	else{
+
+	int f = stoi(a);
+	//size_t(f);
+	if(!anchuraValida(f)){
 		std::cout << "Valor de ancho invalido. Intente de nuevo." << std::endl;
-		return obtenerAncho();
+		return this->obtenerAncho();
 	}
+	return f;
 }
 
-size_t Tateti::obtenerAltura (){
-	int c;
+int Tateti::obtenerAltura (){
+	std::string c;
 	std::cout << "Indique un valor de altura: " << std::endl;
 		std::cin >> c;
-
-	if(alturaValida(c)){
-		return c;
+	if(!esNumero(c)){
+		std::cout << "Debe ingresar un numero. Intente de nuevo." << std::endl;
+		return this->obtenerAltura();
 	}
-
-	else{
+	int f = stoi(c);
+	//size_t(f);
+	if(!alturaValida(f)){
 		std::cout << "Valor de altura invalido. Intente de nuevo." << std::endl;
-		return obtenerAltura();
+		return this->obtenerAltura();
 	}
+	return f;
 }
 
-size_t Tateti::obtenerProfundidad (){
-	int c;
+int Tateti::obtenerProfundidad (){
+	std::string c;
 	std::cout << "Indique un valor de profundidad: " << std::endl;
 		std::cin >> c;
 
-	if(profundidadValida(c)){
-		return c;
+	if(!esNumero(c)){
+		std::cout << "Debe ingresar un numero. Intente de nuevo." << std::endl;
+		return this->obtenerProfundidad();
 	}
 
-	else{
+	int f = stoi(c);
+	//size_t(f);
+	if(!profundidadValida(f)){
 		std::cout << "Valor de profundidad invalido. Intente de nuevo." << std::endl;
-		return obtenerProfundidad();
+		return this->obtenerProfundidad();
 	}
+	return f;
 }
 
 void Tateti::colocarFicha (Jugador* actual){
 	std::cout << "JUGADOR " << actual->getNombre() << std::endl;
-	size_t x = this->obtenerAncho();
-	size_t y = this->obtenerAltura();
-    size_t z = this->obtenerProfundidad();
+	int x = this->obtenerAncho();
+	int y = this->obtenerAltura();
+    int z = this->obtenerProfundidad();
 
 	if(this->posicionValida(x, y, z)){
 		this->tablero->getCasillero(x, y, z)->setValor(actual->getFicha());
@@ -163,7 +187,7 @@ bool Tateti::sonFichasIguales(char ficha1, char ficha2){
 	}
 }
 
-bool Tateti::movimientoValido(size_t x1, size_t y1, size_t z1, size_t x2, size_t y2, size_t z2){
+bool Tateti::movimientoValido(int x1, int y1, int z1, int x2, int y2, int z2){
 	if(!sonFichasIguales(this->tablero->getCasillero(x1, y1, z1)->getValor(), this->turnos->frente()->getFicha()) || !this->posicionValida(x2, y2, z2)){
 		return false;
 	}
@@ -174,12 +198,12 @@ bool Tateti::movimientoValido(size_t x1, size_t y1, size_t z1, size_t x2, size_t
 
 void Tateti::moverFicha(Jugador* actual){
 
-	size_t x1;
-	size_t y1;
-    size_t z1;
-	size_t x2;
-	size_t y2;
-    size_t z2;
+	int x1;
+	int y1;
+    int z1;
+    int x2;
+	int y2;
+    int z2;
 
 	std::cout << "JUGADOR " << actual->getNombre() << std::endl;
 	std::cout << "FICHA QUE SE MUEVE: " << std::endl;
@@ -409,6 +433,16 @@ void Tateti::ejecutar(){
 
 		//determinar ganardor
 }
+
+bool Tateti::esNumero(std::string s){
+	for(size_t i = 0; i < s.length(); i++){
+		if(isdigit(s[i]) == false){
+			return false;
+		}
+	}
+	return true;
+}
+
 
 
 

@@ -8,17 +8,8 @@ Nodo::Nodo() {
 void Nodo::setDato(Jugador* dato){
         this->dato = dato;
 }
-void Nodo::nodoDestruir(){
-	//no hace nada
-    Nodo* aux = this;
-	while (aux->siguiente != NULL){
-		aux->dato->destruirJugador();
-		aux = aux->siguiente;
-		delete this;
-	} //delete (jugador);
-	aux->dato->destruirJugador();
-	delete aux;
-
+Nodo::~Nodo(){
+	//delete this->dato;
 }
 Jugador* Nodo::getDato(){
         return this->dato;

@@ -4,10 +4,11 @@ NodoPila::NodoPila(Tablero* dato){
     this->ultimo = dato;
     this->siguiente = NULL;
 }
-void NodoPila::nodoDestruir(){
-    delete this->siguiente;
+
+NodoPila::~NodoPila(){
+
     delete this->ultimo;
-    delete this;
+
 }
 Tablero* NodoPila::getUltimo(){
     return this->ultimo;

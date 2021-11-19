@@ -11,7 +11,7 @@ private:
 
 public:
     NodoPila(Tablero* dato);
-    void nodoDestruir();
+    virtual ~NodoPila();
     Tablero* getUltimo();
     NodoPila* getSiguiente();
     void setSiguiente(NodoPila* nodo);
