@@ -5,7 +5,7 @@
  *      Author: guido
  */
 
-
+/*
 #include "juego.h"
 using namespace std;
 
@@ -284,7 +284,7 @@ void turnoDoble(Tablero *tablero, Cola* jugadores, size_t dim, size_t cantJugado
 
 
 
-
+*/
 
 
 

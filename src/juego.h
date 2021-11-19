@@ -4,7 +4,7 @@
  *  Created on: Nov 11, 2021
  *      Author: guido
  */
-
+/*
 #ifndef SRC_JUEGO_H_
 #define SRC_JUEGO_H_
 
@@ -14,7 +14,18 @@
 #include "cola.h"
 #include "pila.h"
 
+//implememtar tda tateti
+/*
+ * tablero
+Class Tateti{
+	private:
+		Tablero* tablero;
+		Cola* turnos;
+		Jugador* jugadorActual; // = turnos->getFront();
+		Jugador* jugadorGanador;
+		Pila* historial;
 
+	public:
 
 bool anchuraValida(size_t f, Tablero *tablero);
 bool alturaValida(size_t c, Tablero *tablero);
@@ -36,5 +47,10 @@ void irAtras(Tablero* tablero, Pila* tableros);
 bool permutarLugar(Tablero* tablero);
 void turnoDoble(Tablero *tablero, Cola* jugadores, size_t dim, size_t cantJugadores);
 
+void jugadaAgregarFicha();
+void jugadaMoverFicha();
+void JugarCarta();
+
 
 #endif /* SRC_JUEGO_H_ */
+

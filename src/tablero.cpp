@@ -42,7 +42,7 @@ Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
 	for(size_t i = 0; i < ancho; i++) {
 		for(size_t j = 0; j < alto; j++) {
 			for(size_t k = 0; k < profundo; k++) {
-				this->casillero[i][j][k] = new Casillero;
+				this->casillero[i][j][k] = new Casillero; //directamente setee en vacio
 				this->casillero[i][j][k]->setValor(VACIO);
 			}
 		}
@@ -557,5 +557,5 @@ void Tablero::destruir(){
 		delete [] this->casillero[i];	
 	}
 	//delete this->casillero;
-	delete this;
+	delete this; //esto esta mal, destructor virtual, este destructor va al main
 }

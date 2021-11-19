@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Constantes.h"
 
 enum StatusCasillero {
 	Bloqueado = -1,
@@ -45,6 +46,8 @@ public:
 	 * POST
 	 */
 	StatusCasillero getEstado();
+	bool estaVacio();
+	bool estaLibre();
 };
 
 

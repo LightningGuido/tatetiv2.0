@@ -5,111 +5,35 @@
  *      Author: guido
  */
 
-#include "tablero.h"
+/*#include "tablero.h"
 #include "jugador.h"
 #include "pila.h"
 #include "cola.h"
-#include "juego.h"
+#include "juego.h"*/
+#include "Tateti.h"
 
 using namespace std;
 
 
 int main() {
 
-	std::cout << "Bienvenido al TaTeTi v2.0" << std::endl;
-	std::cout << "Ingrese la dimension 3D de su cubo" << std::endl;
-	size_t dim;
-	std::cin >> dim;
-	Tablero *tablero = new Tablero(dim, dim ,dim);
-	Pila* ultimosTableros = new Pila;
-	ultimosTableros->push(tablero->guardarEstado()); //guardo el tablero en blanco por si se juega IrAtras en el primer turno
-	tablero->imprimirMapaCoordenado();
-
-	std::cout << "Ingrese la cantidad de jugadores" << std::endl;
-	size_t cantJugadores;
-	std::cin >> cantJugadores;
-
-
-	Cola *turnos = new Cola();
-	Nodo **nodos = new Nodo*[cantJugadores]();
-	for (size_t i= 0; i< cantJugadores ;i++){
-		nodos[i] = new Nodo;
-	}
-
-	Jugador **jugadores = new Jugador*[cantJugadores];
-
-	for(size_t i = 0; i < cantJugadores; i++) {
-		jugadores[i] = new Jugador();
-		nodos[i]->setDato(jugadores[i]);
-		turnos->acolar(nodos[i]);
-	}
-
-	for(size_t i = 0; i < cantJugadores; i++) {
-		cout << turnos->frente()->getNombre() <<endl;
-		turnos->acolar(turnos->desacolar());
-	}
-
-		  //Verifica ganador
-	while(!tablero->hayGanador()) {
-		//Colocan o mueven Fichas
-		if(tablero->getCantidadFichas() < dim * cantJugadores) {
-			fichasIniciales(turnos->frente(), tablero);
-
-		} else {
-			turno(tablero, turnos->frente());
-		}
-
-		//Muestran y juegan cartas
-		tablero->imprimirTablero();
-		ultimosTableros->push(tablero->guardarEstado());
-		for(size_t i = 0; i < MAX_CARTAS; i++){
-			std::cout << i << ": ";
-			turnos->frente()->getCartas(i)->mostrarCarta();
-			std::cout << std::endl;
-		}
-		std::cout << "Ingrese el TipoCarta que desea jugar o (-1) si no desea jugar ninguna: " << std::endl;
-		int numero;
-		cin >> numero;
-
-		if(numero >= 0 && numero < MAX_CARTAS) {
-			switch(turnos->frente()->getCartas(numero)->getTipoCarta()){
-				case PerderTurno:
-					std::cout <<"Juega carta PerderTurno" << std::endl;
-					perderTurno(turnos);
-					break;
-				case BloquearFicha:
-					std::cout <<"Juega carta BloquearFicha" << std::endl;
-					bloquearFicha(tablero);
-					break;
-				case BloquearCasillero:
-					std::cout <<"Juega carta BloquearCasillero" << std::endl;
-					bloquearCasillero(tablero);
-					break;
-				case IrAtras:
-					std::cout <<"Juega carta IrAtras" << std::endl;
-					irAtras(tablero, ultimosTableros);
-					break;
-				case PermutarLugar:
-					std::cout <<"Juega carta PermutarLugar" << std::endl;
-					permutarLugar(tablero);
-					break;
-				case TurnoDoble:
-					std::cout <<"Juega carta TurnoDoble" << std::endl;
-					turnoDoble(tablero, turnos, dim, cantJugadores);
-					break;
-			}
-		} else {
-			std::cout <<"No juega ninguna carta" << std::endl;
-		}
-		
-		tablero->imprimirTablero();
-		//ultimosTableros->push(tablero->guardarEstado());
-		turnos->acolar(turnos->desacolar());
-	}
-
-	tablero->destruir();
-	ultimosTableros->pilaDestruir();
-	turnos->ColaDestruir(); 
-	return 0; 
+	Tateti* miTateti = new Tateti;
+	//falta una funcion que inicialice
+	miTateti->ejecutar();
+	delete miTateti;
+	return 0;
 }
 
+/*
+int main2 (void){
+
+	Tateti* miTateti = new Tateti();
+
+	miTateti->inicializar(); //inicializa el tateti
+	miTateti->jugar();
+	delete miTateti;
+
+
+	return 0;
+}
+*/

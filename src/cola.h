@@ -46,6 +46,7 @@ class Cola{
         POST: no tiene */
         Jugador* siguiente();
         //void acolarFrente(Jugador* nuevo);
+        size_t getTamanio();
 };
 
 #endif /*SRC_COLA_H_*/

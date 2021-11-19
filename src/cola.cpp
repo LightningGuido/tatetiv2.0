@@ -8,40 +8,36 @@
 #include "cola.h"
 
 Cola::Cola(){
-    this->tamanio = 1;
+    this->tamanio = 0;
     this->front = NULL;
     this->end = NULL;
 }
 
 void Cola::ColaDestruir(){
     
-    /*Nodo* aux = this->front->getSiguiente();
-    if(!this->vacia()){
+    /*Nodo* aux = NULL;
+
         while(this->front != NULL){
-        
+        	aux = this->front;
             this->front = aux->getSiguiente();
             delete(aux);
 
         }
-    }*/
+    */
 
-	this->front->nodoDestruir();
-	//delete (this->end);
-    this->tamanio = 1;
-    delete this;
 }
 
 Jugador* Cola::frente(){
     return this->front->getDato();
 }
 
-void Cola::acolar(Nodo* elemento){
+void Cola::acolar(Nodo* elemento){ //pedir la memoria para el nodo, pasando dato como parametro
 
 
-    if(this->tamanio == 1 && this->front == NULL && this->end == NULL) {
+    if(this->tamanio == 0 && this->front == NULL && this->end == NULL) {
     	this->front = elemento;
         this->end = elemento; //si hay un solo elemento: ese elemento es front y end
-    } else if (this->tamanio == 2){
+    } else if (this->tamanio == 1){
     	this->front->setSiguiente(elemento);
     	this->end = this->front->getSiguiente();
     }
@@ -64,7 +60,7 @@ Nodo* Cola::desacolar(){
 }
 
 bool Cola::vacia(){
-    if (this->tamanio == 1 && this->front == NULL && this->end == NULL){
+    if (this->tamanio == 0 && this->front == NULL && this->end == NULL){
         return true;
     }
 
@@ -90,3 +86,7 @@ Jugador* Cola::siguiente(){
     }
     this->tamanio += 1;
 }*/
+
+size_t Cola::getTamanio(){
+	return this->tamanio;
+}
