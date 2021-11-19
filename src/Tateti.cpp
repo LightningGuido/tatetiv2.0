@@ -374,7 +374,7 @@ void Tateti::ejecutar(){
 		this->turnos->acolar(turnos->desacolar());
 	}
 
-	while(!this->tablero->hayGanador()) {
+	while(1) {
 			//Colocan o mueven Fichas
 		if(this->tablero->getCantidadFichas() < dim * cantidadJugadores) {
 			this->fichasIniciales(this->turnos->frente());
@@ -428,9 +428,13 @@ void Tateti::ejecutar(){
 
 			this->tablero->imprimirTablero();
 			this->historialTableros->push(this->tablero->guardarEstado());
+			if(this->tablero->hayGanador()) {
+				break;
+			}
 			this->turnos->acolar(this->turnos->desacolar());
 		}
 
+		std::cout << "Ganador: " << this->turnos->frente()->getNombre() << std::endl;
 		//determinar ganardor
 }
 
