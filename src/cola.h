@@ -19,33 +19,39 @@ class Cola{
         Nodo* end;
 
     public:
-
+        /*
+        PRE: -
+        POST: crea una cola vacia preparada para ser usada y con tamanio 0*/
         Cola();
-        /*Crea la cola
-        PRE: no tiene
-        POST: una cola vacia preparada para ser usada*/
+        /*
+        PRE: -
+        POST: Destruye la cola */
         virtual ~Cola();
-        /* Destruye la cola
-        PRE: la cola debe haberi sido creada
-        POST: no tiene*/
+        /*
+        PRE: la cola, ya creada, no debe estar vacia
+        POST: Retorna el primer elemento de la cola*/
         Jugador* frente();
-        /*Retorna el primer elemento de la cola
-        PRE: la cola, ya creada, no debe estar vacia
-        POST: no tiene*/
+        /*
+        PRE: -
+        POST: Da de alta en la cola a un elemento pasado por argumento,
+        devuelve la cola modificada con la inserciòn del nuevo elemento al fondo*/
         void acolar(Jugador* dato);
-        /* Da de alta en la cola a un elemento pasado por argumento
-        PRE: la cola debe haber sido creada
-        POST: la cola modificada con la inserciòn del nuevo elemento al fondo*/
-        Jugador* desacolar();
-        /*Elimina el elemento del frente de la cola
+        /*
         PRE: la cola, ya creada, no debe estar vacia
-        POST: cola modificada por la eliminacion del elemento del frente*/
+        POST: Elimina el elemento del frente de la cola y
+        devuelve cola modificada por la eliminacion del elemento del frente*/
+        Jugador* desacolar();
+        /*
+        PRE: -
+        POST: Devuelve un true si la cola esta vacia y false en caso contrario */
         bool vacia();
-        /* Devuelve un valor logico indicando si la cola esta vacia
-        PRE: la cola debe haber sido creada
-        POST: no tiene */
+        /*PRE:-
+        * POST: Devuelve el elemento siguiente al elemento que se encuentra en el frente de la cola
+        */
         Jugador* siguiente();
-        //void acolarFrente(Jugador* nuevo);
+        /*PRE:-
+        * POST: Devuelve el tamaño de la cola
+        */
         size_t getTamanio();
 };
 

@@ -5,11 +5,6 @@
  *      Author: guido
  */
 
-/*#include "tablero.h"
-#include "jugador.h"
-#include "pila.h"
-#include "cola.h"
-#include "juego.h"*/
 #include "Tateti.h"
 
 using namespace std;
@@ -18,22 +13,9 @@ using namespace std;
 int main() {
 
 	Tateti* miTateti = new Tateti;
-	miTateti->inicializarTateti(); //inicializa el tateti
+	miTateti->inicializarTateti();
 	miTateti->ejecutar();
 	delete miTateti;
 	return 0;
 }
 
-/*
-int main2 (void){
-
-	Tateti* miTateti = new Tateti();
-
-	miTateti->inicializar(); //inicializa el tateti
-	miTateti->jugar();
-	delete miTateti;
-
-
-	return 0;
-}
-*/

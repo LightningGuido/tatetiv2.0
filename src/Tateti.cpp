@@ -11,21 +11,27 @@ Tateti::Tateti(){
 	this->tablero = NULL;
 	this->historialTableros = NULL;
 	this->turnos = NULL;
-	this->jugadorGanador = NULL;
 	this->jugadores = NULL;
 }
 
 void Tateti::inicializarTateti() {
 
 	std::cout << "Bienvenido al TaTeTi v2.0" << std::endl;
-	std::cout << "Ingrese la dimension 3D de su cubo" << std::endl;
-	size_t dim;
-		std::cin >> dim;
-	Tablero *tablero = new Tablero(dim, dim ,dim);
+	std::cout << "Ingrese el ancho de su tablero: " << std::endl;
+	size_t dimAncho;
+		std::cin >> dimAncho;
+	std::cout << "Ingrese el alto de su tablero: " << std::endl;
+	size_t dimAlto;
+		std::cin >> dimAlto;
+	std::cout << "Ingrese la profundidad de su tablero: " << std::endl;
+	size_t dimProfundidad;
+		std::cin >> dimProfundidad;
+
+	Tablero *tablero = new Tablero(dimAncho, dimAlto, dimProfundidad);
 	this->tablero = tablero;
 	Pila* ultimosTableros = new Pila;
 	this->historialTableros = ultimosTableros;
-	ultimosTableros->push(tablero->guardarEstado()); //guardo el tablero en blanco por si se juega IrAtras en el primer turno
+	ultimosTableros->push(tablero->guardarEstado());
 	tablero->imprimirMapaCoordenado();
 
 	std::string cantidad;
@@ -34,19 +40,18 @@ void Tateti::inicializarTateti() {
 		std::cin >> cantidad;
 	} while (!esNumero(cantidad));
 
-		int cantJugadores = stoi(cantidad);
+	int cantJugadores = stoi(cantidad);
 
-		Cola *turnos = new Cola();
+	Cola *turnos = new Cola();
 
-		Jugador **jugadores = new Jugador*[cantJugadores];
+	Jugador **jugadores = new Jugador*[cantJugadores];
 
-		for(int i = 0; i < cantJugadores; i++) {
-			jugadores[i] = new Jugador();
-			turnos->acolar(jugadores[i]);
-		}
-		this->turnos = turnos;
-		this->jugadores = jugadores;
-		this->jugadorGanador = NULL;
+	for(int i = 0; i < cantJugadores; i++) {
+		jugadores[i] = new Jugador();
+		turnos->acolar(jugadores[i]);
+	}
+	this->turnos = turnos;
+	this->jugadores = jugadores;
 
 }
 
@@ -59,7 +64,6 @@ Tateti::~Tateti() {
 	delete this->tablero;
 	delete this->turnos;
 	delete this->historialTableros;
-	delete this->jugadorGanador;
 
 }
 
@@ -122,7 +126,6 @@ int Tateti::obtenerAncho (){
 
 
 	int f = stoi(a);
-	//size_t(f);
 	if(!anchuraValida(f)){
 		std::cout << "Valor de ancho invalido. Intente de nuevo." << std::endl;
 		return this->obtenerAncho();
@@ -139,7 +142,6 @@ int Tateti::obtenerAltura (){
 		return this->obtenerAltura();
 	}
 	int f = stoi(c);
-	//size_t(f);
 	if(!alturaValida(f)){
 		std::cout << "Valor de altura invalido. Intente de nuevo." << std::endl;
 		return this->obtenerAltura();
@@ -158,7 +160,6 @@ int Tateti::obtenerProfundidad (){
 	}
 
 	int f = stoi(c);
-	//size_t(f);
 	if(!profundidadValida(f)){
 		std::cout << "Valor de profundidad invalido. Intente de nuevo." << std::endl;
 		return this->obtenerProfundidad();
@@ -195,7 +196,6 @@ bool Tateti::movimientoValido(int x1, int y1, int z1, int x2, int y2, int z2){
 		return false;
 	}
 
-	//falta agregar que sean movimientos de a una posicion
 	return true;
 }
 
@@ -244,8 +244,7 @@ void Tateti::fichasIniciales(Jugador* actual){
 void Tateti::turno(Jugador* actual) {
 	while(!this->tablero->hayGanador()){
 			this->moverFicha(actual);
-			//ademas de hacer correr los turnos
-		//mostrarTablero(tablero);
+
 	}
 }
 
@@ -291,11 +290,11 @@ void Tateti::bloquearCasillero() {
 }
 
 void Tateti::perderTurno(){
-	this->turnos->acolar(this->turnos->desacolar()); //desacolamos y acolamos al jugador siguiente
+	this->turnos->acolar(this->turnos->desacolar());
 }
 
 void Tateti::irAtras(){
-	//tiene problemas porque no setea como VACIO los casilleros que antes estaban ocupados
+
 
 	this->tablero->setAltura(this->historialTableros->top()->getAltura());
 	this->tablero->setAnchura(this->historialTableros->top()->getAnchura());
@@ -369,7 +368,22 @@ void Tateti::turnoDoble(){
 
 
 void Tateti::ejecutar(){
-	size_t dim = this->tablero->getAnchura();
+	size_t dim;
+	if(this->tablero->getAnchura() < this->tablero->getAltura()){
+		if(this->tablero->getProfundidad() < this->tablero->getAltura()){
+			dim = this->tablero->getAltura();
+		}
+	}
+	if(this->tablero->getAltura() < this->tablero->getAnchura()){
+		if(this->tablero->getProfundidad() < this->tablero->getAnchura()){
+			dim = this->tablero->getAnchura();
+		}
+	}
+	if(this->tablero->getAnchura() < this->tablero->getProfundidad()){
+		if(this->tablero->getAltura() < this->tablero->getProfundidad()){
+			dim = this->tablero->getProfundidad();
+		}
+	}
 	size_t cantidadJugadores = this->turnos->getTamanio();
 
 	for(size_t i = 0; i < cantidadJugadores; i++) {
@@ -456,7 +470,7 @@ void Tateti::ejecutar(){
 		}
 
 		std::cout << "Ganador: " << this->turnos->frente()->getNombre() << std::endl;
-		//determinar ganardor
+
 }
 
 bool Tateti::esNumero(std::string s){

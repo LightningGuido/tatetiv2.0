@@ -51,7 +51,5 @@ Carta* Jugador::getCartas(size_t pos){
 	return this->cartas[pos];
 }
 
-/*Carta* Jugador::getCartasPuntero(){
-	return this->cartas;
-}*/
+
 

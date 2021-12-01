@@ -13,7 +13,7 @@ Carta::Carta() {
 	this->estado = Disponible;
 }
 Carta::~Carta(){
-	//autogeneratd we
+
 }
 
 TipoCarta Carta::getTipoCarta() {

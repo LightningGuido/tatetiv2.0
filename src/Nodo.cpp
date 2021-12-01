@@ -9,7 +9,7 @@ void Nodo::setDato(Jugador* dato){
         this->dato = dato;
 }
 Nodo::~Nodo(){
-	//delete this->dato;
+
 }
 Jugador* Nodo::getDato(){
         return this->dato;

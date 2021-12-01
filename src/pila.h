@@ -18,35 +18,39 @@ class Pila{
         size_t tamanio;
     
     public:
-
+        /*
+        PRE: -
+        POST: Crea una pila vacia preparada para ser usada */
         Pila();
-        /* Crea la pila
-        PRE: no tiene
-        POST: una pila vacia preparada para ser usada */
+        /*
+        PRE: -
+        POST: Destruye la pila */
         virtual ~Pila();
-        /*Destruye la pila
-        PRE: la pila debe haber sido creada
-        POST: no tiene */
+        /*
+        PRE: -
+        POST: Realiza el alta en la pila de un elemento pasado por argumento y devulve
+        la pila modificada con la insercion del nuevo elemento en el tope */
         void push(Tablero* dato);
-        /*Realiza el alta en la pila de un elemento pasado por argumento
-        PRE: la pila debe haber sido creada
-        POST: la pila modificada cpn la insercion del nuevo elemento en el tope */
+        /*
+        PRE: la pila, ya creada, no debe estar vacia
+        POST: Elimina el elemento del tope de la misma y devuelve
+        una pila modificada por la eliminacion del elemento del tope*/
         Tablero* pop();
-        /* Elimina el elemento del tope de la misma
+        /*
         PRE: la pila, ya creada, no debe estar vacia
-        POST: una pila modificada por la eliminacion del elemento del tope*/
+        POST:  Retorna el valor del tope de la pila*/
         Tablero* top();
-        /* Retorna el valor del tope de la pila
-        PRE: la pila, ya creada, no debe estar vacia
-        POST: no tiene*/
+        /*
+        * PRE: -
+        * POST: Devuelve el valor logico true si la pila esta vacia, false en caso contrario
+        */
         bool vacia();
-        /* Devuelve un valor logico indicando si a pila esta vacia
-        PRE: la pila debe haber sido creada
-        POST: no tiene*/
+        /*
+        * PRE: -
+        * POST: Setea como tope de la Pila al NodoPila que se pasa como parametro y
+        * devuelve la pila modificada con un nuevo tope, y el tope anterior como siguiente del tope seteado */
         void setTope(NodoPila* ultimo);
-        /*Setea como tope de la Pila a nodo que se pasa como parametro
-        PRE: la pila debe haber sido creada
-        POST: la pila modificada con un nuevo tope, y el tope anterior como siguiente del tope seteado */
+
 };
 
 

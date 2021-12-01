@@ -26,28 +26,39 @@ private:
 	StatusCasillero estado;
 
 public:
-	/* PRE:
-	 * POST:
+
+	/* PRE:-
+	 * POST: Crea un casillero con un valor VACIO y un StatusCasillero Disponible
 	 */
-	//Casillero();
-	/* PRE:
-	 * POST
-	 */
+	Casillero();
+	/* PRE:-
+	* POST: Recible un valor por parametro y lo setea como valor del Casillero
+	*/
 	void setValor(char valor);
-	/* PRE:
-	 * POST:
+	/* PRE:-
+	 * POST:Recibe un estado por parametro y lo setea como StatusCasillero
 	 */
 	void setEstado(StatusCasillero estado);
-	/* PRE:
-	 * POST
+	/* PRE:-
+	 * POST: Devuelve el valor del Casillero
 	 */
 	char getValor();
-	/* PRE:
-	 * POST
+	/* PRE:-
+	 * POST: Devuelve el StatusCasillero del Casillero
 	 */
 	StatusCasillero getEstado();
+	/* PRE:-
+	* POST:Devulve true si el valor del casillero es VACIO y false en caso contrario
+	*/
 	bool estaVacio();
+	/* PRE:-
+	* POST:Devuelve true si el StatusCasillero es Libre y false en caso contrario
+	*/
 	bool estaLibre();
+	/* PRE:-
+	 * POST: Destruye el Casillero
+	 */
+	~Casillero();
 };
 
 

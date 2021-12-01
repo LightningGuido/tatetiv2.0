@@ -30,21 +30,19 @@ Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
 
 	this->casillero = new Casillero***[ancho];
 	if(this->casillero == NULL) {
-		//throw
+
 	}
 	for(size_t i = 0; i < ancho; i++) {
 			this->casillero[i] = new Casillero**[alto];
 			for(size_t j = 0; j < alto; j++) {
-				this->casillero[i][j] = new Casillero*[profundo]; //aca valgrind tira error
+				this->casillero[i][j] = new Casillero*[profundo];
 			}
 	}
 
 	for(size_t i = 0; i < ancho; i++) {
 		for(size_t j = 0; j < alto; j++) {
 			for(size_t k = 0; k < profundo; k++) {
-				this->casillero[i][j][k] = new Casillero; //directamente setee en vacio
-				this->casillero[i][j][k]->setValor(VACIO);
-				this->casillero[i][j][k]->setEstado(Libre);
+				this->casillero[i][j][k] = new Casillero;
 			}
 		}
 	}
@@ -72,10 +70,6 @@ size_t Tablero::getProfundidad() {
 	return this->profundidad;
 }
 
-
-Casillero* Tablero::getCasilleroPuntero(size_t x, size_t y, size_t z) {
-	return this->casillero[x][y][z];
-}
 
 Casillero* Tablero::getCasillero(size_t x, size_t y, size_t z) {
 	return this->casillero[x][y][z];

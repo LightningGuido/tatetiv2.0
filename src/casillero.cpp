@@ -7,13 +7,11 @@
 
 #include "casillero.h"
 
-//constructor de casillero
-
-/*Casillero::Casillero(){
+Casillero::Casillero(){
 	this->valor = VACIO;
 	this->estado = Libre;
 }
-*/
+
 void Casillero::setValor(char valor) {
 	this->valor = valor;
 }
@@ -44,4 +42,8 @@ bool Casillero::estaLibre(){
 	}else{
 		return false;
 	}
+}
+
+Casillero::~Casillero(){
+
 }

@@ -17,29 +17,33 @@ private:
 	std::string nombre;
 	char ficha;
 	Carta **cartas;
-	//Jugador* siguiente;
 
 public:
-	/* PRE:
-	 * POST
+	/* PRE:-
+	 * POST: Crea un Jugador, su arreglo de cartas y, pidiendo al usuario por pantalla, le asigna un nombre y
+	 * una ficha
 	 */
 	Jugador();
-	/* PRE:
-	 * POST
+	/* PRE:-
+	 * POST: Destruye al Jugador y libera la memoria que se habia alocado
 	 */
 	virtual ~Jugador();
+	/* PRE:-
+	* POST: Recibe una ficha por parametro y la setea como ficha del Jugador
+	*/
 	void setFicha(char ficha);
-	/* PRE:
-	 * POST
+	/* PRE:-
+	 * POST: Devuelve la ficha del Jugador
 	 */
 	char getFicha();
-	/* PRE:
-	 * POST	delete this;
+	/* PRE:-
+	 * POST: Devuelve el nombre del Jugador
 	 */
 	std::string getNombre();
-	//Puntero
+	/* PRE:-
+	* POST: Devuelve la Carta que se encuentra en el arreglo de Cartas en la posicion que se pasa por parametro
+	*/
 	Carta* getCartas(size_t pos);
-	//Carta* getCartasPuntero();
 
 };
 

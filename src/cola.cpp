@@ -28,13 +28,13 @@ Jugador* Cola::frente(){
     return this->front->getDato();
 }
 
-void Cola::acolar(Jugador* dato){ //pedir la memoria para el nodo, pasando dato como parametro
+void Cola::acolar(Jugador* dato){
 
 	Nodo *elemento = new Nodo();
 	elemento->setDato(dato);
     if(this->tamanio == 0 && this->front == NULL && this->end == NULL) {
     	this->front = elemento;
-        this->end = elemento; //si hay un solo elemento: ese elemento es front y end
+        this->end = elemento;
     } else if (this->tamanio == 1){
     	this->front->setSiguiente(elemento);
     	this->end = this->front->getSiguiente();
@@ -44,15 +44,14 @@ void Cola::acolar(Jugador* dato){ //pedir la memoria para el nodo, pasando dato 
     	this->end = this->end->getSiguiente();
     }
     this->tamanio += 1;
-    //std::cout << "el primero es: " << this->front->getNombre() << std::endl;
-    //std::cout << "el ultimo  es: " << this->end->getNombre() << std::endl;
+
 }
 
 Jugador* Cola::desacolar(){
-    Nodo* aux = this->front; //aux = nodo1
+    Nodo* aux = this->front;
     Jugador* jugador = aux->getDato();
     
-    this->front = this->front->getSiguiente(); //front = nodo2 -> nodo2 = nodo1
+    this->front = this->front->getSiguiente();
     this->tamanio -= 1;
     
     delete aux;
@@ -74,19 +73,6 @@ Jugador* Cola::siguiente(){
     return this->front->getSiguiente()->getDato();
 }
 
-/*void Cola::acolarFrente(Jugador* nuevo){
-    
-    //Jugador *aux = desacolar();
-
-    if(this->tamanio == 1){
-        this->front = nuevo;
-    }
-    else{
-        nuevo->setJugadorSiguiente(this->front);
-        this->front = nuevo;
-    }
-    this->tamanio += 1;
-}*/
 
 size_t Cola::getTamanio(){
 	return this->tamanio;

@@ -28,7 +28,7 @@ Pila::~Pila(){
 
 }
 
-void Pila::setTope(NodoPila* ultimo){ //no entiendo la diferencia entre setTope y push
+void Pila::setTope(NodoPila* ultimo){
     ultimo->setSiguiente(this->tope);
     this->tope = ultimo;
 }
