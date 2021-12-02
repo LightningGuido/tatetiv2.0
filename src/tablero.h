@@ -16,9 +16,9 @@ class Tablero {
 private:
 	Casillero ****casillero;
 	unsigned int cantidadFichas;
-	size_t anchura;		//x
-	size_t altura;		//y
-	size_t profundidad;	//z
+	int anchura;		//x
+	int altura;		//y
+	int profundidad;	//z
 
 	/* PRE: -
 	 * POST: Devuelve el valor logico true si hay un ganador que haya alineado vertical u horizontalmente sus fichas
@@ -102,23 +102,23 @@ public:
 	/* PRE:-
 	 * POST: Crea un Tablero con las dimensiones pasadas por parametro
 	 */
-	Tablero(size_t ancho, size_t alto, size_t profundo);
+	Tablero(int ancho, int alto, int profundo);
 	/* PRE:-
 	 * POST: Recibe un valor de ancho por parametro y lo setea como valor de ancho del Tablero
 	 */
-	void setAnchura(size_t ancho);
+	void setAnchura(int ancho);
 	/* PRE:-
 	 * POST: Recibe un valor de altura por parametro y lo setea como valor de alto del Tablero
 	 */
-	void setAltura(size_t alto);
+	void setAltura(int alto);
 	/* PRE:-
 	 * POST: Recibe un valor del profundidad por parametro y lo setea como valor de Profundidad del Tablero
 	 */
-	void setProfundidad(size_t profundo);
+	void setProfundidad(int profundo);
 	/* PRE:-
 	 * POST:Recibe un valor de cantidad de fichas por parametro y lo setea como valor de Cantidad de Fichas del Tablero
 	 */
-	void setCantidadFichas(size_t n);
+	void setCantidadFichas(int n);
 	/* PRE:-
 	 * POST: Devuelve la cantidad de Fichas del Tablero
 	 */
@@ -126,19 +126,19 @@ public:
 	/* PRE:-
 	 * POST: Devuelve el valor de anchura del Tablero
 	 */
-	size_t getAnchura();
+	int getAnchura();
 	/* PRE:-
 	 * POST: Devuelve el valor de altura del Tablero
 	 */
-	size_t getAltura();
+	int getAltura();
 	/* PRE:-
 	 * POST: Devuelve el valor de profundidad del Tablero
 	 */
-	size_t getProfundidad();
+	int getProfundidad();
 	/* PRE:-
 	 * POST: Devuelve el puntero al Casillero en las coordenadas pasadas por parametro
 	 */
-	Casillero* getCasillero(size_t x, size_t y, size_t z);
+	Casillero* getCasillero(int x, int y, int z);
 	/* PRE:-
 	 * POST:Devuelve el valor logico true si hay un ganador del Juego o false en caso contrario
 	 */

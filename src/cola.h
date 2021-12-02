@@ -14,7 +14,7 @@
 class Cola{
 
     private:
-        size_t tamanio;
+        int tamanio;
         Nodo* front;
         Nodo* end;
 
@@ -52,7 +52,7 @@ class Cola{
         /*PRE:-
         * POST: Devuelve el tamaño de la cola
         */
-        size_t getTamanio();
+        int getTamanio();
 };
 
 #endif /*SRC_COLA_H_*/

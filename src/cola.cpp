@@ -74,6 +74,6 @@ Jugador* Cola::siguiente(){
 }
 
 
-size_t Cola::getTamanio(){
+int Cola::getTamanio(){
 	return this->tamanio;
 }

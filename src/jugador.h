@@ -43,7 +43,7 @@ public:
 	/* PRE:-
 	* POST: Devuelve la Carta que se encuentra en el arreglo de Cartas en la posicion que se pasa por parametro
 	*/
-	Carta* getCartas(size_t pos);
+	Carta* getCartas(int pos);
 
 };
 

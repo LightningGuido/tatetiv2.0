@@ -15,7 +15,7 @@
 class Pila{
     private:
         NodoPila* tope;
-        size_t tamanio;
+        int tamanio;
     
     public:
         /*

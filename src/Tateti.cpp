@@ -18,13 +18,13 @@ void Tateti::inicializarTateti() {
 
 	std::cout << "Bienvenido al TaTeTi v2.0" << std::endl;
 	std::cout << "Ingrese el ancho de su tablero: " << std::endl;
-	size_t dimAncho;
+	int dimAncho;
 		std::cin >> dimAncho;
 	std::cout << "Ingrese el alto de su tablero: " << std::endl;
-	size_t dimAlto;
+	int dimAlto;
 		std::cin >> dimAlto;
 	std::cout << "Ingrese la profundidad de su tablero: " << std::endl;
-	size_t dimProfundidad;
+	int dimProfundidad;
 		std::cin >> dimProfundidad;
 
 	Tablero *tablero = new Tablero(dimAncho, dimAlto, dimProfundidad);
@@ -57,7 +57,7 @@ void Tateti::inicializarTateti() {
 
 Tateti::~Tateti() {
 
-	for(size_t i = 0; i < this->turnos->getTamanio(); i++) {
+	for(int i = 0; i < this->turnos->getTamanio(); i++) {
 		delete this->jugadores[i];
 	}
 	delete[] this->jugadores;
@@ -67,7 +67,7 @@ Tateti::~Tateti() {
 
 }
 
-bool Tateti::anchuraValida(size_t f){
+bool Tateti::anchuraValida(int f){
 
 	if(f >= 0 && f < (this->tablero->getAnchura())){
 		return true;
@@ -76,15 +76,15 @@ bool Tateti::anchuraValida(size_t f){
 
 }
 
-bool Tateti::alturaValida(size_t c){
+bool Tateti::alturaValida(int c){
 	if(c >= 0 && c < (this->tablero->getAltura())){
 		return true;
 	}
 	return false;
 }
 
-bool Tateti::profundidadValida(size_t c){
-	if(c >= 0 && c < size_t(this->tablero->getProfundidad())){
+bool Tateti::profundidadValida(int c){
+	if(c >= 0 && c < (this->tablero->getProfundidad())){
 		return true;
 	}
 	return false;
@@ -250,9 +250,9 @@ void Tateti::turno(Jugador* actual) {
 
 void Tateti::bloquearFicha() {
 
-	size_t ancho;
-	size_t altura;
-    size_t profundidad;
+	int ancho;
+	int altura;
+    int profundidad;
 
     std::cout << "Ingrese la ficha a bloquear" << std::endl;
 
@@ -274,9 +274,9 @@ void Tateti::bloquearFicha() {
 
 void Tateti::bloquearCasillero() {
 
-	size_t ancho;
-	size_t altura;
-    size_t profundidad;
+	int ancho;
+	int altura;
+    int profundidad;
 
     std::cout << "Ingrese la ficha a bloquear" << std::endl;
 
@@ -302,9 +302,9 @@ void Tateti::irAtras(){
 	this->tablero->setCantidadFichas(this->historialTableros->top()->getCantidadFichas());
 
 
-	for(size_t i = 0; i < this->tablero->getAnchura(); i++) {
-		for(size_t j = 0; j < this->tablero->getAltura(); j++) {
-			for(size_t k = 0; k < this->tablero->getProfundidad(); k++) {
+	for(int i = 0; i < this->tablero->getAnchura(); i++) {
+		for(int j = 0; j < this->tablero->getAltura(); j++) {
+			for(int k = 0; k < this->tablero->getProfundidad(); k++) {
 				this->tablero->getCasillero(i, j, k)->setValor(this->historialTableros->top()->getCasillero(i, j, k)->getValor());
 				this->tablero->getCasillero(i, j, k)->setEstado(this->historialTableros->top()->getCasillero(i, j ,k)->getEstado());
 			}
@@ -314,12 +314,12 @@ void Tateti::irAtras(){
 
 bool Tateti::permutarLugar(){
 
-	size_t x1;
-	size_t y1;
-    size_t z1;
-	size_t x2;
-	size_t y2;
-    size_t z2;
+	int x1;
+	int y1;
+    int z1;
+	int x2;
+	int y2;
+    int z2;
 
 	std::cout << "Ingrese coordenadas de la primera ficha a permutar: " << std::endl;
 
@@ -355,9 +355,9 @@ bool Tateti::permutarLugar(){
 
 void Tateti::turnoDoble(){
 
-	size_t cantidadFichas = this->tablero->getCantidadFichas();
-	size_t dimension = this->tablero->getAnchura() ;
-	size_t cantidadJugadores = this->turnos->getTamanio();
+	int cantidadFichas = this->tablero->getCantidadFichas();
+	int dimension = this->tablero->getAnchura() ;
+	int cantidadJugadores = this->turnos->getTamanio();
 
 	if( cantidadFichas < dimension * cantidadJugadores) {
 		this->fichasIniciales(this->turnos->frente());
@@ -368,7 +368,7 @@ void Tateti::turnoDoble(){
 
 
 void Tateti::ejecutar(){
-	size_t dim;
+	int dim;
 	if(this->tablero->getAnchura() < this->tablero->getAltura()){
 		if(this->tablero->getProfundidad() < this->tablero->getAltura()){
 			dim = this->tablero->getAltura();
@@ -384,9 +384,9 @@ void Tateti::ejecutar(){
 			dim = this->tablero->getProfundidad();
 		}
 	}
-	size_t cantidadJugadores = this->turnos->getTamanio();
+	int cantidadJugadores = this->turnos->getTamanio();
 
-	for(size_t i = 0; i < cantidadJugadores; i++) {
+	for(int i = 0; i < cantidadJugadores; i++) {
 		std::cout << this->turnos->frente()->getNombre() << std::endl;
 		this->turnos->acolar(turnos->desacolar());
 	}
@@ -403,7 +403,7 @@ void Tateti::ejecutar(){
 	//Muestran y juegan cartas
 		this->tablero->imprimirTablero();
 		this->historialTableros->push(this->tablero->guardarEstado());
-		for(size_t i = 0; i < MAX_CARTAS; i++){
+		for(int i = 0; i < MAX_CARTAS; i++){
 			std::cout << i << ": ";
 			this->turnos->frente()->getCartas(i)->mostrarCarta();
 			std::cout << std::endl;
@@ -474,7 +474,7 @@ void Tateti::ejecutar(){
 }
 
 bool Tateti::esNumero(std::string s){
-	for(size_t i = 0; i < s.length(); i++){
+	for(int i = 0; i < s.length(); i++){
 		if(isdigit(s[i]) == false){
 			return false;
 		}

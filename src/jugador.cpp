@@ -47,7 +47,7 @@ std::string Jugador::getNombre() {
 	return this->nombre;
 }
 
-Carta* Jugador::getCartas(size_t pos){
+Carta* Jugador::getCartas(int pos){
 	return this->cartas[pos];
 }
 

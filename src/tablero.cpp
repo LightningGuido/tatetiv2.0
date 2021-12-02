@@ -10,38 +10,38 @@
 using namespace std;
 
 
-void Tablero::setAnchura(size_t ancho) {
+void Tablero::setAnchura(int ancho) {
 	this->anchura = ancho;
 }
 
-void Tablero::setAltura(size_t alto) {
+void Tablero::setAltura(int alto) {
 	this->altura = alto;
 }
 
-void Tablero::setProfundidad(size_t profundo) {
+void Tablero::setProfundidad(int profundo) {
 	this->profundidad = profundo;
 }
 
-void Tablero::setCantidadFichas(size_t n) {
+void Tablero::setCantidadFichas(int n) {
 	this->cantidadFichas = 0;
 }
 
-Tablero::Tablero(size_t ancho, size_t alto, size_t profundo) {
+Tablero::Tablero(int ancho, int alto, int profundo) {
 
 	this->casillero = new Casillero***[ancho];
 	if(this->casillero == NULL) {
 
 	}
-	for(size_t i = 0; i < ancho; i++) {
+	for(int i = 0; i < ancho; i++) {
 			this->casillero[i] = new Casillero**[alto];
-			for(size_t j = 0; j < alto; j++) {
+			for(int j = 0; j < alto; j++) {
 				this->casillero[i][j] = new Casillero*[profundo];
 			}
 	}
 
-	for(size_t i = 0; i < ancho; i++) {
-		for(size_t j = 0; j < alto; j++) {
-			for(size_t k = 0; k < profundo; k++) {
+	for(int i = 0; i < ancho; i++) {
+		for(int j = 0; j < alto; j++) {
+			for(int k = 0; k < profundo; k++) {
 				this->casillero[i][j][k] = new Casillero;
 			}
 		}
@@ -58,20 +58,20 @@ unsigned int Tablero::getCantidadFichas() {
 	return this->cantidadFichas;
 }
 
-size_t Tablero::getAnchura() {
+int Tablero::getAnchura() {
 	return this->anchura;
 }
 
-size_t Tablero::getAltura() {
+int Tablero::getAltura() {
 	return this->altura;
 }
 
-size_t Tablero::getProfundidad() {
+int Tablero::getProfundidad() {
 	return this->profundidad;
 }
 
 
-Casillero* Tablero::getCasillero(size_t x, size_t y, size_t z) {
+Casillero* Tablero::getCasillero(int x, int y, int z) {
 	return this->casillero[x][y][z];
 }
 
@@ -113,12 +113,12 @@ bool Tablero::hayGanador() {
 
 bool Tablero::ganadorPlanoAncho() {
 
-	unsigned int condicionVictoria;
-	for(size_t x = 0; x < this->anchura; x++) {
+	int condicionVictoria;
+	for(int x = 0; x < this->anchura; x++) {
 		condicionVictoria = 0;
 		//BUSCO GANADOR POR LA HORIZONTAL
-		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t z = 0; z < this->profundidad - 1; z++) {
+		for(int y = 0; y < this->altura; y++) {
+			for(int z = 0; z < this->profundidad - 1; z++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) break;
 				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y][z+1]->getValor())
 					condicionVictoria++;
@@ -129,8 +129,8 @@ bool Tablero::ganadorPlanoAncho() {
 			condicionVictoria = 0;
 		}
 		//BUSCO GANADOR POR LA VERTICAL
-		for(size_t z = 0; z < this->profundidad; z++) {
-			for(size_t y = 0; y < this->altura - 1; y++) {
+		for(int z = 0; z < this->profundidad; z++) {
+			for(int y = 0; y < this->altura - 1; y++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) {
 					break;
 				}
@@ -149,9 +149,9 @@ bool Tablero::ganadorPlanoAncho() {
 bool Tablero::ganadorPlanoAnchoDiagonal1() {
 
 	bool aux;
-	for(size_t x = 0; x < this->anchura; x++) {
+	for(int x = 0; x < this->anchura; x++) {
 		aux = true;
-		for(size_t y = 0, z = 0; (y < this->altura - 1) && (z < this->profundidad - 1); y++, z++) {
+		for(int y = 0, z = 0; (y < this->altura - 1) && (z < this->profundidad - 1); y++, z++) {
 			if(this->casillero[x][y][z]->getValor() == VACIO) {
 				aux = false;
 				break;
@@ -171,9 +171,9 @@ bool Tablero::ganadorPlanoAnchoDiagonal1() {
 bool Tablero::ganadorPlanoAnchoDiagonal2() {
 
 	bool aux;
-	for(size_t x = 0; x < this->anchura; x++) {
+	for(int x = 0; x < this->anchura; x++) {
 		aux = true;
-		for(size_t y = 0, z = this->profundidad - 1; y < this->altura - 1 && z > 0; y++, z--) {
+		for(int y = 0, z = this->profundidad - 1; y < this->altura - 1 && z > 0; y++, z--) {
 			if(this->casillero[x][y][z]->getValor() == VACIO) {
 				aux = false;
 			}
@@ -190,12 +190,12 @@ bool Tablero::ganadorPlanoAnchoDiagonal2() {
 
 bool Tablero::ganadorPlanoAlto() {
 
-	unsigned int condicionVictoria;
-	for(size_t y = 0; y < this->altura; y++) {
+	int condicionVictoria;
+	for(int y = 0; y < this->altura; y++) {
 		condicionVictoria = 0;
 		//BUSCO GANADOR POR LA HORIZONTAL
-		for(size_t x = 0; x < this->anchura; x++) {
-			for(size_t z = 0; z < this->profundidad - 1; z++) {
+		for(int x = 0; x < this->anchura; x++) {
+			for(int z = 0; z < this->profundidad - 1; z++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) break;
 				if(this->casillero[x][y][z]->getValor() == this->casillero[x][y][z+1]->getValor())
 					condicionVictoria++;
@@ -206,8 +206,8 @@ bool Tablero::ganadorPlanoAlto() {
 			condicionVictoria = 0;
 		}
 		//BUSCO GANADOR POR LA VERTICAL
-		for(size_t z = 0; z < this->profundidad; z++) {
-			for(size_t x = 0; x < this->anchura - 1; x++) {
+		for(int z = 0; z < this->profundidad; z++) {
+			for(int x = 0; x < this->anchura - 1; x++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) break;
 				if(this->casillero[x][y][z]->getValor() == this->casillero[x + 1][y][z]->getValor())
 					condicionVictoria++;
@@ -224,9 +224,9 @@ bool Tablero::ganadorPlanoAlto() {
 bool Tablero::ganadorPlanoAltoDiagonal1() {
 
 	bool aux;
-	for(size_t y = 0; y < this->altura; y++) {
+	for(int y = 0; y < this->altura; y++) {
 		aux = true;
-		for(size_t x = 0, z = 0; (x < this->anchura - 1) && (z < this->profundidad - 1); x++, z++) {
+		for(int x = 0, z = 0; (x < this->anchura - 1) && (z < this->profundidad - 1); x++, z++) {
 			if(this->casillero[x][y][z]->getValor() == VACIO) {
 				aux = false;
 				break;
@@ -244,9 +244,9 @@ bool Tablero::ganadorPlanoAltoDiagonal1() {
 bool Tablero::ganadorPlanoAltoDiagonal2() {
 
 	bool aux;
-	for(size_t y = 0; y < this->altura; y++) {
+	for(int y = 0; y < this->altura; y++) {
 		aux = true;
-		for(size_t x = 0, z = this->profundidad - 1; x < this->anchura - 1 && z > 0; x++, z--) {
+		for(int x = 0, z = this->profundidad - 1; x < this->anchura - 1 && z > 0; x++, z--) {
 			if(this->casillero[x][y][z]->getValor() == VACIO) {
 				aux = false;
 				break;
@@ -265,12 +265,12 @@ bool Tablero::ganadorPlanoAltoDiagonal2() {
 
 bool Tablero::ganadorPlanoProf() {
 
-	unsigned int condicionVictoria;
-	for(size_t z = 0; z < this->profundidad - 1; z++) {
+	int condicionVictoria;
+	for(int z = 0; z < this->profundidad - 1; z++) {
 		condicionVictoria = 0;
 		//BUSCO GANADOR POR LA HORIZONTAL
-		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t x = 0; x < this->anchura; x++) {
+		for(int y = 0; y < this->altura; y++) {
+			for(int x = 0; x < this->anchura; x++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) {
 					break;
 				}
@@ -283,8 +283,8 @@ bool Tablero::ganadorPlanoProf() {
 			condicionVictoria = 0;
 		}
 		//BUSCO GANADOR POR LA VERTICAL
-		for(size_t x = 0; x < this->anchura; x++) {
-			for(size_t y = 0; y < this->altura - 1; y++) {
+		for(int x = 0; x < this->anchura; x++) {
+			for(int y = 0; y < this->altura - 1; y++) {
 				if(this->casillero[x][y][z]->getValor() == VACIO) {
 					break;
 				}
@@ -303,9 +303,9 @@ bool Tablero::ganadorPlanoProf() {
 bool Tablero::ganadorPlanoProfDiagonal1() {
 
 	bool aux;
-	for(size_t z = 0; z < this->profundidad; z++) {
+	for(int z = 0; z < this->profundidad; z++) {
 		aux = true;
-		for(size_t y = 0, x = 0; y < this->altura - 1 && x < this->anchura - 1; y++, x++) {
+		for(int y = 0, x = 0; y < this->altura - 1 && x < this->anchura - 1; y++, x++) {
 			if(this->casillero[x][y][z]->getValor() == VACIO) {
 				aux = false;
 				break;
@@ -325,9 +325,9 @@ bool Tablero::ganadorPlanoProfDiagonal1() {
 bool Tablero::ganadorPlanoProfDiagonal2() {
 
 	bool aux;
-	for(size_t z = 0; z < this->profundidad; z++) {
+	for(int z = 0; z < this->profundidad; z++) {
 		aux = true;
-		for(size_t y = 0, x = this->anchura - 1; y < this->altura - 1 && x > 0; y++, x--) {
+		for(int y = 0, x = this->anchura - 1; y < this->altura - 1 && x > 0; y++, x--) {
 			if(this->casillero[x][y][z]->getValor() == VACIO) {
 				aux = false;
 				break;
@@ -348,7 +348,7 @@ bool Tablero::ganadorDiagonales3D() {
 
 	bool aux;
 	aux = true;
-	for(size_t x = 0, y = 0, z = 0; x < this->anchura - 1 && y < this->altura - 1 && z < this->profundidad - 1; x++, y++, z++) {
+	for(int x = 0, y = 0, z = 0; x < this->anchura - 1 && y < this->altura - 1 && z < this->profundidad - 1; x++, y++, z++) {
 		if(this->casillero[x][y][z]->getValor() == VACIO) {
 			aux = false;
 			break;
@@ -361,7 +361,7 @@ bool Tablero::ganadorDiagonales3D() {
 	if(aux) return true;
 
 	aux = true;
-	for(size_t x = 0, y = this->altura - 1, z = 0; x < this->anchura - 1 && y > 0 && z < this->profundidad - 1; x++, y--, z++) {
+	for(int x = 0, y = this->altura - 1, z = 0; x < this->anchura - 1 && y > 0 && z < this->profundidad - 1; x++, y--, z++) {
 		if(this->casillero[x][y][z]->getValor() == VACIO) {
 			aux = false;
 			break;
@@ -376,7 +376,7 @@ bool Tablero::ganadorDiagonales3D() {
 	}
 
 	aux = true;
-	for(size_t x = this->anchura - 1, y = 0, z = 0; x > 0 && y < this->altura - 1 && z < this->profundidad - 1; x--, y++, z++) {
+	for(int x = this->anchura - 1, y = 0, z = 0; x > 0 && y < this->altura - 1 && z < this->profundidad - 1; x--, y++, z++) {
 		if(this->casillero[x][y][z]->getValor() == VACIO) {
 			aux = false;
 			break;
@@ -390,7 +390,7 @@ bool Tablero::ganadorDiagonales3D() {
 		return true;
 	}
 
-	for(size_t x = 0, y = 0, z = this->profundidad - 1; x < this->anchura - 1 && y < this->altura - 1 && z > 0; x++, y++, z--) {
+	for(int x = 0, y = 0, z = this->profundidad - 1; x < this->anchura - 1 && y < this->altura - 1 && z > 0; x++, y++, z--) {
 		if(this->casillero[x][y][z]->getValor() == VACIO) {
 			aux = false;
 			break;
@@ -414,9 +414,9 @@ Tablero* Tablero::guardarEstado(){
 	
 	aux->cantidadFichas = this->cantidadFichas;
 
-	for(size_t i = 0; i < this->anchura; i++) {
-		for(size_t j = 0; j < this->altura; j++) {
-			for(size_t k = 0; k < this->profundidad; k++) {
+	for(int i = 0; i < this->anchura; i++) {
+		for(int j = 0; j < this->altura; j++) {
+			for(int k = 0; k < this->profundidad; k++) {
 				aux->getCasillero(i,j,k)->setValor(this->casillero[i][j][k]->getValor());
 				aux->getCasillero(i,j,k)->setEstado(this->casillero[i][j][k]->getEstado());
 			}
@@ -428,16 +428,16 @@ Tablero* Tablero::guardarEstado(){
 
 void Tablero::imprimirAncho() {
 
-	for(size_t x = 0; x < this->anchura; x++) {
+	for(int x = 0; x < this->anchura; x++) {
 		std::cout << "CARA (ANCHO): " << x + 1 << std::endl;
-		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t z = 0; z < this->profundidad; z++) {
+		for(int y = 0; y < this->altura; y++) {
+			for(int z = 0; z < this->profundidad; z++) {
 				std::cout << this->getCasillero(x, y, z)->getValor();
 				if(z != this->profundidad -1) std::cout << '|';
 			}
 			std::cout << endl;
 			if(y != this->altura - 1) {
-				for(size_t i = 0; i < (2 * this->profundidad - 1); i++) {
+				for(int i = 0; i < (2 * this->profundidad - 1); i++) {
 					std::cout << '-';
 				}
 			}
@@ -448,10 +448,10 @@ void Tablero::imprimirAncho() {
 
 void Tablero::imprimirAnchoCoordenado() {
 
-	for(size_t x = 0; x < this->anchura; x++) {
+	for(int x = 0; x < this->anchura; x++) {
 		std::cout << "CARA (ANCHO): " << x + 1 << std::endl;
-		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t z = 0; z < this->profundidad; z++) {
+		for(int y = 0; y < this->altura; y++) {
+			for(int z = 0; z < this->profundidad; z++) {
 				std::cout << "[x = " << x << "][y = " << y << "][z = " << z << "] ";
 			}
 			std::cout << endl;
@@ -461,16 +461,16 @@ void Tablero::imprimirAnchoCoordenado() {
 
 void Tablero::imprimirAlto() {
 
-	for(size_t y = 0; y < this->altura; y++) {
+	for(int y = 0; y < this->altura; y++) {
 		std::cout << "CARA (ALTO): " << y + this->anchura + 1 << std::endl;
-		for(size_t x = 0; x < this->anchura; x++) {
-			for(size_t z = 0; z < this->profundidad; z++) {
+		for(int x = 0; x < this->anchura; x++) {
+			for(int z = 0; z < this->profundidad; z++) {
 				std::cout << this->getCasillero(x, y, z)->getValor();
 				if(z != this->profundidad -1) std::cout << '|';
 			}
 			std::cout << endl;
 			if(x != this->anchura - 1) {
-				for(size_t i = 0; i < (2 * this->profundidad - 1); i++) {
+				for(int i = 0; i < (2 * this->profundidad - 1); i++) {
 					std::cout << '-';
 				}
 			}
@@ -481,10 +481,10 @@ void Tablero::imprimirAlto() {
 
 void Tablero::imprimirAltoCoordenado() {
 
-	for(size_t y = 0; y < this->altura; y++) {
+	for(int y = 0; y < this->altura; y++) {
 		std::cout << "CARA (ALTO): " << y + this->anchura + 1 << std::endl;
-		for(size_t x = 0; x < this->anchura; x++) {
-			for(size_t z = 0; z < this->profundidad; z++) {
+		for(int x = 0; x < this->anchura; x++) {
+			for(int z = 0; z < this->profundidad; z++) {
 				std::cout << "[x = " << x << "][y = " << y << "][z = " << z << "] ";
 			}
 			std::cout << endl;
@@ -494,16 +494,16 @@ void Tablero::imprimirAltoCoordenado() {
 
 void Tablero::imprimirProf() {
 
-	for(size_t z = 0; z < this->profundidad; z++) {
+	for(int z = 0; z < this->profundidad; z++) {
 		std::cout << "CARA (PROF): " << z + this->altura + this->anchura + 1 << std::endl;
-		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t x = 0; x < this->anchura; x++) {
+		for(int y = 0; y < this->altura; y++) {
+			for(int x = 0; x < this->anchura; x++) {
 				std::cout << this->getCasillero(x, y, z)->getValor();
 				if(x != this->anchura -1) std::cout << '|';
 			}
 			std::cout << endl;
 			if(y != this->altura - 1) {
-				for(size_t i = 0; i < (2 * this->anchura - 1); i++) {
+				for(int i = 0; i < (2 * this->anchura - 1); i++) {
 					std::cout << '-';
 				}
 			}
@@ -514,10 +514,10 @@ void Tablero::imprimirProf() {
 
 void Tablero::imprimirProfCoordenado() {
 
-	for(size_t z = 0; z < this->profundidad; z++) {
+	for(int z = 0; z < this->profundidad; z++) {
 		std::cout << "CARA (PROF): " << z + this->altura + this->anchura + 1 << std::endl;
-		for(size_t y = 0; y < this->altura; y++) {
-			for(size_t x = 0; x < this->anchura; x++) {
+		for(int y = 0; y < this->altura; y++) {
+			for(int x = 0; x < this->anchura; x++) {
 				std::cout << "[x = " << x << "][y = " << y << "][z = " << z << "] ";
 			}
 			std::cout << endl;
@@ -543,9 +543,9 @@ void Tablero::imprimirMapaCoordenado(){
 }
 
 Tablero::~Tablero(){
-	for(size_t i = 0; i < this->anchura; i++) {
-		for(size_t j = 0; j < this->altura; j++) {
-			for(size_t k = 0; k < this->profundidad; k++) {
+	for(int i = 0; i < this->anchura; i++) {
+		for(int j = 0; j < this->altura; j++) {
+			for(int k = 0; k < this->profundidad; k++) {
 				delete  this->casillero[i][j][k];
 			}
 			delete [] this->casillero[i][j];

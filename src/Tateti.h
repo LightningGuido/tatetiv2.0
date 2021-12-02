@@ -40,17 +40,17 @@ public:
 	* POST:Recibe una anchura por paramentro y devuelve el valor logico true si es un valor de ancho
 	* valido, y false en caso contrario
 	*/
-	bool anchuraValida(size_t f);
+	bool anchuraValida(int f);
 	/*PRE:-
 	* POST: Recibe una altura por paramentro y devuelve el valor logico true si es un valor de alto
 	* valido, y false en caso contrario
 	*/
-	bool alturaValida(size_t c);
+	bool alturaValida(int c);
 	/*PRE: -
 	* POST: Recibe una profundidad por paramentro y devuelve el valor logico true si es un valor de profundidad
 	* valido, y false en caso contrario
 	*/
-	bool profundidadValida(size_t c);
+	bool profundidadValida(int c);
 	/*PRE: -
 	* POST: Compara dos Casilleros pasados por parametro y devuelve el valor logico true si los valores de ambos
 	* casillero son iguales, y false en caso contrario
